@@ -7,15 +7,15 @@ public class Player : MonoBehaviour
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
 
-    [SerializeField] private float runSpeed = 5f; //Скорость бега
-    [SerializeField] private float jumpForce = 3f; // Сила прыжка
-    [SerializeField] private float jumpControlTime = 0.6f; // Максимальное время прыжка
-    [SerializeField] private float slideSpeed = 10f; // Скорость скольжения
-    [SerializeField] private float slideControlTime = 0.6f; // Максимальное время скольжения
+    [SerializeField] private float runSpeed = 5f; //???????? ????
+    [SerializeField] private float jumpForce = 3f; // ???? ??????
+    [SerializeField] private float jumpControlTime = 0.6f; // ???????????? ????? ??????
+    [SerializeField] private float slideSpeed = 10f; // ???????? ??????????
+    [SerializeField] private float slideControlTime = 0.6f; // ???????????? ????? ??????????
 
-    private bool isGrounded; // Проверка на земле ли персонаж
-    private bool isJumping; // Проверка, нажата ли кнопка прыжка
-    private bool isSliding; // Проверка, активен ли скольжение
+    private bool isGrounded; // ???????? ?? ????? ?? ????????
+    private bool isJumping; // ????????, ?????? ?? ?????? ??????
+    private bool isSliding; // ????????, ??????? ?? ??????????
 
     private float jumpTime = 0;
     private float slideTime = 0;
@@ -61,12 +61,14 @@ public class Player : MonoBehaviour
             SlideEvent?.Invoke();
             if ((slideTime += Time.deltaTime) < slideControlTime)
             {
+                gameObject.transform.localScale = new Vector3(1, 0.5f, 1);
                 Run(slideSpeed);
             }
         }
         else
         {
             slideTime = 0;
+            gameObject.transform.localScale = new Vector3(1, 1, 1); 
         }
         Run(runSpeed);
     }
