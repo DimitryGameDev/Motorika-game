@@ -7,15 +7,18 @@ public class Player : MonoBehaviour
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
 
-    [SerializeField] private float runSpeed = 5f; //???????? ????
-    [SerializeField] private float jumpForce = 3f; // ???? ??????
-    [SerializeField] private float jumpControlTime = 0.6f; // ???????????? ????? ??????
-    [SerializeField] private float slideSpeed = 10f; // ???????? ??????????
-    [SerializeField] private float slideControlTime = 0.6f; // ???????????? ????? ??????????
+    [SerializeField] private float runSpeed = 5f; //Скорость бега
+    [SerializeField] private float jumpForce = 3f; // Сила прыжка
+    [SerializeField] private float jumpControlTime = 0.6f; // Максимальное время прыжка
+    [SerializeField] private float slideSpeed = 10f; // Скорость скольжения
+    [SerializeField] private float slideControlTime = 0.6f; // Максимальное время скольжения
 
-    private bool isGrounded; // ???????? ?? ????? ?? ????????
-    private bool isJumping; // ????????, ?????? ?? ?????? ??????
-    private bool isSliding; // ????????, ??????? ?? ??????????
+    [SerializeField] private Transform rayTransform; // пустой объект, дочерний от игрока, расположен внизу модели
+    [SerializeField] private float raycastDistance = 1.5f; // Расстояние, на которое будет выпущен рейкаст
+
+    private bool isGrounded; // Проверка на земле ли персонаж
+    private bool isJumping; // Проверка, нажата ли кнопка прыжка
+    private bool isSliding; // Проверка, активен ли скольжение
 
     private float jumpTime = 0;
     private float slideTime = 0;
@@ -32,7 +35,8 @@ public class Player : MonoBehaviour
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
 
-        Slide();
+        if (IsBarrier() == false)
+            Slide();
 
         Jump();
     }
@@ -41,7 +45,8 @@ public class Player : MonoBehaviour
     {
         RunEvent?.Invoke();
 
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        rb.velocity = new Vector3(0f, rb.velocity.y, speed);
+        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void Slide()
@@ -68,7 +73,7 @@ public class Player : MonoBehaviour
         else
         {
             slideTime = 0;
-            gameObject.transform.localScale = new Vector3(1, 1, 1); 
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
         Run(runSpeed);
     }
@@ -90,7 +95,8 @@ public class Player : MonoBehaviour
             JumpEvent?.Invoke();
             if ((jumpTime += Time.deltaTime) < jumpControlTime)
             {
-                rb.AddForce(Vector3.up * jumpForce / (jumpTime * 10));
+                rb.velocity = new Vector3(0f, jumpForce / (jumpTime * 10), rb.velocity.z);
+                //rb.AddForce(Vector3.up * jumpForce / (jumpTime * 10));
             }
         }
         else
@@ -98,7 +104,29 @@ public class Player : MonoBehaviour
             jumpTime = 0;
         }
     }
+    private bool IsBarrier()
+    {
+        // Выпускаем рейкаст
+        RaycastHit hit;
+#if UNITY_EDITOR
+        // Визуализация рейкаста (для отладки)
+        Debug.DrawRay(rayTransform.transform.position, transform.forward * raycastDistance, Color.red);
+#endif
 
+        if (Physics.Raycast(rayTransform.transform.position, transform.forward, out hit, raycastDistance))
+        {
+            // Если рейкаст попал в коллайдер
+            Debug.Log("Hit object: " + hit.collider.name);
+            return true;
+        }
+        else
+        {
+            // Если рейкаст не попал в коллайдер
+            Debug.Log("No hit");
+            return false;
+        }
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision != null)
