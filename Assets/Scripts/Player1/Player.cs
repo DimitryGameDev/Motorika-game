@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float slideSpeed = 10f; // Скорость скольжения
     [SerializeField] private float slideControlTime = 0.6f; // Максимальное время скольжения
 
-    [SerializeField] private Transform rayTransform; // пустой объект, дочерний от игрока, расположен внизу модели
     [SerializeField] private float raycastDistance = 1.5f; // Расстояние, на которое будет выпущен рейкаст
 
     private bool isGrounded; // Проверка на земле ли персонаж
@@ -104,16 +103,19 @@ public class Player : MonoBehaviour
             jumpTime = 0;
         }
     }
+
     private bool IsBarrier()
     {
         // Выпускаем рейкаст
         RaycastHit hit;
+
+        Vector3 raycastPosition = new Vector3(transform.position.x, transform.position.y / 2 - transform.position.y / 2, transform.position.z);
 #if UNITY_EDITOR
         // Визуализация рейкаста (для отладки)
-        Debug.DrawRay(rayTransform.transform.position, transform.forward * raycastDistance, Color.red);
+        Debug.DrawRay(raycastPosition , transform.forward * raycastDistance, Color.red);
 #endif
 
-        if (Physics.Raycast(rayTransform.transform.position, transform.forward, out hit, raycastDistance))
+        if (Physics.Raycast(raycastPosition , transform.forward, out hit, raycastDistance))
         {
             // Если рейкаст попал в коллайдер
             Debug.Log("Hit object: " + hit.collider.name);
