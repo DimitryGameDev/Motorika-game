@@ -11,6 +11,9 @@ public class EnemyAI : MonoBehaviour
 
     public float moveDistance;
     public float moveSpeed;
+
+
+    //
     public float pauseDuration;
     public float visionDistance;
     public float stopDistance;
