@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Player : MonoSingleton<Player>
 {
-    public event UnityAction RunEvent;
+    public event UnityAction RunEvent; // event
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
 
