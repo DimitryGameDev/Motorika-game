@@ -13,6 +13,8 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
 
+    [SerializeField] private int damage = 10;
+
     [SerializeField] private float raycastDistance = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float rayOffset = 0.5f; //distance Ray from object center 
 
@@ -26,6 +28,7 @@ public class Player : MonoSingleton<Player>
     private Rigidbody rb;
     private Collider playerCollider;
     private Turret turret;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,8 +44,7 @@ public class Player : MonoSingleton<Player>
 
         if (turret != null)
         {
-            Debug.Log(turret.name);
-            if(Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
             {
                 turret.Fire();
             }
@@ -56,11 +58,11 @@ public class Player : MonoSingleton<Player>
     {
         RunEvent?.Invoke();
 
-        if (IsBarrier() == false)
+        if (IsBarrier())
+            speed = 0f;
+        else
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        else
-            speed = 0f;
     }
 
     private void Slide()
@@ -137,15 +139,22 @@ public class Player : MonoSingleton<Player>
         Debug.DrawRay(raycastBottomPosition, transform.forward * raycastDistance, Color.red);
 #endif
 
-        if (Physics.Raycast(raycastBottomPosition, transform.forward, out hit, raycastDistance) ||
-            Physics.Raycast(raycastTopPosition, transform.forward, out hit2, raycastDistance))
+        bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out hit, raycastDistance);
+        bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out hit2, raycastDistance);
+
+        if (hitBottom || hitTop)
         {
-            Debug.Log("Hit");
+            RaycastHit usedHit = hitBottom ? hit : hit2;
+            Destructable destructable = usedHit.collider.GetComponent<Destructable>();
+
+            TakeDamage(destructable);
+
+            //Debug.Log("Hit");
             return true;
         }
         else
         {
-            Debug.Log("No hit");
+            //Debug.Log("No hit");
             return false;
         }
     }
@@ -158,6 +167,19 @@ public class Player : MonoSingleton<Player>
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+    }
+
+    private void TakeDamage(Destructable destructable)
+    {
+        if (destructable != null)
+        {
+            destructable.transform.root.GetComponent<Destructable>();
+
+            if (isSliding)
+            {
+                destructable.ApplyDamage(damage);
+            }
+        }
     }
 
     public void Fire(TurretMode mode)
