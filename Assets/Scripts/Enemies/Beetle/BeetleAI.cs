@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BeetleAI : MonoBehaviour
+public class BeetleAI : Destructable
 {
     public float moveForwardDistance;  // Движение по оси Z вперёд (вправо)
     public float moveDownDistance;     // Движение по оси Y вниз

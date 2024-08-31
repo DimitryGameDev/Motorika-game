@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Destructable
 {
     public enum EnemyState
     {
