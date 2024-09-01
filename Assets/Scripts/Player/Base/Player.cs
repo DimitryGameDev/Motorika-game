@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Player : MonoSingleton<Player>
 {
-    public event UnityAction RunEvent;
+    public event UnityAction RunEvent; // event
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
 
@@ -145,7 +145,7 @@ public class Player : MonoSingleton<Player>
         if (hitBottom || hitTop)
         {
             RaycastHit usedHit = hitBottom ? hit : hit2;
-            Destructable destructable = usedHit.collider.GetComponent<Destructable>();
+            Destructable destructable = usedHit.collider.GetComponentInChildren<Destructable>();
 
             TakeDamage(destructable);
 
