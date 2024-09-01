@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3575339182759583612}
   - component: {fileID: 7550795085921011882}
   - component: {fileID: 3785548525861306817}
-  - component: {fileID: 9050260015881760649}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -134,27 +133,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9050260015881760649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2163825344711803043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe482524f343cf4ca8fc8c0af66b431, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDistance: 5
-  moveSpeed: 2
-  pauseDuration: 5
-  visionDistance: 1.4
-  stopDistance: 1.3
-  playerPrefab: {fileID: 0}
-  attackDamage: 10
-  attackInterval: 3
-  verticalTolerance: 1
 --- !u!1 &7908884040600752686
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3849601673231709425}
+  - component: {fileID: 2602494011810004561}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -187,3 +166,29 @@ Transform:
   - {fileID: 1330785728523126290}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2602494011810004561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7908884040600752686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe482524f343cf4ca8fc8c0af66b431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  indestructable: 0
+  hitPoints: 0
+  moveDistance: 5
+  moveSpeed: 2
+  pauseDuration: 5
+  visionDistance: 1.4
+  stopDistance: 1.3
+  playerPrefab: {fileID: 0}
+  attackDamage: 10
+  attackInterval: 3
+  verticalTolerance: 1
