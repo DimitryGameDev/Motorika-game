@@ -145,7 +145,7 @@ public class Player : MonoSingleton<Player>
         if (hitBottom || hitTop)
         {
             RaycastHit usedHit = hitBottom ? hit : hit2;
-            Destructable destructable = usedHit.collider.GetComponent<Destructable>();
+            Destructable destructable = usedHit.collider.GetComponentInChildren<Destructable>();
 
             TakeDamage(destructable);
 
