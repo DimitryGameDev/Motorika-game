@@ -103501,6 +103501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 7908884040600752686, guid: c05c4dc78e92169498b46cb83090fa23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9050260015881760649, guid: c05c4dc78e92169498b46cb83090fa23, type: 3}
       propertyPath: playerPrefab
       value: 
