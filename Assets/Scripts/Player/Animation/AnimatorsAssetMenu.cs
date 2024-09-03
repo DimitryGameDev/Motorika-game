@@ -4,7 +4,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class AnimatorsAssetMenu : ScriptableObject
 {
-    public AnimatorController animatorRun;
-    public AnimatorController animatorJump;
-    public AnimatorController animatorSlide;
+    [SerializeField] private AnimatorController animatorRun;
+    [SerializeField] private AnimatorController animatorJump;
+    [SerializeField] private AnimatorController animatorSlide;
+
+    public AnimatorController AnimatorRun => animatorRun;
+    public AnimatorController AnimatorJump => animatorJump;
+    public AnimatorController AnimatorSlide => animatorSlide;
 }

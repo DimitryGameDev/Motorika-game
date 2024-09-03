@@ -1,10 +1,16 @@
 using UnityEngine;
 
 public class AnimatorsChange : MonoBehaviour
-{
-    [SerializeField] private Player player;
-    [SerializeField] private AnimatorsAssetMenu assetMenu;
-    [SerializeField] private Animator animator;
+{/*
+    private Player player;
+    //[SerializeField] private AnimatorsAssetMenu assetMenu;
+    private Animator animator;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     private void Start()
     {
@@ -19,25 +25,24 @@ public class AnimatorsChange : MonoBehaviour
         player.JumpEvent -= OnJump;
         player.SlideEvent -= OnSlide;
     }
-    
 
     private void OnRun()
     {
-        ChangeController(assetMenu.animatorRun);
+        ChangeController("isRun", true);
     }
 
     private void OnJump()
     {
-        ChangeController(assetMenu.animatorJump);
+        ChangeController("isJump", true);
     }
 
     private void OnSlide()
     {
-        ChangeController(assetMenu.animatorSlide);
+        ChangeController("isSlide",true);
     }
 
-    private void ChangeController(RuntimeAnimatorController newRuntimeAnimatorController)
+    private void ChangeController(string name, bool value)
     {
-        animator.runtimeAnimatorController = newRuntimeAnimatorController;
-    }
+        animator.SetBool(name, value);
+    }*/
 }
