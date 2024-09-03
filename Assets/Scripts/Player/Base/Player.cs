@@ -25,12 +25,14 @@ public class Player : MonoSingleton<Player>
     private float jumpTime = 0;
     private float slideTime = 0;
 
+    private Animator animator;
     private Rigidbody rb;
     private Collider playerCollider;
     private Turret turret;
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponentInChildren<Collider>();
         turret = GetComponentInChildren<Turret>();
@@ -56,13 +58,12 @@ public class Player : MonoSingleton<Player>
 
     private void Run(float speed)
     {
-        RunEvent?.Invoke();
-
         if (IsBarrier())
             speed = 0f;
         else
+        {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
+        }
     }
 
     private void Slide()
@@ -79,17 +80,21 @@ public class Player : MonoSingleton<Player>
 
         if (isSliding)
         {
-            SlideEvent?.Invoke();
+            animator.SetBool("isSlide", true);
+            animator.SetBool("isRun", false);
             if ((slideTime += Time.deltaTime) < slideControlTime)
             {
-                transform.localScale = new Vector3(1, 0.5f, 1);
+               // transform.localScale = new Vector3(1, 0.5f, 1);
                 Run(slideSpeed);
             }
         }
         else
         {
+            animator.SetBool("isSlide", false);
+            animator.SetBool("isRun", true);
+
             slideTime = 0;
-            transform.localScale = new Vector3(1, 1, 1);
+            //transform.localScale = new Vector3(1, 1, 1);
         }
         Run(runSpeed);
     }
@@ -114,7 +119,9 @@ public class Player : MonoSingleton<Player>
 
         if (isJumping)
         {
-            JumpEvent?.Invoke();
+            animator.SetBool("isJump", true);
+            animator.SetBool("isRun", false);
+
             if ((jumpTime += Time.deltaTime) < jumpControlTime)
             {
                 rb.velocity = new Vector3(0f, jumpForce / (jumpTime * 10), rb.velocity.z);
@@ -123,6 +130,7 @@ public class Player : MonoSingleton<Player>
         }
         else
         {
+            animator.SetBool("isJump", false);
             jumpTime = 0;
         }
     }
@@ -149,12 +157,10 @@ public class Player : MonoSingleton<Player>
 
             TakeDamage(destructable);
 
-            //Debug.Log("Hit");
             return true;
         }
         else
         {
-            //Debug.Log("No hit");
             return false;
         }
     }
