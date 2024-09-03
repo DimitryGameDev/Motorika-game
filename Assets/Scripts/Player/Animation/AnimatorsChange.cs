@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class AnimatorsChange : MonoBehaviour
-{
+{/*
     private Player player;
     //[SerializeField] private AnimatorsAssetMenu assetMenu;
     private Animator animator;
@@ -38,12 +38,11 @@ public class AnimatorsChange : MonoBehaviour
 
     private void OnSlide()
     {
-        Debug.Log("Slide");
-        //ChangeController("isSlide",true);
+        ChangeController("isSlide",true);
     }
 
     private void ChangeController(string name, bool value)
     {
         animator.SetBool(name, value);
-    }
+    }*/
 }
