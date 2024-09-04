@@ -94,7 +94,7 @@ public class Player : MonoSingleton<Player>
         }
     }
 
-    private void Run(float speed)
+    public void Run(float speed)
     {
         if (!IsBarrier())
         {
@@ -158,9 +158,9 @@ public class Player : MonoSingleton<Player>
         if (hitBottom || hitTop)
         {
             RaycastHit usedHit = hitBottom ? hit : hit2;
-            Destructable destructable = usedHit.collider.GetComponentInChildren<Destructable>();
+            Destructible destructible = usedHit.collider.GetComponentInChildren<Destructible>();
 
-            TakeDamage(destructable);
+            TakeDamage(destructible);
 
             return true;
         }
@@ -178,11 +178,11 @@ public class Player : MonoSingleton<Player>
         isGrounded = Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
     }
 
-    private void TakeDamage(Destructable destructable)
+    public void TakeDamage(Destructible destructable)
     {
         if (destructable != null)
         {
-            destructable.transform.root.GetComponent<Destructable>();
+            destructable.transform.root.GetComponent<Destructible>();
 
             if (isSliding)
             {

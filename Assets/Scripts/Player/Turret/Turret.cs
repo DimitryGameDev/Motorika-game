@@ -11,7 +11,7 @@ public class Turret : MonoBehaviour
     public bool CanFire => refireTimer <= 0; // State of Colldown
 
     private Player player; // Parent object
-    private Destructable destructable; // Parent object
+    private Destructible destructable; // Parent object
 
     /*[SerializeField] private UpgradeAsset countTurretUpgrade;
     private int levelOfTurret;

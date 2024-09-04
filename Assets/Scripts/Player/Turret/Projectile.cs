@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
     protected virtual void OnHit(RaycastHit hit)
     {
 
-        var destructible = hit.collider.transform.root.GetComponent<Destructable>();
+        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
 
         if (destructible != null && destructible != parent)
         {
@@ -77,9 +77,9 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private Destructable parent;
+    private Destructible parent;
 
-    public void SetParentShooter(Destructable parent)
+    public void SetParentShooter(Destructible parent)
     {
         this.parent = parent;
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class WolfAI : Destructable
+public class WolfAI : Destructible
 {
     public enum EnemyState
     {
@@ -18,24 +18,25 @@ public class WolfAI : Destructable
     public float attackDamage;
     public float attackInterval;
     public float verticalTolerance;
-
+    private Parry parry;
     private Vector3 startPosition;
-    private bool movingForward = true; // направление движения по оси Z
+    private bool movingForward = true; // ??????????? ???????? ?? ??? Z
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private bool isAttacking = false;
-
-    private Destructable playerHealth; // Ссылка на компонент Destructable
+    private GameObject player;
+    private Destructible destructible; // ?????? ?? ????????? Destructable
 
     void Start()
     {
         startPosition = transform.position;
 
-        // Найти объект игрока и получить компонент Destructable
-        GameObject player = GameObject.Find(playerPrefab.name);
+        // ????? ?????? ?????? ? ???????? ????????? Destructable
+        player = GameObject.Find(playerPrefab.name);
         if (player != null)
         {
-            playerHealth = player.GetComponent<Destructable>();
+            destructible = player.GetComponent<Destructible>();
+            parry = player.GetComponent<Parry>();
         }
     }
 
@@ -90,17 +91,17 @@ public class WolfAI : Destructable
 
     void DetectPlayer()
     {
-        if (playerHealth == null)
+        if (destructible == null)
         {
-            return; // Если игрок не найден, ничего не делаем
+            return; // ???? ????? ?? ??????, ?????? ?? ??????
         }
 
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
         Vector3 enemyPosition = transform.position;
         Vector3 toPlayer = playerPosition - enemyPosition;
-
-        float verticalDistance = Mathf.Abs(playerHealth.transform.position.y - transform.position.y);
+        
+        float verticalDistance = Mathf.Abs(destructible.transform.position.y - transform.position.y);
         if (verticalDistance <= verticalTolerance && Vector3.Dot(toPlayer.normalized, direction) > 0 && toPlayer.magnitude <= visionDistance)
         {
             currentState = EnemyState.Attacking;
@@ -115,16 +116,16 @@ public class WolfAI : Destructable
 
     void ChasePlayer()
     {
-        if (playerHealth == null)
+        if (destructible == null)
         {
-            return; // Если игрок не найден, ничего не делаем
+            return; // ???? ????? ?? ??????, ?????? ?? ??????
         }
 
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
         Vector3 enemyPosition = transform.position;
         float distanceToPlayer = Vector3.Distance(playerPosition, enemyPosition);
 
-        float verticalDistance = Mathf.Abs(playerHealth.transform.position.y - transform.position.y);
+        float verticalDistance = Mathf.Abs(destructible.transform.position.y - transform.position.y);
         if (verticalDistance <= verticalTolerance && distanceToPlayer > stopDistance)
         {
             Vector3 direction = (playerPosition - enemyPosition).normalized;
@@ -147,18 +148,23 @@ public class WolfAI : Destructable
 
     IEnumerator AttackPlayer()
     {
-        isAttacking = true;
-        while (isAttacking)
+       
+        if (parry.ParryTimer > 0)
         {
-            if (playerHealth != null && !playerHealth.IsIndestructable)
+            isAttacking = true;
+            while (isAttacking)
             {
-                playerHealth.ApplyDamage((int)attackDamage);
-            }
+                if (destructible != null && !destructible.IsIndestructable)
+                {
 
-            yield return new WaitForSeconds(attackInterval);
+                    destructible.ApplyDamage((int)attackDamage);
+                }
+
+                yield return new WaitForSeconds(attackInterval);
+            }        
         }
     }
-
+   
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

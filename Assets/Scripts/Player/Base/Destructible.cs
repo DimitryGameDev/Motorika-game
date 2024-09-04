@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Destructable : MonoBehaviour
+public class Destructible : MonoBehaviour
 {
     [SerializeField] private UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
