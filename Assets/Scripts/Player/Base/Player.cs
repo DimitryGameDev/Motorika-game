@@ -34,6 +34,10 @@ public class Player : MonoSingleton<Player>
     private Collider playerCollider;
     private Turret turret;
 
+    private Vector3 raycastDownPosition;
+    private Vector3 raycastTopPosition;
+    private Vector3 raycastBottomPosition;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -138,6 +142,12 @@ public class Player : MonoSingleton<Player>
         //animator.SetTrigger("Jump");
     }
 
+    public void Parry(float parryForce)
+    {
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+        rb.AddForce(-transform.forward * parryForce, ForceMode.Impulse);
+    }
+
     private void ResetAnimations()
     {
         animator.SetBool("isJump", false);
@@ -146,12 +156,9 @@ public class Player : MonoSingleton<Player>
 
     private bool IsBarrier()
     {
-        Vector3 raycastTopPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.max.y - rayOffset, playerCollider.bounds.max.z);
-        Vector3 raycastBottomPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
-#if UNITY_EDITOR
-        Debug.DrawRay(raycastTopPosition, transform.forward * raycastDistanceForward, Color.red);
-        Debug.DrawRay(raycastBottomPosition, transform.forward * raycastDistanceForward, Color.red);
-#endif
+        raycastTopPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.max.y - rayOffset, playerCollider.bounds.max.z);
+        raycastBottomPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
+
         bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out RaycastHit hit, raycastDistanceForward);
         bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out RaycastHit hit2, raycastDistanceForward);
 
@@ -172,9 +179,8 @@ public class Player : MonoSingleton<Player>
 
     private void CheckGround()
     {
-        Vector3 raycastDownPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
-
-        Debug.DrawRay(raycastDownPosition, -transform.up * raycastDistanceDown, Color.blue);
+        raycastDownPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
+        
         isGrounded = Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
     }
 
@@ -205,4 +211,14 @@ public class Player : MonoSingleton<Player>
     {
         return true;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(raycastDownPosition, -transform.up * raycastDistanceDown);
+        Gizmos.DrawRay(raycastTopPosition, transform.forward * raycastDistanceForward);
+        Gizmos.DrawRay(raycastBottomPosition, transform.forward * raycastDistanceForward);
+    }
+#endif
 }
