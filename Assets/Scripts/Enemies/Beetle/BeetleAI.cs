@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BeetleAI : Destructible
 {
+    //Check public variables, use [SerializeField] private if is possible
     public float moveForwardDistance;  // ???????? ?? ??? Z ?????? (??????)
     public float moveDownDistance;     // ???????? ?? ??? Y ????
     public float moveBackwardDistance; // ???????? ?? ??? Z ????? (?????)
@@ -11,8 +12,10 @@ public class BeetleAI : Destructible
     public int damage;
     public float knockbackForce;
 
+    //Todo - change find player (Check raycast or OnCollider enter) Script Destructible
     public GameObject playerPrefab;  // ?????? ?? ?????? ??????
 
+    private Destructible destructible;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private int currentDirection = 0;
@@ -71,6 +74,7 @@ public class BeetleAI : Destructible
 
     void OnCollisionEnter(Collision collision)
     {
+        //Check if collision != null   ----> getcomp Destructible
         GameObject collidedObject = collision.gameObject;
 
         if (collidedObject == playerPrefab)

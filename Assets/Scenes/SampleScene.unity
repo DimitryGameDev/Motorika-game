@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!65 &173475269 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3414189755677173844, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+  m_PrefabInstance: {fileID: 4781545694053580354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &178944363
 Mesh:
   m_ObjectHideFlags: 0
@@ -104338,16 +104343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8819433a42e445d8178bda68b581a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parryRange: 2.05
-  parryWindow: 1
-  parryForce: 10
-  parryDamage: 10
-  damageToPlayer: 100
-  damageToEnemy: 50
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  knockbackForce: 5
+  parryRange: 2
+  parryWindow: 3
+  parryForce: 20
+  parryDamage: 50
+  playerCollider: {fileID: 173475269}
   parryMaterial: {fileID: 2100000, guid: 9090e5af6f0e4402397e9a85c21550e2, type: 2}
 --- !u!850595691 &1350714401
 LightingSettings:
@@ -108268,6 +108268,10 @@ PrefabInstance:
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: raycastDistanceDown
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: raycastDistanceForward
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
