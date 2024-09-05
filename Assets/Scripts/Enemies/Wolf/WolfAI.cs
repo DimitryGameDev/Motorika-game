@@ -8,12 +8,13 @@ public class WolfAI : Destructible
         Patrolling,
         Attacking
     }
-
+    //Check public variables, use [SerializeField] private if is possible
     public float moveDistance;
     public float moveSpeed;
     public float pauseDuration;
     public float visionDistance;
     public float stopDistance;
+    //Todo - change find player (Check raycast or OnCollider enter) Script private Destructible playerDestructible
     public GameObject playerPrefab;
     public float attackDamage;
     public float attackInterval;
@@ -24,9 +25,10 @@ public class WolfAI : Destructible
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private bool isAttacking = false;
+    //Why 2 link Player?
     private GameObject player;
     private Destructible destructible; // ?????? ?? ????????? Destructable
-
+    //void private or public 
     void Start()
     {
         startPosition = transform.position;
@@ -80,7 +82,7 @@ public class WolfAI : Destructible
             }
         }
     }
-
+    //remove/ change Corutine  if possible
     IEnumerator PauseBeforeChangeDirection()
     {
         isPaused = true;
@@ -95,7 +97,7 @@ public class WolfAI : Destructible
         {
             return; // ???? ????? ?? ??????, ?????? ?? ??????
         }
-
+   
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
         Vector3 enemyPosition = transform.position;
@@ -164,8 +166,8 @@ public class WolfAI : Destructible
             }        
         }
     }
-   
-    void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
@@ -174,4 +176,5 @@ public class WolfAI : Destructible
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stopDistance);
     }
+#endif
 }

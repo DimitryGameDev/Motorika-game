@@ -8,12 +8,14 @@ public class PorcupineAI : MonoBehaviour
         Patrolling,
         Defending
     }
-
+    //Check public variables, use [SerializeField] private if is possible
     public float moveDistance;
     public float moveSpeed;
     public float pauseDuration;
     public float visionDistance;
+    //Todo - change find player (Check raycast or OnCollider enter) Script Destructible
     public GameObject playerPrefab;
+    // GameObject projectilePrefab; change to  Projectile projectilePrefab;
     public GameObject projectilePrefab;
     public float projectileSpeed;  // ???????? ???????
     public float fireRate; 
@@ -22,9 +24,11 @@ public class PorcupineAI : MonoBehaviour
     private bool movingForward = true; // ??????????? ???????? ?? ??? Z
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
+
     private Destructible playerHealth; // ?????? ?? ????????? Destructable
     private Coroutine fireCoroutine;
 
+    //void private or public 
     void Start()
     {
         startPosition = transform.position;
@@ -79,7 +83,7 @@ public class PorcupineAI : MonoBehaviour
             }
         }
     }
-
+    //remove/ change Corutine  if possible
     IEnumerator PauseBeforeChangeDirection()
     {
         isPaused = true;
@@ -87,7 +91,7 @@ public class PorcupineAI : MonoBehaviour
         movingForward = !movingForward;
         isPaused = false;
     }
-
+    // void private or public?
     void DetectPlayer()
     {
         if (playerHealth == null)
@@ -193,10 +197,11 @@ public class PorcupineAI : MonoBehaviour
             projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }
-
-    void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, visionDistance);
     }
+#endif
 }
