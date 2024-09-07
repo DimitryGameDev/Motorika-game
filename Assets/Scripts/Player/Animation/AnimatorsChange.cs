@@ -1,9 +1,8 @@
 using UnityEngine;
 
 public class AnimatorsChange : MonoBehaviour
-{/*
+{
     private Player player;
-    //[SerializeField] private AnimatorsAssetMenu assetMenu;
     private Animator animator;
 
     private void Awake()
@@ -15,6 +14,7 @@ public class AnimatorsChange : MonoBehaviour
     private void Start()
     {
         player.RunEvent += OnRun;
+        player.IdleEvent += OnIdle;
         player.JumpEvent += OnJump;
         player.SlideEvent += OnSlide;
     }
@@ -22,27 +22,28 @@ public class AnimatorsChange : MonoBehaviour
     private void OnDestroy()
     {
         player.RunEvent -= OnRun;
+        player.IdleEvent -= OnIdle;
         player.JumpEvent -= OnJump;
         player.SlideEvent -= OnSlide;
     }
 
     private void OnRun()
     {
-        ChangeController("isRun", true);
+        animator.SetTrigger("Run");
+    }
+
+    private void OnIdle()
+    {
+        animator.SetTrigger("Idle");
     }
 
     private void OnJump()
     {
-        ChangeController("isJump", true);
+        animator.SetTrigger("Jump");
     }
 
     private void OnSlide()
     {
-        ChangeController("isSlide",true);
+        animator.SetTrigger("Slide");
     }
-
-    private void ChangeController(string name, bool value)
-    {
-        animator.SetBool(name, value);
-    }*/
 }

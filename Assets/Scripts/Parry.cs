@@ -58,7 +58,7 @@ public class Parry : MonoBehaviour
             if (parryTimer > 0 && isParry)
             {
                 enemyRenderer.material = parryMaterial;
-                player.TakeDamage(destructible);
+                //player.TakeDamage(destructible);
                 //if(enemy != null ){
                 // player.Parry(parryForce);
                 // Check damage (per once)
