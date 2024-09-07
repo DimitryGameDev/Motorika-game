@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Player : MonoSingleton<Player>
 {
     public event UnityAction RunEvent; // event
+    public event UnityAction IdleEvent;
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
 
@@ -12,15 +13,15 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
     [Header("Jump")]
-    [SerializeField] private float minJumpForce; // base jump force
     [SerializeField] private float maxJumpForce; // additional max jump force
-    [SerializeField] private float chargeRate = 0.6f; // max jump time
+    [SerializeField] private float chargeRate; // max jump time
     [Header("Damage")]
     [SerializeField] private int damage = 10;
     [Header("Raycast")]
     [SerializeField] private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
-    [SerializeField] private float rayOffset = 0.5f; //distance Ray from object center 
+    [SerializeField] private float rayPositionTop = 0.5f; // Start position Ray on Top 
+    [SerializeField] private float rayPositionBot = 0.5f; // Start position Ray on Bottom 
 
     private bool isGrounded; // check ground
     private bool isJumping; // check jump
@@ -29,10 +30,7 @@ public class Player : MonoSingleton<Player>
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
-    private Animator animator;
     private Rigidbody rb;
-    private Collider playerCollider;
-    private Turret turret;
 
     private Vector3 raycastDownPosition;
     private Vector3 raycastTopPosition;
@@ -40,106 +38,67 @@ public class Player : MonoSingleton<Player>
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
-        playerCollider = GetComponentInChildren<Collider>();
-        turret = GetComponentInChildren<Turret>();
-    }
-
-    private void Update()
-    {
-        CheckGround();
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            isJumping = true;
-            JumpEvent?.Invoke();
-            animator.SetBool("isJump", true);
-        }
-
-        if (Input.GetKey(KeyCode.Space) && isJumping)
-        {
-            currentJumpForce += chargeRate * Time.deltaTime;
-            currentJumpForce = Mathf.Clamp(currentJumpForce, minJumpForce, maxJumpForce);
-
-            if (currentJumpForce != maxJumpForce)
-            {
-                Jump();
-            }
-            else
-            {
-                animator.SetBool("isJump", false);
-                currentJumpForce = minJumpForce;
-                isJumping = false;
-            }
-        }
     }
 
     private void FixedUpdate()
     {
+        CheckGround();
+
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
-
-        if (Input.GetMouseButton(0) && turret != null)
-        {
-            turret.Fire();
-        }
-
-        if (Input.GetKey(KeyCode.S) && isGrounded)
-        {
-            Slide();
-        }
-        else if (!Input.GetKey(KeyCode.S))
-        {
-            RunEvent?.Invoke();
-            Run(runSpeed);
-            ResetAnimations();
-        }
     }
 
-    public void Run(float speed)
+    public void Run()
     {
         if (!IsBarrier())
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            animator.SetBool("isRun", true);
-            animator.SetBool("isIdle", false);
+            transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
+            RunEvent?.Invoke();
         }
         else
         {
-            if(IsBarrier()) 
-            animator.SetBool("isIdle", true);
-
-            animator.SetBool("isRun", false);
+            IdleEvent?.Invoke();
         }
     }
 
-    private void Slide()
+    public void Slide()
     {
+        if (!isGrounded) return;
+
         isSliding = true;
         slideTime += Time.deltaTime;
 
         if (slideTime < slideControlTime)
         {
             SlideEvent?.Invoke();
-            animator.SetBool("isSlide", true);
-            Run(slideSpeed);
+            transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
         else
         {
             isSliding = false;
             slideTime = 0;
         }
-        animator.SetBool("isSlide", isSliding);
     }
 
-    private void Jump()
+    public void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
-        isGrounded = false;
-        //animator.SetTrigger("Jump");
+        if (!isGrounded) return;
+
+        isJumping = true;
+        
+        if (currentJumpForce < maxJumpForce)
+        {
+            JumpEvent?.Invoke();
+            rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
+            currentJumpForce += Time.deltaTime * chargeRate;
+        }
+        else
+        {
+            isJumping = false;
+            currentJumpForce = 0;
+        }
     }
 
     public void Parry(float parryForce)
@@ -148,27 +107,15 @@ public class Player : MonoSingleton<Player>
         rb.AddForce(-transform.forward * parryForce, ForceMode.Impulse);
     }
 
-    private void ResetAnimations()
-    {
-        animator.SetBool("isJump", false);
-        animator.SetBool("isSlide", false);
-    }
-
     private bool IsBarrier()
     {
-        raycastTopPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.max.y - rayOffset, playerCollider.bounds.max.z);
-        raycastBottomPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
-
-        bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out RaycastHit hit, raycastDistanceForward);
-        bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out RaycastHit hit2, raycastDistanceForward);
+        raycastTopPosition = new(transform.position.x, transform.position.y  + rayPositionTop, transform.position.z);
+        raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBot, transform.position.z);
+        bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
+        bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
 
         if (hitBottom || hitTop)
         {
-            RaycastHit usedHit = hitBottom ? hit : hit2;
-            Destructible destructible = usedHit.collider.GetComponentInChildren<Destructible>();
-
-            TakeDamage(destructible);
-
             return true;
         }
         else
@@ -179,22 +126,9 @@ public class Player : MonoSingleton<Player>
 
     private void CheckGround()
     {
-        raycastDownPosition = new(playerCollider.bounds.center.x, playerCollider.bounds.min.y + rayOffset, playerCollider.bounds.max.z);
-        
+        raycastDownPosition = new(transform.position.x, transform.position.y + rayPositionBot, transform.position.z);
+
         isGrounded = Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
-    }
-
-    public void TakeDamage(Destructible destructable)
-    {
-        if (destructable != null)
-        {
-            destructable.transform.root.GetComponent<Destructible>();
-
-            if (isSliding)
-            {
-                destructable.ApplyDamage(damage);
-            }
-        }
     }
 
     public void Fire(TurretMode mode)

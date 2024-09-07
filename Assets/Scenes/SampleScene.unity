@@ -104349,6 +104349,17 @@ MonoBehaviour:
   parryDamage: 50
   playerCollider: {fileID: 173475269}
   parryMaterial: {fileID: 2100000, guid: 9090e5af6f0e4402397e9a85c21550e2, type: 2}
+--- !u!114 &1188118090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+  m_PrefabInstance: {fileID: 4781545694053580354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188118075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2056434d4cc6540f2b79ae5354de5fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &1350714401
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -107599,6 +107610,51 @@ MonoBehaviour:
   attackDamage: 2
   attackInterval: 2
   verticalTolerance: 2
+--- !u!1 &1754909013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754909015}
+  - component: {fileID: 1754909014}
+  m_Layer: 0
+  m_Name: PlayerInputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1754909014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754909013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f6f6ad669779d4a932d358f0ccda0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1188118090}
+--- !u!4 &1754909015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754909013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1916177428
 Mesh:
   m_ObjectHideFlags: 0
@@ -108250,8 +108306,12 @@ PrefabInstance:
       value: -11.157707
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: rayOffset
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: chargeRate
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: maxJumpForce
@@ -108259,7 +108319,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: minJumpForce
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: rayPositionBot
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: rayPositionTop
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: currentJumpForce
@@ -108271,7 +108339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: raycastDistanceForward
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -108290,6 +108358,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 1754909015}
   - {fileID: 4781545694053580354}
   - {fileID: 1145834295}
   - {fileID: 1430431298}
