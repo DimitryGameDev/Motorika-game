@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
+//
 public class WolfAI : Destructible
 {
     public enum EnemyState
@@ -8,32 +9,31 @@ public class WolfAI : Destructible
         Patrolling,
         Attacking
     }
-    //Check public variables, use [SerializeField] private if is possible
-    public float moveDistance;
-    public float moveSpeed;
-    public float pauseDuration;
-    public float visionDistance;
-    public float stopDistance;
-    //Todo - change find player (Check raycast or OnCollider enter) Script private Destructible playerDestructible
-    public GameObject playerPrefab;
-    public float attackDamage;
-    public float attackInterval;
-    public float verticalTolerance;
+
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float pauseDuration;
+    [SerializeField] private float visionDistance;
+    [SerializeField] private float stopDistance;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float attackInterval;
+    [SerializeField] private float verticalTolerance;
+
     private Parry parry;
     private Vector3 startPosition;
-    private bool movingForward = true; // ??????????? ???????? ?? ??? Z
+    private bool movingForward = true;
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private bool isAttacking = false;
-    //Why 2 link Player?
+
     private GameObject player;
-    private Destructible destructible; // ?????? ?? ????????? Destructable
-    //void private or public 
-    void Start()
+    private Destructible destructible;
+
+    private void Start()
     {
         startPosition = transform.position;
 
-        // ????? ?????? ?????? ? ???????? ????????? Destructable
         player = GameObject.Find(playerPrefab.name);
         if (player != null)
         {
@@ -42,7 +42,7 @@ public class WolfAI : Destructible
         }
     }
 
-    void Update()
+    private void Update()
     {
         switch (currentState)
         {
@@ -61,48 +61,43 @@ public class WolfAI : Destructible
         }
     }
 
-    void Move()
+    private void Move()
     {
-        if (movingForward)
-        {
-            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+        Vector3 moveDirection = movingForward ? Vector3.forward : Vector3.back;
 
-            if (transform.position.z >= startPosition.z + moveDistance)
-            {
-                StartCoroutine(PauseBeforeChangeDirection());
-            }
+        Vector3 newPosition = transform.position + moveDirection * moveSpeed * Time.deltaTime;
+
+        if (Mathf.Abs(newPosition.z - startPosition.z) >= moveDistance)
+        {
+            movingForward = !movingForward;
+            isPaused = true;
+            Invoke(nameof(ResumeMovement), pauseDuration);
         }
         else
         {
-            transform.position += Vector3.back * moveSpeed * Time.deltaTime;
-
-            if (transform.position.z <= startPosition.z - moveDistance)
-            {
-                StartCoroutine(PauseBeforeChangeDirection());
-            }
+            transform.position = newPosition;
         }
     }
-    //remove/ change Corutine  if possible
-    IEnumerator PauseBeforeChangeDirection()
+
+
+
+    private void ResumeMovement()
     {
-        isPaused = true;
-        yield return new WaitForSeconds(pauseDuration);
-        movingForward = !movingForward;
         isPaused = false;
     }
 
-    void DetectPlayer()
+    private void DetectPlayer()
     {
         if (destructible == null)
         {
-            return; // ???? ????? ?? ??????, ?????? ?? ??????
+            return;
         }
-   
+
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
         Vector3 enemyPosition = transform.position;
         Vector3 toPlayer = playerPosition - enemyPosition;
-        
+
         float verticalDistance = Mathf.Abs(destructible.transform.position.y - transform.position.y);
         if (verticalDistance <= verticalTolerance && Vector3.Dot(toPlayer.normalized, direction) > 0 && toPlayer.magnitude <= visionDistance)
         {
@@ -116,11 +111,11 @@ public class WolfAI : Destructible
         }
     }
 
-    void ChasePlayer()
+    private void ChasePlayer()
     {
         if (destructible == null)
         {
-            return; // ???? ????? ?? ??????, ?????? ?? ??????
+            return;
         }
 
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
@@ -148,24 +143,23 @@ public class WolfAI : Destructible
         }
     }
 
-    IEnumerator AttackPlayer()
+    private IEnumerator AttackPlayer()
     {
-       
-        if (parry.ParryTimer > 0)
+        if (parry != null && parry.ParryTimer > 0)
         {
             isAttacking = true;
             while (isAttacking)
             {
                 if (destructible != null && !destructible.IsIndestructable)
                 {
-
                     destructible.ApplyDamage((int)attackDamage);
                 }
 
                 yield return new WaitForSeconds(attackInterval);
-            }        
+            }
         }
     }
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

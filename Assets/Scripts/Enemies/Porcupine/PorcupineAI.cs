@@ -8,40 +8,36 @@ public class PorcupineAI : MonoBehaviour
         Patrolling,
         Defending
     }
-    //Check public variables, use [SerializeField] private if is possible
-    public float moveDistance;
-    public float moveSpeed;
-    public float pauseDuration;
-    public float visionDistance;
-    //Todo - change find player (Check raycast or OnCollider enter) Script Destructible
-    public GameObject playerPrefab;
-    // GameObject projectilePrefab; change to  Projectile projectilePrefab;
-    public GameObject projectilePrefab;
-    public float projectileSpeed;  // ???????? ???????
-    public float fireRate; 
+
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float pauseDuration;
+    [SerializeField] private float visionDistance;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private float fireRate;
 
     private Vector3 startPosition;
-    private bool movingForward = true; // ??????????? ???????? ?? ??? Z
+    private bool movingForward = true;
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
-
-    private Destructible playerHealth; // ?????? ?? ????????? Destructable
     private Coroutine fireCoroutine;
+    private GameObject player;
+    private Destructible playerHealth; 
 
-    //void private or public 
-    void Start()
+    private void Start()
     {
         startPosition = transform.position;
 
-        // ????? ?????? ?????? ? ???????? ????????? Destructable
-        GameObject player = GameObject.Find(playerPrefab.name);
+        player = GameObject.Find(playerPrefab.name);
         if (player != null)
         {
             playerHealth = player.GetComponent<Destructible>();
         }
     }
 
-    void Update()
+    private void Update()
     {
         switch (currentState)
         {
@@ -62,7 +58,7 @@ public class PorcupineAI : MonoBehaviour
         }
     }
 
-    void Move()
+    private void Move()
     {
         if (movingForward)
         {
@@ -83,35 +79,35 @@ public class PorcupineAI : MonoBehaviour
             }
         }
     }
-    //remove/ change Corutine  if possible
-    IEnumerator PauseBeforeChangeDirection()
+
+    private IEnumerator PauseBeforeChangeDirection()
     {
         isPaused = true;
         yield return new WaitForSeconds(pauseDuration);
         movingForward = !movingForward;
         isPaused = false;
     }
-    // void private or public?
-    void DetectPlayer()
+
+    private void DetectPlayer()
     {
         if (playerHealth == null)
         {
-            return; // ???? ????? ?? ??????, ?????? ?? ??????
+            return;
         }
 
+        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
         Vector3 enemyPosition = transform.position;
         Vector3 toPlayer = playerPosition - enemyPosition;
 
         if (toPlayer.magnitude <= visionDistance)
         {
-            // ????????? ? ????????? ??????, ???? ????? ? ???? ?????????
             currentState = EnemyState.Defending;
             StartDefending();
         }
     }
 
-    bool IsPlayerOutOfSight()
+    private bool IsPlayerOutOfSight()
     {
         if (playerHealth == null)
         {
@@ -121,22 +117,19 @@ public class PorcupineAI : MonoBehaviour
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
         Vector3 toPlayer = playerPosition - transform.position;
 
-        // ????????, ????????? ?? ????? ?? ????????? ???? ?????????
         return toPlayer.magnitude > visionDistance;
     }
 
-    void StartDefending()
+    private void StartDefending()
     {
-        // ???????? ???????? ????????? ? ???(!) ???????????
         if (fireCoroutine == null)
         {
             fireCoroutine = StartCoroutine(FireProjectiles());
         }
     }
 
-    void StopDefending()
+    private void StopDefending()
     {
-        // ????????????? ???????? ? ???????????? ? ??????????????
         if (fireCoroutine != null)
         {
             StopCoroutine(fireCoroutine);
@@ -145,58 +138,62 @@ public class PorcupineAI : MonoBehaviour
         currentState = EnemyState.Patrolling;
     }
 
-    IEnumerator FireProjectiles()
+    private IEnumerator FireProjectiles()
     {
         while (currentState == EnemyState.Defending)
         {
-            FireProjectileInDirection(Vector3.forward);   // ???????? ?????? (?? ??? Z ??????)
-            FireProjectileInDirection(Vector3.back);      // ???????? ????? (?? ??? Z ?????)
-            FireProjectileInDirection(Vector3.up);        // ???????? ????? (?? ??? Y ?????)
+            FireProjectileInDirection(Vector3.forward);     
+            FireProjectileInDirection(Vector3.back);       
+            FireProjectileInDirection(Vector3.up);         
 
-            yield return new WaitForSeconds(1f / fireRate); // ???????? ????? ???????
+            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized); 
+            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);    
+
+            yield return new WaitForSeconds(1f / fireRate);
         }
     }
 
-    void FireProjectileInDirection(Vector3 direction)
+    private void FireProjectileInDirection(Vector3 direction)
     {
-        // ??????? ??????
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-        // ???????? ?????? ??????? ? ????????????? ??????????? ? ????????
         ProjectilePorcupine projectileScript = projectile.GetComponent<ProjectilePorcupine>();
         if (projectileScript != null)
         {
-            projectileScript.SetDirection(direction); // ????????????? ??????????? ???????
-            projectileScript.SetSpeed(projectileSpeed); // ????????????? ???????? ???????
+            projectileScript.SetDirection(direction);
+            projectileScript.SetSpeed(projectileSpeed);
         }
 
-        // ???????????? ?????? ? ??????????? ?? ???????????
         if (direction == Vector3.up)
         {
-            // ?????? ???? ?????
             projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (direction == Vector3.forward)
         {
-            // ?????? ???? ??????
             projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
         }
         else if (direction == Vector3.back)
         {
-            // ?????? ???? ?????
             projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
         }
         else if (direction == Vector3.left)
         {
-            // ?????? ???? ?????
             projectile.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else if (direction == Vector3.right)
         {
-            // ?????? ???? ??????
             projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+        else if (direction == (Vector3.forward + Vector3.up).normalized)  
+        {
+            projectile.transform.rotation = Quaternion.Euler(45, 45, 0);
+        }
+        else if (direction == (Vector3.back + Vector3.up).normalized)     
+        {
+            projectile.transform.rotation = Quaternion.Euler(-45, -45, 0);
+        }
     }
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
