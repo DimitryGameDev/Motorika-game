@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//
 public class WolfAI : Destructible
 {
     public enum EnemyState

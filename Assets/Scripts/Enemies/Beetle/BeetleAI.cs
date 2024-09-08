@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//
 public class BeetleAI : Destructible
 {
     [SerializeField] private float moveForwardDistance;

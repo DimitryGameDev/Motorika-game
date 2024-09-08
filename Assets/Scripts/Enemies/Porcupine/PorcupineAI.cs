@@ -13,8 +13,8 @@ public class PorcupineAI : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float pauseDuration;
     [SerializeField] private float visionDistance;
-    [SerializeField] private GameObject playerPrefab; // Передаваемый префаб игрока
-    [SerializeField] private GameObject projectilePrefab; // Префаб снаряда
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float fireRate;
 
@@ -23,18 +23,16 @@ public class PorcupineAI : MonoBehaviour
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private Coroutine fireCoroutine;
-    private GameObject player; // Игрок
+    private GameObject player;
     private Destructible playerHealth; 
 
     private void Start()
     {
         startPosition = transform.position;
 
-        // Ищем игрока через передаваемый префаб
         player = GameObject.Find(playerPrefab.name);
         if (player != null)
         {
-            //Берём у него здоровье
             playerHealth = player.GetComponent<Destructible>();
         }
     }
@@ -144,12 +142,12 @@ public class PorcupineAI : MonoBehaviour
     {
         while (currentState == EnemyState.Defending)
         {
-            FireProjectileInDirection(Vector3.forward);     // Прямо вперед
-            FireProjectileInDirection(Vector3.back);        // Прямо назад
-            FireProjectileInDirection(Vector3.up);          // Прямо вверх
+            FireProjectileInDirection(Vector3.forward);     
+            FireProjectileInDirection(Vector3.back);       
+            FireProjectileInDirection(Vector3.up);         
 
-            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized); // Вправо-вверх
-            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);    // Влево-вверх
+            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized); 
+            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);    
 
             yield return new WaitForSeconds(1f / fireRate);
         }
@@ -166,7 +164,6 @@ public class PorcupineAI : MonoBehaviour
             projectileScript.SetSpeed(projectileSpeed);
         }
 
-        // Поворот снаряда в зависимости от направления
         if (direction == Vector3.up)
         {
             projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -187,11 +184,11 @@ public class PorcupineAI : MonoBehaviour
         {
             projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        else if (direction == (Vector3.forward + Vector3.up).normalized)  // Вправо-вверх
+        else if (direction == (Vector3.forward + Vector3.up).normalized)  
         {
             projectile.transform.rotation = Quaternion.Euler(45, 45, 0);
         }
-        else if (direction == (Vector3.back + Vector3.up).normalized)     // Влево-вверх
+        else if (direction == (Vector3.back + Vector3.up).normalized)     
         {
             projectile.transform.rotation = Quaternion.Euler(-45, -45, 0);
         }
