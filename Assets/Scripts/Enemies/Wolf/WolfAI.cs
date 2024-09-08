@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
-
 //
-public class WolfAI : Destructible
+public class WolfAI : Enemy
 {
     public enum EnemyState
     {
@@ -11,9 +10,7 @@ public class WolfAI : Destructible
     }
 
     [SerializeField] private float moveDistance;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float pauseDuration;
-    [SerializeField] private float visionDistance;
     [SerializeField] private float stopDistance;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private float attackDamage;
@@ -65,7 +62,7 @@ public class WolfAI : Destructible
     {
         Vector3 moveDirection = movingForward ? Vector3.forward : Vector3.back;
 
-        Vector3 newPosition = transform.position + moveDirection * moveSpeed * Time.deltaTime;
+        Vector3 newPosition = transform.position + moveDirection * MoveSpeed * Time.deltaTime; 
 
         if (Mathf.Abs(newPosition.z - startPosition.z) >= moveDistance)
         {
@@ -78,8 +75,6 @@ public class WolfAI : Destructible
             transform.position = newPosition;
         }
     }
-
-
 
     private void ResumeMovement()
     {
@@ -99,7 +94,7 @@ public class WolfAI : Destructible
         Vector3 toPlayer = playerPosition - enemyPosition;
 
         float verticalDistance = Mathf.Abs(destructible.transform.position.y - transform.position.y);
-        if (verticalDistance <= verticalTolerance && Vector3.Dot(toPlayer.normalized, direction) > 0 && toPlayer.magnitude <= visionDistance)
+        if (verticalDistance <= verticalTolerance && Vector3.Dot(toPlayer.normalized, direction) > 0 && toPlayer.magnitude <= VisionDistance)  // Используем VisionDistance из базового класса Enemy
         {
             currentState = EnemyState.Attacking;
         }
@@ -126,7 +121,7 @@ public class WolfAI : Destructible
         if (verticalDistance <= verticalTolerance && distanceToPlayer > stopDistance)
         {
             Vector3 direction = (playerPosition - enemyPosition).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            transform.position += direction * MoveSpeed * Time.deltaTime; 
         }
         else if (distanceToPlayer <= stopDistance && verticalDistance <= verticalTolerance)
         {
@@ -165,7 +160,7 @@ public class WolfAI : Destructible
     {
         Gizmos.color = Color.red;
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Gizmos.DrawLine(transform.position, transform.position + direction * visionDistance);
+        Gizmos.DrawLine(transform.position, transform.position + direction * VisionDistance); 
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stopDistance);
