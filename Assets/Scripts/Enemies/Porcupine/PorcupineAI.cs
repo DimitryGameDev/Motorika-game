@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PorcupineAI : MonoBehaviour
+public class PorcupineAI : Enemy
 {
     public enum EnemyState
     {
@@ -10,12 +10,9 @@ public class PorcupineAI : MonoBehaviour
     }
 
     [SerializeField] private float moveDistance;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float pauseDuration;
-    [SerializeField] private float visionDistance;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileSpeed;
     [SerializeField] private float fireRate;
 
     private Vector3 startPosition;
@@ -24,7 +21,7 @@ public class PorcupineAI : MonoBehaviour
     private EnemyState currentState = EnemyState.Patrolling;
     private Coroutine fireCoroutine;
     private GameObject player;
-    private Destructible playerHealth; 
+    private Destructible playerHealth;
 
     private void Start()
     {
@@ -62,7 +59,7 @@ public class PorcupineAI : MonoBehaviour
     {
         if (movingForward)
         {
-            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.forward * MoveSpeed * Time.deltaTime; 
 
             if (transform.position.z >= startPosition.z + moveDistance)
             {
@@ -71,7 +68,7 @@ public class PorcupineAI : MonoBehaviour
         }
         else
         {
-            transform.position += Vector3.back * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.back * MoveSpeed * Time.deltaTime;
 
             if (transform.position.z <= startPosition.z - moveDistance)
             {
@@ -100,7 +97,7 @@ public class PorcupineAI : MonoBehaviour
         Vector3 enemyPosition = transform.position;
         Vector3 toPlayer = playerPosition - enemyPosition;
 
-        if (toPlayer.magnitude <= visionDistance)
+        if (toPlayer.magnitude <= VisionDistance) 
         {
             currentState = EnemyState.Defending;
             StartDefending();
@@ -117,7 +114,7 @@ public class PorcupineAI : MonoBehaviour
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
         Vector3 toPlayer = playerPosition - transform.position;
 
-        return toPlayer.magnitude > visionDistance;
+        return toPlayer.magnitude > VisionDistance;
     }
 
     private void StartDefending()
@@ -142,12 +139,12 @@ public class PorcupineAI : MonoBehaviour
     {
         while (currentState == EnemyState.Defending)
         {
-            FireProjectileInDirection(Vector3.forward);     
-            FireProjectileInDirection(Vector3.back);       
-            FireProjectileInDirection(Vector3.up);         
+            FireProjectileInDirection(Vector3.forward);
+            FireProjectileInDirection(Vector3.back);
+            FireProjectileInDirection(Vector3.up);
 
-            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized); 
-            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);    
+            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized);
+            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);
 
             yield return new WaitForSeconds(1f / fireRate);
         }
@@ -161,7 +158,7 @@ public class PorcupineAI : MonoBehaviour
         if (projectileScript != null)
         {
             projectileScript.SetDirection(direction);
-            projectileScript.SetSpeed(projectileSpeed);
+            projectileScript.SetSpeed(ProjectileSpeed);  
         }
 
         if (direction == Vector3.up)
@@ -184,11 +181,11 @@ public class PorcupineAI : MonoBehaviour
         {
             projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        else if (direction == (Vector3.forward + Vector3.up).normalized)  
+        else if (direction == (Vector3.forward + Vector3.up).normalized)
         {
             projectile.transform.rotation = Quaternion.Euler(45, 45, 0);
         }
-        else if (direction == (Vector3.back + Vector3.up).normalized)     
+        else if (direction == (Vector3.back + Vector3.up).normalized)
         {
             projectile.transform.rotation = Quaternion.Euler(-45, -45, 0);
         }
@@ -198,7 +195,7 @@ public class PorcupineAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, visionDistance);
+        Gizmos.DrawWireSphere(transform.position, VisionDistance); 
     }
 #endif
 }

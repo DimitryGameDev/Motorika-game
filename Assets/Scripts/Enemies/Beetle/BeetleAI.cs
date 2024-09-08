@@ -1,7 +1,6 @@
 using UnityEngine;
 
-//
-public class BeetleAI : Destructible
+public class BeetleAI : Enemy
 {
     [SerializeField] private float moveForwardDistance;
     [SerializeField] private float moveDownDistance;
@@ -10,7 +9,6 @@ public class BeetleAI : Destructible
 
     [SerializeField] private float speed;
     [SerializeField] private int damage;
-    [SerializeField] private float knockbackForce;
 
     public GameObject playerPrefab;
 
@@ -85,7 +83,7 @@ public class BeetleAI : Destructible
                     Rigidbody playerRb = other.GetComponent<Rigidbody>();
                     if (playerRb != null)
                     {
-                        playerRb.AddForce(beetleForward * knockbackForce, ForceMode.Impulse);
+                        playerRb.AddForce(beetleForward * KnockbackForce, ForceMode.Impulse); 
                     }
                 }
             }

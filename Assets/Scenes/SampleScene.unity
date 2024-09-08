@@ -100413,7 +100413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653224762615559677, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.6
+      value: 17.34
       objectReference: {fileID: 0}
     - target: {fileID: 8653224762615559677, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -103522,13 +103522,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf5e6eb52566a144adf79922f4328b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 5
-  moveSpeed: 2
-  pauseDuration: 3
+  eventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  indestructable: 0
+  hitPoints: 0
+  moveSpeed: 5
+  projectileSpeed: 5
   visionDistance: 3
+  knockbackForce: 0
+  moveDistance: 5
+  pauseDuration: 3
   playerPrefab: {fileID: 1188118075}
   projectilePrefab: {fileID: 8401041181018203335, guid: 95d764bdcbaaf2a48893c1c506a0362f, type: 3}
-  projectileSpeed: 2
   fireRate: 0.1
 --- !u!1001 &451629509
 PrefabInstance:
@@ -103584,7 +103590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3849601673231709425, guid: c05c4dc78e92169498b46cb83090fa23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3849601673231709425, guid: c05c4dc78e92169498b46cb83090fa23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -104227,6 +104233,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 62c435975495b4b90849162438e3b03a, type: 2}
     - target: {fileID: 8793508775883120343, guid: 233cae547bfde104c83f61eaa4ed7ffc, type: 3}
       propertyPath: hitPoints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793508775883120343, guid: 233cae547bfde104c83f61eaa4ed7ffc, type: 3}
+      propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8793508775883120343, guid: 233cae547bfde104c83f61eaa4ed7ffc, type: 3}
@@ -107601,10 +107611,12 @@ MonoBehaviour:
       m_Calls: []
   indestructable: 0
   hitPoints: 5
-  moveDistance: 2
   moveSpeed: 3
+  projectileSpeed: 0
+  visionDistance: 3
+  knockbackForce: 0
+  moveDistance: 2
   pauseDuration: 1
-  visionDistance: 1
   stopDistance: 1
   playerPrefab: {fileID: 1188118075}
   attackDamage: 2
