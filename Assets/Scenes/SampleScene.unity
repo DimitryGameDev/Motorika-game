@@ -100373,7 +100373,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2007483606854094407, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99
+      value: 4.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007483606854094407, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2335125907702407866, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: fireRate
@@ -100409,11 +100413,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653224762615559677, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 8653224762615559677, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.4
+      value: -27.56
       objectReference: {fileID: 0}
     - target: {fileID: 8653224762615559677, guid: 59032ddd9fd61d041a9a77f2e817369b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -103522,14 +103526,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf5e6eb52566a144adf79922f4328b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 5
-  moveSpeed: 2
-  pauseDuration: 3
-  visionDistance: 3
+  moveDistance: 0
+  moveSpeed: 0
+  pauseDuration: 1
+  visionDistance: 4.27
   playerPrefab: {fileID: 1188118075}
   projectilePrefab: {fileID: 8401041181018203335, guid: 95d764bdcbaaf2a48893c1c506a0362f, type: 3}
-  projectileSpeed: 2
-  fireRate: 0.1
+  projectileSpeed: 4
+  fireRate: 1
 --- !u!1001 &451629509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103887,7 +103891,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.1152447e-36, z: 1e-45, w: 7.36e-43}
+  m_BoundingSphereOverride: {x: 0, y: NaN, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -108397,7 +108401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: maxJumpForce
-      value: 3
+      value: 5.11
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: minJumpForce
