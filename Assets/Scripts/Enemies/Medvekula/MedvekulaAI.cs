@@ -1,36 +1,38 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
-//testscript
-public class MedvekulaAI : MonoBehaviour
+//test
+public class MedvekulaAI : Enemy
 {
     public enum EnemyState
     {
         Patrolling,
-        Attacking,
-        UnderGround
+        Attacking
     }
 
-    [SerializeField] private float moveDistance;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float pauseDuration;
-    [SerializeField] private float visionDistance;
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float attackInterval;
+    [SerializeField] private float moveDistance; 
+    [SerializeField] private float pauseDuration; 
+    [SerializeField] private GameObject playerPrefab; 
+    [SerializeField] private GameObject projectilePrefab; 
+    [SerializeField] private float fireRate; 
 
     private Vector3 startPosition;
     private bool movingForward = true;
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
-    private bool isAttacking = false;
-
+    private Coroutine fireCoroutine;
     private GameObject player;
+    private Destructible playerHealth;
 
     private void Start()
     {
         startPosition = transform.position;
         player = GameObject.Find(playerPrefab.name);
+
+        if (player != null)
+        {
+            playerHealth = player.GetComponent<Destructible>();
+        }
     }
 
     private void Update()
@@ -46,67 +48,125 @@ public class MedvekulaAI : MonoBehaviour
                 break;
 
             case EnemyState.Attacking:
-                // ChasePlayer(); // Implement if needed
-                DetectPlayer();
-                break;
-
-            case EnemyState.UnderGround:
-                // Implement underground behavior if needed
+                if (IsPlayerOutOfSight())
+                {
+                    StopAttacking();
+                }
                 break;
         }
     }
 
     private void Move()
     {
-        Vector3 moveDirection = movingForward ? Vector3.forward : Vector3.back;
-        Vector3 newPosition = transform.position + moveDirection * moveSpeed * Time.deltaTime;
-
-        if (Mathf.Abs(newPosition.z - startPosition.z) >= moveDistance)
+        if (movingForward)
         {
-            movingForward = !movingForward;
-            isPaused = true;
-            Invoke(nameof(ResumeMovement), pauseDuration);
+            transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
+
+            if (transform.position.z >= startPosition.z + moveDistance)
+            {
+                StartCoroutine(PauseBeforeChangeDirection());
+            }
         }
         else
         {
-            transform.position = newPosition;
+            transform.position += Vector3.back * MoveSpeed * Time.deltaTime;
+
+            if (transform.position.z <= startPosition.z - moveDistance)
+            {
+                StartCoroutine(PauseBeforeChangeDirection());
+            }
         }
     }
 
-    private void ResumeMovement()
+    private IEnumerator PauseBeforeChangeDirection()
     {
+        isPaused = true;
+        yield return new WaitForSeconds(pauseDuration);
+        movingForward = !movingForward;
         isPaused = false;
     }
 
     private void DetectPlayer()
     {
-        if (player == null)
+        if (playerHealth == null)
         {
             return;
         }
 
         Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        RaycastHit hit;
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
+        Vector3 enemyPosition = transform.position;
+        Vector3 toPlayer = playerPosition - enemyPosition;
 
-        if (Physics.Raycast(transform.position, direction, out hit, visionDistance))
+        if (toPlayer.magnitude <= VisionDistance)
         {
-            if (hit.collider.gameObject == player)
-            {
-                currentState = EnemyState.Attacking;
-            }
-        }
-        else
-        {
-            currentState = EnemyState.Patrolling;
+            currentState = EnemyState.Attacking;
+            StartAttacking();
         }
     }
 
+    private bool IsPlayerOutOfSight()
+    {
+        if (playerHealth == null)
+        {
+            return true;
+        }
+
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
+        Vector3 toPlayer = playerPosition - transform.position;
+
+        return toPlayer.magnitude > VisionDistance;
+    }
+
+    private void StartAttacking()
+    {
+        if (fireCoroutine == null)
+        {
+            fireCoroutine = StartCoroutine(FireProjectiles());
+        }
+    }
+
+    private void StopAttacking()
+    {
+        if (fireCoroutine != null)
+        {
+            StopCoroutine(fireCoroutine);
+            fireCoroutine = null;
+        }
+        currentState = EnemyState.Patrolling;
+    }
+
+    private IEnumerator FireProjectiles()
+    {
+        while (currentState == EnemyState.Attacking)
+        {
+            FireProjectileInDirection(Vector3.left);
+
+            yield return new WaitForSeconds(1f / fireRate);
+        }
+    }
+
+    private void FireProjectileInDirection(Vector3 direction)
+    {
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        if (projectileRb != null)
+        {
+            projectileRb.velocity = direction * ProjectileSpeed;
+        }
+
+        if (direction == Vector3.left)
+        {
+            projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (movingForward ? Vector3.forward : Vector3.back) * visionDistance);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, visionDistance);
+        Gizmos.DrawWireSphere(transform.position, VisionDistance);
     }
+#endif
 }
