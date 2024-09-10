@@ -8,7 +8,7 @@ public class Parry : MonoBehaviour
     [SerializeField] private float parryForce;
     [SerializeField] private float parryDamage;
 
-    [SerializeField] private Collider playerCollider;
+    //[SerializeField] private Collider playerCollider;
 
     [SerializeField] private Material parryMaterial;
     private Renderer enemyRenderer;
