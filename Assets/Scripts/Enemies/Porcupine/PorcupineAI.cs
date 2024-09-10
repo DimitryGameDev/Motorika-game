@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-//
+
 public class PorcupineAI : Enemy
 {
     public enum EnemyState
