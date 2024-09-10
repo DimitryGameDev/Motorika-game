@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,6 +24,8 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float rayPositionTop = 0.5f; // Start position Ray on Top 
     [SerializeField] private float rayPositionBot = 0.5f; // Start position Ray on Bottom 
 
+    private Animator animator;
+
     private bool isGrounded; // check ground
     private bool isJumping; // check jump
     private bool isSliding; // check slide
@@ -39,45 +42,54 @@ public class Player : MonoSingleton<Player>
     private void Start()
     {
         rb = GetComponentInChildren<Rigidbody>();
+        animator= GetComponentInChildren<Animator>();
+    }
+
+    private void Update()
+    {
+        CheckGround();
+        IsBarrier();
+
+        if (!Input.GetKey(KeyCode.Space) && isGrounded && !Input.GetKey(KeyCode.S) && !isSliding && !IsBarrier())
+            animator.SetTrigger("Run");
     }
 
     private void FixedUpdate()
     {
-        CheckGround();
-
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
     }
 
+    public void Idle()
+    {
+        transform.Translate(Vector3.forward * 0 * Time.deltaTime);
+        animator.SetTrigger("Idle");
+    }
+
     public void Run()
     {
-        if (!IsBarrier())
-        {
-            transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
-            RunEvent?.Invoke();
-        }
-        else
-        {
-            IdleEvent?.Invoke();
-        }
+        transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
+
+        isSliding = false;
+        isJumping = false;
     }
 
     public void Slide()
     {
         if (!isGrounded) return;
 
-        isSliding = true;
-        slideTime += Time.deltaTime;
+        animator.SetTrigger("Slide");
+
 
         if (slideTime < slideControlTime)
         {
-            SlideEvent?.Invoke();
             transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
+            slideTime += Time.deltaTime;
+            isSliding = true;
         }
         else
         {
-            isSliding = false;
             slideTime = 0;
         }
     }
@@ -86,19 +98,15 @@ public class Player : MonoSingleton<Player>
     {
         if (!isGrounded) return;
 
-        isJumping = true;
-        
+        animator.SetTrigger("Jump");
+
         if (currentJumpForce < maxJumpForce)
         {
-            JumpEvent?.Invoke();
             rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
             currentJumpForce += Time.deltaTime * chargeRate;
         }
         else
-        {
-            isJumping = false;
             currentJumpForce = 0;
-        }
     }
 
     public void Parry(float parryForce)
@@ -107,7 +115,7 @@ public class Player : MonoSingleton<Player>
         rb.AddForce(-transform.forward * parryForce, ForceMode.Impulse);
     }
 
-    private bool IsBarrier()
+    public bool IsBarrier()
     {
         raycastTopPosition = new(transform.position.x, transform.position.y  + rayPositionTop, transform.position.z);
         raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBot, transform.position.z);

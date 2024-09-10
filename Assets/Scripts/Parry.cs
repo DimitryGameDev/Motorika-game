@@ -35,7 +35,7 @@ public class Parry : MonoBehaviour
 
     private void Update()
     {
-        enemiesCollider = Physics.OverlapSphere(playerCollider.transform.position, parryRange);
+        enemiesCollider = Physics.OverlapSphere(transform.position, parryRange);
 
         foreach (var enemyCollider in enemiesCollider)
         {
@@ -112,7 +112,7 @@ public class Parry : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(playerCollider.transform.position, parryRange);
+        Gizmos.DrawWireSphere(transform.position, parryRange);
     }
 #endif
 }
