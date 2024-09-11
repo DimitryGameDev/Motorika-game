@@ -59,7 +59,6 @@ public class Parry : MonoBehaviour
             isParry = true;
             if (parryTimer > 0 && isParry )
             {
-<<<<<<< Updated upstream
                 enemyRenderer.material = parryMaterial;
                 //player.TakeDamage(destructible);
                 //if(enemy != null ){
@@ -69,7 +68,6 @@ public class Parry : MonoBehaviour
                 //else 
                 // player.TakeDamage(destructible);
                 Debug.Log("Успели парировать. Вы наносите урон.");
-=======
                 enemyRenderer.material = parryMaterial;
                 Debug.Log(hits);
                if (Input.GetKey(KeyCode.W)&& hits == 0)
@@ -80,8 +78,6 @@ public class Parry : MonoBehaviour
 
                 Debug.Log(destructible.HitPoints);
                 Debug.Log("Окно открылось. Вы наносите урон.");
-             
->>>>>>> Stashed changes
             }
             else if (!ourEnemies.Contains(enemyCollider))
             {

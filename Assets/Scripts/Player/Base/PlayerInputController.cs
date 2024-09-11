@@ -19,8 +19,8 @@ public class PlayerInputController : MonoBehaviour
 
         if (!player.IsBarrier())
             player.Run();
-        else
-            player.Idle();
+        //else
+            //player.Idle();
 
         if (Input.GetMouseButton(0) && turret != null)
         {
