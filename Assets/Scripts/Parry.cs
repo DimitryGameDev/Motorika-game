@@ -14,17 +14,18 @@ public class Parry : MonoBehaviour
     private Renderer enemyRenderer;
     private Renderer baseRenderer;
 
-    private HashSet<Collider> damagedEnemies = new HashSet<Collider>();
+    private HashSet<Collider> ourEnemies = new HashSet<Collider>();
+    
     private Collider[] enemiesCollider;
 
     private Player player;
     private Destructible playerDestructible;
-
+    private int hits;
     private float parryTimer;
     public float ParryTimer => parryTimer;
 
     private bool isParry;
-
+    private bool currentlyParrying;
     private void Start()
     {
         player = GetComponent<Player>();
@@ -43,6 +44,7 @@ public class Parry : MonoBehaviour
         }
 
         ResetDamage();
+       
     }
 
     private void HandleParry(Collider enemyCollider)
@@ -55,8 +57,9 @@ public class Parry : MonoBehaviour
         {
             ParryTime();
             isParry = true;
-            if (parryTimer > 0 && isParry)
+            if (parryTimer > 0 && isParry )
             {
+<<<<<<< Updated upstream
                 enemyRenderer.material = parryMaterial;
                 //player.TakeDamage(destructible);
                 //if(enemy != null ){
@@ -66,16 +69,29 @@ public class Parry : MonoBehaviour
                 //else 
                 // player.TakeDamage(destructible);
                 Debug.Log("Успели парировать. Вы наносите урон.");
+=======
+                enemyRenderer.material = parryMaterial;
+                Debug.Log(hits);
+               if (Input.GetKey(KeyCode.W)&& hits == 0)
+               {
+                    destructible.ApplyDamage(100);
+                    hits++;
+               }
+
+                Debug.Log(destructible.HitPoints);
+                Debug.Log("Окно открылось. Вы наносите урон.");
+             
+>>>>>>> Stashed changes
             }
-            else if (!damagedEnemies.Contains(enemyCollider))
+            else if (!ourEnemies.Contains(enemyCollider))
             {
                 //TODO
                 //Change mat logical 
                 enemyRenderer = baseRenderer;
-                
+          
                 player.Parry(parryForce);
                 playerDestructible.ApplyDamage(50);
-                damagedEnemies.Add(enemyCollider);
+                ourEnemies.Add(enemyCollider);
                 parryTimer = parryWindow;
                 Debug.Log("Не успели парировать. Враг наносит урон.");
             }
@@ -89,9 +105,10 @@ public class Parry : MonoBehaviour
 
     private void ResetDamage()
     {
-        damagedEnemies.Clear();
+        ourEnemies.Clear();
+        hits = 0;
     }
-
+   
     private void ParryTime()
     {
         if (isParry)

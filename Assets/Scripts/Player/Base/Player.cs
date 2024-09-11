@@ -116,6 +116,14 @@ public class Player : MonoSingleton<Player>
 
         if (hitBottom || hitTop)
         {
+<<<<<<< Updated upstream
+=======
+            RaycastHit usedHit = hitBottom ? hit : hit2;
+            Destructible destructible = usedHit.collider.GetComponentInChildren<Destructible>();
+
+           // TakeDamage(destructible);
+
+>>>>>>> Stashed changes
             return true;
         }
         else
@@ -131,6 +139,11 @@ public class Player : MonoSingleton<Player>
         isGrounded = Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
     }
 
+<<<<<<< Updated upstream
+=======
+  
+
+>>>>>>> Stashed changes
     public void Fire(TurretMode mode)
     {
         return;
