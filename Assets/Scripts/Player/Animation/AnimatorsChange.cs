@@ -29,21 +29,22 @@ public class AnimatorsChange : MonoBehaviour
 
     private void OnRun()
     {
-        animator.SetTrigger("Run");
+        //animator.SetTrigger("Run");
     }
 
     private void OnIdle()
     {
-        animator.SetTrigger("Idle");
+        
+        //animator.SetBool("IsIdle", true);
     }
 
     private void OnJump()
     {
-        animator.SetTrigger("Jump");
+        //animator.SetTrigger("Jump");
     }
 
     private void OnSlide()
     {
-        animator.SetTrigger("Slide");
+        //animator.SetTrigger("Slide");
     }
 }
