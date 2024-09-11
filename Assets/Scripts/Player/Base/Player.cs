@@ -38,7 +38,7 @@ public class Player : MonoSingleton<Player>
 
     private void Start()
     {
-        rb = GetComponentInChildren<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
