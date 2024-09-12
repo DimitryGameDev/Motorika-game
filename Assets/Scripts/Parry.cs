@@ -8,11 +8,8 @@ public class Parry : MonoBehaviour
     [SerializeField] private float parryForce;
     [SerializeField] private float parryDamage;
 
-    //[SerializeField] private Collider playerCollider;
-
     [SerializeField] private Material parryMaterial;
     private Renderer enemyRenderer;
-    private Renderer baseRenderer;
 
     private HashSet<Collider> ourEnemies = new HashSet<Collider>();
     
@@ -20,12 +17,11 @@ public class Parry : MonoBehaviour
 
     private Player player;
     private Destructible playerDestructible;
-    private int hits;
     private float parryTimer;
     public float ParryTimer => parryTimer;
 
     private bool isParry;
-    private bool currentlyParrying;
+
     private void Start()
     {
         player = GetComponent<Player>();
@@ -36,22 +32,27 @@ public class Parry : MonoBehaviour
 
     private void Update()
     {
-        enemiesCollider = Physics.OverlapSphere(transform.position, parryRange);
+        //enemiesCollider = Physics.OverlapSphere(transform.position, parryRange);
+
+        ResetDamage();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == null) return;
+        
+        enemiesCollider = other.GetComponents<Collider>();
 
         foreach (var enemyCollider in enemiesCollider)
         {
             HandleParry(enemyCollider);
         }
-
-        ResetDamage();
-       
     }
 
     private void HandleParry(Collider enemyCollider)
     {
         var destructible = enemyCollider.GetComponent<Destructible>();
         enemyRenderer = enemyCollider.GetComponent<Renderer>();
-        baseRenderer = enemyRenderer;
 
         if (destructible != null)
         {
@@ -59,32 +60,20 @@ public class Parry : MonoBehaviour
             isParry = true;
             if (parryTimer > 0 && isParry )
             {
-                enemyRenderer.material = parryMaterial;
-                //player.TakeDamage(destructible);
-                //if(enemy != null ){
-                // player.Parry(parryForce);
-                // Check damage (per once)
-                //}
-                //else 
-                // player.TakeDamage(destructible);
-                Debug.Log("Успели парировать. Вы наносите урон.");
-                enemyRenderer.material = parryMaterial;
-                Debug.Log(hits);
-               if (Input.GetKey(KeyCode.W)&& hits == 0)
+               if (Input.GetKey(KeyCode.W))
                {
-                    destructible.ApplyDamage(100);
-                    hits++;
+                    var result = destructible.ParryDamage();
+                    if (!result)
+                    {
+                        playerDestructible.ApplyDamage(50);
+                        player.Parry(parryForce);
+                        Debug.Log("Успели парировать. Вы наносите урон.");
+                    }
                }
-
-                Debug.Log(destructible.HitPoints);
                 Debug.Log("Окно открылось. Вы наносите урон.");
             }
             else if (!ourEnemies.Contains(enemyCollider))
-            {
-                //TODO
-                //Change mat logical 
-                enemyRenderer = baseRenderer;
-          
+            {   
                 player.Parry(parryForce);
                 playerDestructible.ApplyDamage(50);
                 ourEnemies.Add(enemyCollider);
@@ -102,7 +91,6 @@ public class Parry : MonoBehaviour
     private void ResetDamage()
     {
         ourEnemies.Clear();
-        hits = 0;
     }
    
     private void ParryTime()

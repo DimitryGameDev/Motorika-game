@@ -10,7 +10,7 @@ public class AnimatorsChange : MonoBehaviour
         player = GetComponent<Player>();
         animator = GetComponentInChildren<Animator>();
     }
-
+    /*
     private void Start()
     {
         player.RunEvent += OnRun;
@@ -46,5 +46,5 @@ public class AnimatorsChange : MonoBehaviour
     private void OnSlide()
     {
         //animator.SetTrigger("Slide");
-    }
+    }*/
 }

@@ -1,26 +1,24 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerInputController : MonoSingleton<PlayerInputController>
 {
     [SerializeField] private Player player;
-    
-    private Animator animator;
+
+    public event UnityAction RunEvent; // event
+    public event UnityAction JumpEvent;
+    public event UnityAction SlideEvent;
+
     private Turret turret;
 
     private void Start()
     {
         turret = player.GetComponentInChildren<Turret>();
-        animator = player.GetComponentInChildren<Animator>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (player == null) return;
-
-        if (!player.IsBarrier())
-            player.Run();
-        //else
-            //player.Idle();
 
         if (Input.GetMouseButton(0) && turret != null)
         {
@@ -29,12 +27,16 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            player.Jump();
+            JumpEvent?.Invoke();
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            player.Slide();
+            SlideEvent?.Invoke();
         }
+        else
+        {
+            RunEvent?.Invoke();
+        } 
     }
 }

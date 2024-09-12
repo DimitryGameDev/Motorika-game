@@ -1,13 +1,7 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player : MonoSingleton<Player>
 {
-    public event UnityAction RunEvent; // event
-    public event UnityAction IdleEvent;
-    public event UnityAction JumpEvent;
-    public event UnityAction SlideEvent;
-
     [Header("Run/Slide")]
     [SerializeField] private float runSpeed = 5f; //run velocity
     [SerializeField] private float slideSpeed = 10f; // slide speed
@@ -21,16 +15,16 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float rayPositionTop = 0.5f; // Start position Ray on Top 
-    [SerializeField] private float rayPositionBot = 0.5f; // Start position Ray on Bottom 
-
-    private bool isGrounded; // check ground
-    private bool isJumping; // check jump
-    private bool isSliding; // check slide
+    [SerializeField] private float rayPositionBottom = 0.5f; // Start position Ray on Bottom 
+    [Header("Collider")]
+    [SerializeField] private Collider mainCollider;
+    [SerializeField] private Collider slideCollider;
 
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
     private Rigidbody rb;
+    private Animator animator;
 
     private Vector3 raycastDownPosition;
     private Vector3 raycastTopPosition;
@@ -39,65 +33,78 @@ public class Player : MonoSingleton<Player>
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+
+        PlayerInputController.Instance.RunEvent += Run;
+        PlayerInputController.Instance.JumpEvent += Jump;
+        PlayerInputController.Instance.SlideEvent += Slide;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.Instance.RunEvent -= Run;
+        PlayerInputController.Instance.JumpEvent += Jump;
+        PlayerInputController.Instance.SlideEvent -= Slide;
     }
 
     private void FixedUpdate()
     {
-        CheckGround();
-
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
+
+        if (!Input.GetKey(KeyCode.S))
+        {
+            mainCollider.enabled = true;
+            slideCollider.enabled = false;
+        }
     }
 
-    public void Run()
+    private void Run()
     {
         if (!IsBarrier())
         {
             transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
-            RunEvent?.Invoke();
+
+            if (IsGround())
+                animator.SetTrigger("Run");
         }
-        else
-        {
-            IdleEvent?.Invoke();
-        }
+        else if (IsGround())
+            animator.SetTrigger("Idle");
     }
 
-    public void Slide()
+    private void Slide()
     {
-        if (!isGrounded) return;
+        if (!IsGround()) return;
 
-        isSliding = true;
+        animator.SetTrigger("Slide");
+
+        slideTime = 0;
+
+        mainCollider.enabled = false;
+        slideCollider.enabled = true;
+
         slideTime += Time.deltaTime;
 
         if (slideTime < slideControlTime)
         {
-            SlideEvent?.Invoke();
-            transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
-        }
-        else
-        {
-            isSliding = false;
-            slideTime = 0;
+            rb.velocity = new Vector3(0, rb.velocity.y, slideSpeed);
+            //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
     }
 
-    public void Jump()
+    private void Jump()
     {
-        if (!isGrounded) return;
+        if (!IsGround()) return;
 
-        isJumping = true;
-        
+        animator.SetTrigger("Jump");
+
+        currentJumpForce = 0f;
+
         if (currentJumpForce < maxJumpForce)
         {
-            JumpEvent?.Invoke();
-            rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
             currentJumpForce += Time.deltaTime * chargeRate;
-        }
-        else
-        {
-            isJumping = false;
-            currentJumpForce = 0;
+            rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
         }
     }
 
@@ -109,8 +116,8 @@ public class Player : MonoSingleton<Player>
 
     public bool IsBarrier()
     {
-        raycastTopPosition = new(transform.position.x, transform.position.y  + rayPositionTop, transform.position.z);
-        raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBot, transform.position.z);
+        raycastTopPosition = new(transform.position.x, transform.position.y + rayPositionTop, transform.position.z);
+        raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
         bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
         bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
 
@@ -124,11 +131,11 @@ public class Player : MonoSingleton<Player>
         }
     }
 
-    private void CheckGround()
+    public bool IsGround()
     {
-        raycastDownPosition = new(transform.position.x, transform.position.y + rayPositionBot, transform.position.z);
+        raycastDownPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
 
-        isGrounded = Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
+        return Physics.Raycast(raycastDownPosition, -transform.up, out _, raycastDistanceDown);
     }
 
     public void Fire(TurretMode mode)
