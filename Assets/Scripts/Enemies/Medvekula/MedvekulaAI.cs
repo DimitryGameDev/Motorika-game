@@ -6,7 +6,8 @@ public class MedvekulaAI : Enemy
     public enum EnemyState
     {
         Patrolling,
-        Attacking
+        Attacking,
+        Chasing 
     }
 
     [SerializeField] private float moveDistance;
@@ -15,6 +16,9 @@ public class MedvekulaAI : Enemy
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float fireRate;
     [SerializeField] private float projectileSpawnYOffset;
+    [SerializeField] private float undergroundSpeed; 
+    [SerializeField] private float undergroundYOffset; 
+    [SerializeField] private float additionalOffset; 
 
     private Vector3 startPosition;
     private bool movingForward = true;
@@ -52,6 +56,10 @@ public class MedvekulaAI : Enemy
                 {
                     StopAttacking();
                 }
+                break;
+
+            case EnemyState.Chasing:
+                ChasePlayer();
                 break;
         }
     }
@@ -103,6 +111,10 @@ public class MedvekulaAI : Enemy
             currentState = EnemyState.Attacking;
             StartAttacking();
         }
+        else if (player.transform.position.z > transform.position.z) 
+        {
+            currentState = EnemyState.Chasing;
+        }
     }
 
     private bool IsPlayerOutOfSight()
@@ -133,6 +145,7 @@ public class MedvekulaAI : Enemy
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }
+
         currentState = EnemyState.Patrolling;
     }
 
@@ -166,6 +179,33 @@ public class MedvekulaAI : Enemy
         {
             projectile.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
+    }
+
+    private void ChasePlayer()
+    {
+        Vector3 undergroundPosition = new Vector3(transform.position.x, -10f, transform.position.z);
+        transform.position = undergroundPosition;
+
+        StartCoroutine(MoveToPlayerRightSide());
+    }
+
+    private IEnumerator MoveToPlayerRightSide()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (playerHealth != null)
+        {
+            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z + additionalOffset);
+            transform.position = newPosition;
+
+            transform.position = new Vector3(transform.position.x, startPosition.y, transform.position.z);
+        }
+
+        StopAttacking();
+        currentState = EnemyState.Attacking;
+
+        yield return new WaitForSeconds(1f); 
+        StartAttacking();
     }
 
 #if UNITY_EDITOR
