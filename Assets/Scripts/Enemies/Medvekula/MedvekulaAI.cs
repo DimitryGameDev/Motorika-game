@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-//test
 public class MedvekulaAI : Enemy
 {
     public enum EnemyState
@@ -10,11 +9,12 @@ public class MedvekulaAI : Enemy
         Attacking
     }
 
-    [SerializeField] private float moveDistance; 
-    [SerializeField] private float pauseDuration; 
-    [SerializeField] private GameObject playerPrefab; 
-    [SerializeField] private GameObject projectilePrefab; 
-    [SerializeField] private float fireRate; 
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float pauseDuration;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float fireRate;
+    [SerializeField] private float projectileSpawnYOffset; 
 
     private Vector3 startPosition;
     private bool movingForward = true;
@@ -140,7 +140,7 @@ public class MedvekulaAI : Enemy
     {
         while (currentState == EnemyState.Attacking)
         {
-            FireProjectileInDirection(Vector3.left);
+            FireProjectileInDirection(Vector3.back);
 
             yield return new WaitForSeconds(1f / fireRate);
         }
@@ -148,17 +148,23 @@ public class MedvekulaAI : Enemy
 
     private void FireProjectileInDirection(Vector3 direction)
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = transform.position + new Vector3(0, projectileSpawnYOffset, 0);
+        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-        if (projectileRb != null)
+        ProjectilePorcupine projectileScript = projectile.GetComponent<ProjectilePorcupine>();
+        if (projectileScript != null)
         {
-            projectileRb.velocity = direction * ProjectileSpeed;
+            projectileScript.SetDirection(direction);
+            projectileScript.SetSpeed(ProjectileSpeed);
         }
 
-        if (direction == Vector3.left)
+        if (direction == Vector3.back)
         {
-            projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
+            projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
+        }
+        else if (direction == Vector3.left)
+        {
+            projectile.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
 
