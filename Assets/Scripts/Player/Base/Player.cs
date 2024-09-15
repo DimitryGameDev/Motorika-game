@@ -19,7 +19,9 @@ public class Player : MonoSingleton<Player>
     [Header("Collider")]
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
-   
+
+  
+
     private float currentJumpForce = 0f;
     private float slideTime = 0;
     private bool isPlayerFaster;

@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
-  damage: 10
-  impactEffectPrefab: {fileID: 0}
+  damage: 50
 --- !u!54 &4312895251772122411
 Rigidbody:
   m_ObjectHideFlags: 0

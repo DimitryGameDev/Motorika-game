@@ -45,11 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf5e6eb52566a144adf79922f4328b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 5
+  eventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  indestructable: 0
+  hitPoints: 0
   moveSpeed: 2
-  pauseDuration: 3
+  projectileSpeed: 0
   visionDistance: 3
+  knockbackForce: 0
+  moveDistance: 5
+  pauseDuration: 3
   playerPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  fireRate: 0
 --- !u!1 &5891958536703904074
 GameObject:
   m_ObjectHideFlags: 0

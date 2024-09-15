@@ -24,12 +24,11 @@ public class Destructible : MonoBehaviour
     {
         if (indestructable) return;
 
-       currentHitPoints -= damage;
+        currentHitPoints -= damage;
 
         if (currentHitPoints <= 0)
-           OnDeath();
+            OnDeath();
     }
-
     public bool ParryDamage()
     {
         if (indestructable) return false;
@@ -38,8 +37,8 @@ public class Destructible : MonoBehaviour
             return true;
         else
             return true;
+     
     }
-
     public void BlockDamage(float blockTime)
     {
         if ((blockTime += Time.time) >= Time.time)
