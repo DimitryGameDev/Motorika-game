@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-//
+
 public class WolfAI : Enemy
 {
     public enum EnemyState
@@ -12,7 +12,6 @@ public class WolfAI : Enemy
     [SerializeField] private float moveDistance;
     [SerializeField] private float pauseDuration;
     [SerializeField] private float stopDistance;
-    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackInterval;
     [SerializeField] private float verticalTolerance;
@@ -24,19 +23,12 @@ public class WolfAI : Enemy
     private EnemyState currentState = EnemyState.Patrolling;
     private bool isAttacking = false;
 
-    private GameObject player;
+    private Player player;
     private Destructible destructible;
 
     private void Start()
     {
         startPosition = transform.position;
-
-        player = GameObject.Find(playerPrefab.name);
-        if (player != null)
-        {
-            destructible = player.GetComponent<Destructible>();
-            parry = player.GetComponent<Parry>();
-        }
     }
 
     private void Update()
@@ -62,7 +54,7 @@ public class WolfAI : Enemy
     {
         Vector3 moveDirection = movingForward ? Vector3.forward : Vector3.back;
 
-        Vector3 newPosition = transform.position + moveDirection * MoveSpeed * Time.deltaTime; 
+        Vector3 newPosition = transform.position + moveDirection * MoveSpeed * Time.deltaTime;
 
         if (Mathf.Abs(newPosition.z - startPosition.z) >= moveDistance)
         {
@@ -83,22 +75,22 @@ public class WolfAI : Enemy
 
     private void DetectPlayer()
     {
+        Collider[] hits = Physics.OverlapSphere(transform.position, VisionDistance);
+
+        foreach (Collider hit in hits)
+        {
+            Player playerComponent = hit.GetComponentInParent<Player>();
+            if (playerComponent != null)
+            {
+                player = playerComponent;
+                destructible = player.GetComponent<Destructible>();
+                parry = player.GetComponent<Parry>();
+                currentState = EnemyState.Attacking;
+                return;
+            }
+        }
+
         if (destructible == null)
-        {
-            return;
-        }
-
-        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, destructible.transform.position.z);
-        Vector3 enemyPosition = transform.position;
-        Vector3 toPlayer = playerPosition - enemyPosition;
-
-        float verticalDistance = Mathf.Abs(destructible.transform.position.y - transform.position.y);
-        if (verticalDistance <= verticalTolerance && Vector3.Dot(toPlayer.normalized, direction) > 0 && toPlayer.magnitude <= VisionDistance)  // Используем VisionDistance из базового класса Enemy
-        {
-            currentState = EnemyState.Attacking;
-        }
-        else
         {
             currentState = EnemyState.Patrolling;
             StopCoroutine(AttackPlayer());
@@ -121,7 +113,7 @@ public class WolfAI : Enemy
         if (verticalDistance <= verticalTolerance && distanceToPlayer > stopDistance)
         {
             Vector3 direction = (playerPosition - enemyPosition).normalized;
-            transform.position += direction * MoveSpeed * Time.deltaTime; 
+            transform.position += direction * MoveSpeed * Time.deltaTime;
         }
         else if (distanceToPlayer <= stopDistance && verticalDistance <= verticalTolerance)
         {
@@ -159,8 +151,7 @@ public class WolfAI : Enemy
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Gizmos.DrawLine(transform.position, transform.position + direction * VisionDistance); 
+        Gizmos.DrawWireSphere(transform.position, VisionDistance);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stopDistance);

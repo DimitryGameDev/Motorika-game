@@ -7,36 +7,28 @@ public class MedvekulaAI : Enemy
     {
         Patrolling,
         Attacking,
-        Chasing 
+        Chasing
     }
 
     [SerializeField] private float moveDistance;
     [SerializeField] private float pauseDuration;
-    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float fireRate;
     [SerializeField] private float projectileSpawnYOffset;
-    [SerializeField] private float undergroundSpeed; 
-    [SerializeField] private float undergroundYOffset; 
-    [SerializeField] private float additionalOffset; 
+    [SerializeField] private float undergroundSpeed;
+    [SerializeField] private float undergroundYOffset;
+    [SerializeField] private float additionalOffset;
 
     private Vector3 startPosition;
     private bool movingForward = true;
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private Coroutine fireCoroutine;
-    private GameObject player;
-    private Destructible playerHealth;
+    private Player player;
 
     private void Start()
     {
         startPosition = transform.position;
-        player = GameObject.Find(playerPrefab.name);
-
-        if (player != null)
-        {
-            playerHealth = player.GetComponent<Destructible>();
-        }
     }
 
     private void Update()
@@ -48,13 +40,13 @@ public class MedvekulaAI : Enemy
                 {
                     Move();
                 }
-                DetectPlayer();
+                LookForPlayer();  
                 break;
 
             case EnemyState.Attacking:
-                if (IsPlayerOutOfSight())
+                if (player != null && IsPlayerOutOfSight())
                 {
-                    StopAttacking();
+                    DetermineNextAction(); 
                 }
                 break;
 
@@ -94,40 +86,44 @@ public class MedvekulaAI : Enemy
         isPaused = false;
     }
 
-    private void DetectPlayer()
+    private void LookForPlayer()
     {
-        if (playerHealth == null)
-        {
-            return;
-        }
+        Collider[] hits = Physics.OverlapSphere(transform.position, VisionDistance);
 
-        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
-        Vector3 enemyPosition = transform.position;
-        Vector3 toPlayer = playerPosition - enemyPosition;
-
-        if (toPlayer.magnitude <= VisionDistance)
+        foreach (Collider hit in hits)
         {
-            currentState = EnemyState.Attacking;
-            StartAttacking();
-        }
-        else if (player.transform.position.z > transform.position.z) 
-        {
-            currentState = EnemyState.Chasing;
+            Player playerComponent = hit.GetComponentInParent<Player>();
+            if (playerComponent != null)
+            {
+                player = playerComponent;
+                currentState = EnemyState.Attacking;
+                StartAttacking();
+                break;
+            }
         }
     }
 
     private bool IsPlayerOutOfSight()
     {
-        if (playerHealth == null)
+        if (player == null)
         {
             return true;
         }
 
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
-        Vector3 toPlayer = playerPosition - transform.position;
-
+        Vector3 toPlayer = player.transform.position - transform.position;
         return toPlayer.magnitude > VisionDistance;
+    }
+
+    private void DetermineNextAction()
+    {
+        if (player.transform.position.z > transform.position.z)
+        {
+            currentState = EnemyState.Chasing;
+        }
+        else
+        {
+            StartAttacking();
+        }
     }
 
     private void StartAttacking()
@@ -145,8 +141,6 @@ public class MedvekulaAI : Enemy
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }
-
-        currentState = EnemyState.Patrolling;
     }
 
     private IEnumerator FireProjectiles()
@@ -154,7 +148,6 @@ public class MedvekulaAI : Enemy
         while (currentState == EnemyState.Attacking)
         {
             FireProjectileInDirection(Vector3.back);
-
             yield return new WaitForSeconds(1f / fireRate);
         }
     }
@@ -193,18 +186,15 @@ public class MedvekulaAI : Enemy
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (playerHealth != null)
+        if (player != null)
         {
-            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z + additionalOffset);
+            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, player.transform.position.z + additionalOffset);
             transform.position = newPosition;
 
             transform.position = new Vector3(transform.position.x, startPosition.y, transform.position.z);
         }
 
-        StopAttacking();
         currentState = EnemyState.Attacking;
-
-        yield return new WaitForSeconds(1f); 
         StartAttacking();
     }
 
