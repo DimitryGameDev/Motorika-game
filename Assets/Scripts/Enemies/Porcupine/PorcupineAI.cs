@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PorcupineAI : MonoBehaviour
+public class PorcupineAI : Enemy
 {
     public enum EnemyState
     {
@@ -9,35 +9,32 @@ public class PorcupineAI : MonoBehaviour
         Defending
     }
 
-    public float moveDistance;
-    public float moveSpeed;
-    public float pauseDuration;
-    public float visionDistance;
-    public GameObject playerPrefab;
-    public GameObject projectilePrefab;
-    public float projectileSpeed;  // Скорость снаряда
-    public float fireRate; 
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float pauseDuration;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float fireRate;
 
     private Vector3 startPosition;
-    private bool movingForward = true; // направление движения по оси Z
+    private bool movingForward = true;
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
-    private Destructable playerHealth; // Ссылка на компонент Destructable
     private Coroutine fireCoroutine;
+    private GameObject player;
+    private Destructible playerHealth;
 
-    void Start()
+    private void Start()
     {
         startPosition = transform.position;
 
-        // Найти объект игрока и получить компонент Destructable
-        GameObject player = GameObject.Find(playerPrefab.name);
+        player = GameObject.Find(playerPrefab.name);
         if (player != null)
         {
-            playerHealth = player.GetComponent<Destructable>();
+            playerHealth = player.GetComponent<Destructible>();
         }
     }
 
-    void Update()
+    private void Update()
     {
         switch (currentState)
         {
@@ -58,11 +55,11 @@ public class PorcupineAI : MonoBehaviour
         }
     }
 
-    void Move()
+    private void Move()
     {
         if (movingForward)
         {
-            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.forward * MoveSpeed * Time.deltaTime; 
 
             if (transform.position.z >= startPosition.z + moveDistance)
             {
@@ -71,7 +68,7 @@ public class PorcupineAI : MonoBehaviour
         }
         else
         {
-            transform.position += Vector3.back * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.back * MoveSpeed * Time.deltaTime;
 
             if (transform.position.z <= startPosition.z - moveDistance)
             {
@@ -80,7 +77,7 @@ public class PorcupineAI : MonoBehaviour
         }
     }
 
-    IEnumerator PauseBeforeChangeDirection()
+    private IEnumerator PauseBeforeChangeDirection()
     {
         isPaused = true;
         yield return new WaitForSeconds(pauseDuration);
@@ -88,26 +85,26 @@ public class PorcupineAI : MonoBehaviour
         isPaused = false;
     }
 
-    void DetectPlayer()
+    private void DetectPlayer()
     {
         if (playerHealth == null)
         {
-            return; // Если игрок не найден, ничего не делаем
+            return;
         }
 
+        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
         Vector3 enemyPosition = transform.position;
         Vector3 toPlayer = playerPosition - enemyPosition;
 
-        if (toPlayer.magnitude <= visionDistance)
+        if (toPlayer.magnitude <= VisionDistance) 
         {
-            // Переходим в состояние защиты, если игрок в зоне видимости
             currentState = EnemyState.Defending;
             StartDefending();
         }
     }
 
-    bool IsPlayerOutOfSight()
+    private bool IsPlayerOutOfSight()
     {
         if (playerHealth == null)
         {
@@ -117,22 +114,19 @@ public class PorcupineAI : MonoBehaviour
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
         Vector3 toPlayer = playerPosition - transform.position;
 
-        // Проверка, находится ли игрок за пределами зоны видимости
-        return toPlayer.magnitude > visionDistance;
+        return toPlayer.magnitude > VisionDistance;
     }
 
-    void StartDefending()
+    private void StartDefending()
     {
-        // Начинаем стрелять снарядами в три(!) направления
         if (fireCoroutine == null)
         {
             fireCoroutine = StartCoroutine(FireProjectiles());
         }
     }
 
-    void StopDefending()
+    private void StopDefending()
     {
-        // Останавливаем стрельбу и возвращаемся к патрулированию
         if (fireCoroutine != null)
         {
             StopCoroutine(fireCoroutine);
@@ -141,62 +135,67 @@ public class PorcupineAI : MonoBehaviour
         currentState = EnemyState.Patrolling;
     }
 
-    IEnumerator FireProjectiles()
+    private IEnumerator FireProjectiles()
     {
         while (currentState == EnemyState.Defending)
         {
-            FireProjectileInDirection(Vector3.forward);   // Стрельба вперёд (по оси Z вперед)
-            FireProjectileInDirection(Vector3.back);      // Стрельба назад (по оси Z назад)
-            FireProjectileInDirection(Vector3.up);        // Стрельба вверх (по оси Y вверх)
+            FireProjectileInDirection(Vector3.forward);
+            FireProjectileInDirection(Vector3.back);
+            FireProjectileInDirection(Vector3.up);
 
-            yield return new WaitForSeconds(1f / fireRate); // Задержка между залпами
+            FireProjectileInDirection((Vector3.forward + Vector3.up).normalized);
+            FireProjectileInDirection((Vector3.back + Vector3.up).normalized);
+
+            yield return new WaitForSeconds(1f / fireRate);
         }
     }
 
-    void FireProjectileInDirection(Vector3 direction)
+    private void FireProjectileInDirection(Vector3 direction)
     {
-        // Создаем снаряд
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-        // Получаем скрипт снаряда и устанавливаем направление и скорость
         ProjectilePorcupine projectileScript = projectile.GetComponent<ProjectilePorcupine>();
         if (projectileScript != null)
         {
-            projectileScript.SetDirection(direction); // Устанавливаем направление снаряда
-            projectileScript.SetSpeed(projectileSpeed); // Устанавливаем скорость снаряда
+            projectileScript.SetDirection(direction);
+            projectileScript.SetSpeed(ProjectileSpeed);  
         }
 
-        // Поворачиваем снаряд в зависимости от направления
         if (direction == Vector3.up)
         {
-            // Снаряд идет вверх
             projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (direction == Vector3.forward)
         {
-            // Снаряд идет вперед
             projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
         }
         else if (direction == Vector3.back)
         {
-            // Снаряд идет назад
             projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
         }
         else if (direction == Vector3.left)
         {
-            // Снаряд идет влево
             projectile.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else if (direction == Vector3.right)
         {
-            // Снаряд идет вправо
             projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (direction == (Vector3.forward + Vector3.up).normalized)
+        {
+            projectile.transform.rotation = Quaternion.Euler(45, 45, 0);
+        }
+        else if (direction == (Vector3.back + Vector3.up).normalized)
+        {
+            projectile.transform.rotation = Quaternion.Euler(-45, -45, 0);
         }
     }
 
-    void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, visionDistance);
+        Gizmos.DrawWireSphere(transform.position, VisionDistance); 
     }
+#endif
 }

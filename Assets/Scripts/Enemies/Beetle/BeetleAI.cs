@@ -1,18 +1,18 @@
 using UnityEngine;
-
-public class BeetleAI : Destructable
+//
+public class BeetleAI : Enemy
 {
-    public float moveForwardDistance;  // Движение по оси Z вперёд (вправо)
-    public float moveDownDistance;     // Движение по оси Y вниз
-    public float moveBackwardDistance; // Движение по оси Z назад (влево)
-    public float moveUpDistance;       // Движение по оси Y вверх
+    [SerializeField] private float moveForwardDistance;
+    [SerializeField] private float moveDownDistance;
+    [SerializeField] private float moveBackwardDistance;
+    [SerializeField] private float moveUpDistance;
 
-    public float speed;
-    public int damage;
-    public float knockbackForce;
+    [SerializeField] private float speed;
+    [SerializeField] private int damage;
 
-    public GameObject playerPrefab;  // Ссылка на префаб игрока
+    public GameObject playerPrefab;
 
+    private Destructible destructible;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private int currentDirection = 0;
@@ -25,18 +25,15 @@ public class BeetleAI : Destructable
 
     void Update()
     {
-        // Обновляем положение жука
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        // Проверяем, достиг ли жук цели
         if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             SetNextTarget();
         }
 
-        // Поворачиваем жука в направлении движения, игнорируя вращение по оси X и Y
         Vector3 directionOfMovement = (targetPosition - startPosition).normalized;
-        directionOfMovement.y = 0; // Игнорируем вертикальную составляющую для предотвращения вращения по оси X и Y
+        directionOfMovement.y = 0;
         if (directionOfMovement != Vector3.zero)
         {
             transform.forward = directionOfMovement;
@@ -47,16 +44,16 @@ public class BeetleAI : Destructable
     {
         switch (currentDirection)
         {
-            case 0: // Движение назад по оси Z (влево)
+            case 0:
                 targetPosition = startPosition + new Vector3(0, 0, -moveBackwardDistance);
                 break;
-            case 1: // Движение вниз по оси Y
+            case 1:
                 targetPosition = startPosition + new Vector3(0, -moveDownDistance, -moveBackwardDistance);
                 break;
-            case 2: // Движение вперёд по оси Z (вправо)
+            case 2:
                 targetPosition = startPosition + new Vector3(0, -moveDownDistance, 0);
                 break;
-            case 3: // Движение вверх по оси Y
+            case 3:
                 targetPosition = startPosition + new Vector3(0, 0, 0);
                 break;
         }
@@ -69,31 +66,24 @@ public class BeetleAI : Destructable
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        GameObject collidedObject = collision.gameObject;
-
-        if (collidedObject == playerPrefab)
+        if (other.gameObject == playerPrefab)
         {
-            // Получаем компонент Destructable у игрока
-            Destructable playerDestructable = collidedObject.GetComponent<Destructable>();
+            Destructible playerDestructable = other.GetComponent<Destructible>();
             if (playerDestructable != null)
             {
-                // Наносим урон игроку
                 playerDestructable.ApplyDamage(damage);
 
-                // Рассчитываем направление отталкивания
-                Vector3 directionToPlayer = collidedObject.transform.position - transform.position;
+                Vector3 directionToPlayer = other.transform.position - transform.position;
                 Vector3 beetleForward = transform.forward;
 
-                // Проверяем, находится ли игрок в направлении движения жука
                 if (IsPlayerInFront(beetleForward, directionToPlayer))
                 {
-                    // Отталкиваем игрока в сторону движения жука
-                    Rigidbody playerRb = collidedObject.GetComponent<Rigidbody>();
+                    Rigidbody playerRb = other.GetComponent<Rigidbody>();
                     if (playerRb != null)
                     {
-                        playerRb.AddForce(beetleForward * knockbackForce, ForceMode.Impulse);
+                        playerRb.AddForce(beetleForward * KnockbackForce, ForceMode.Impulse); 
                     }
                 }
             }
@@ -102,8 +92,7 @@ public class BeetleAI : Destructable
 
     bool IsPlayerInFront(Vector3 beetleForward, Vector3 directionToPlayer)
     {
-        // Проверяем, находится ли игрок перед жуком по направлению его движения
         float angle = Vector3.Angle(beetleForward, directionToPlayer);
-        return angle < 45f;  // Игрок должен находиться перед жуком
+        return angle < 45f;
     }
 }

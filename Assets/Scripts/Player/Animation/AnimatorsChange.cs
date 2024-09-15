@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class AnimatorsChange : MonoBehaviour
 {
-    [SerializeField] private Player player;
-    [SerializeField] private AnimatorsAssetMenu assetMenu;
-    [SerializeField] private Animator animator;
+    private Player player;
+    private Animator animator;
 
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+        animator = GetComponentInChildren<Animator>();
+    }
+    /*
     private void Start()
     {
         player.RunEvent += OnRun;
+        player.IdleEvent += OnIdle;
         player.JumpEvent += OnJump;
         player.SlideEvent += OnSlide;
     }
@@ -16,28 +22,29 @@ public class AnimatorsChange : MonoBehaviour
     private void OnDestroy()
     {
         player.RunEvent -= OnRun;
+        player.IdleEvent -= OnIdle;
         player.JumpEvent -= OnJump;
         player.SlideEvent -= OnSlide;
     }
-    
 
     private void OnRun()
     {
-        ChangeController(assetMenu.animatorRun);
+        //animator.SetTrigger("Run");
+    }
+
+    private void OnIdle()
+    {
+        
+        //animator.SetBool("IsIdle", true);
     }
 
     private void OnJump()
     {
-        ChangeController(assetMenu.animatorJump);
+        //animator.SetTrigger("Jump");
     }
 
     private void OnSlide()
     {
-        ChangeController(assetMenu.animatorSlide);
-    }
-
-    private void ChangeController(RuntimeAnimatorController newRuntimeAnimatorController)
-    {
-        animator.runtimeAnimatorController = newRuntimeAnimatorController;
-    }
+        //animator.SetTrigger("Slide");
+    }*/
 }
