@@ -29,16 +29,7 @@ public class Destructible : MonoBehaviour
         if (currentHitPoints <= 0)
             OnDeath();
     }
-    public bool ParryDamage()
-    {
-        if (indestructable) return false;
 
-        if (currentHitPoints <= 0)
-            return true;
-        else
-            return true;
-     
-    }
     public void BlockDamage(float blockTime)
     {
         if ((blockTime += Time.time) >= Time.time)

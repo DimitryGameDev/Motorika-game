@@ -9,8 +9,6 @@ public class Player : MonoSingleton<Player>
     [Header("Jump")]
     [SerializeField] private float maxJumpForce; // additional max jump force
     [SerializeField] private float chargeRate; // max jump time
-    [Header("Damage")]
-    [SerializeField] private int damage = 10;
     [Header("Raycast")]
     [SerializeField] private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
