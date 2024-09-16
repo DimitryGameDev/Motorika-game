@@ -11,7 +11,6 @@ public class PorcupineAI : Enemy
 
     [SerializeField] private float moveDistance;
     [SerializeField] private float pauseDuration;
-    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float fireRate;
 
@@ -20,18 +19,11 @@ public class PorcupineAI : Enemy
     private bool isPaused = false;
     private EnemyState currentState = EnemyState.Patrolling;
     private Coroutine fireCoroutine;
-    private GameObject player;
-    private Destructible playerHealth;
+    private Player player;
 
     private void Start()
     {
         startPosition = transform.position;
-
-        player = GameObject.Find(playerPrefab.name);
-        if (player != null)
-        {
-            playerHealth = player.GetComponent<Destructible>();
-        }
     }
 
     private void Update()
@@ -49,7 +41,7 @@ public class PorcupineAI : Enemy
             case EnemyState.Defending:
                 if (IsPlayerOutOfSight())
                 {
-                    StopDefending();
+                    StopDefending();  
                 }
                 break;
         }
@@ -59,7 +51,7 @@ public class PorcupineAI : Enemy
     {
         if (movingForward)
         {
-            transform.position += Vector3.forward * MoveSpeed * Time.deltaTime; 
+            transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
 
             if (transform.position.z >= startPosition.z + moveDistance)
             {
@@ -87,33 +79,29 @@ public class PorcupineAI : Enemy
 
     private void DetectPlayer()
     {
-        if (playerHealth == null)
-        {
-            return;
-        }
+        Collider[] hits = Physics.OverlapSphere(transform.position, VisionDistance);
 
-        Vector3 direction = movingForward ? Vector3.forward : Vector3.back;
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
-        Vector3 enemyPosition = transform.position;
-        Vector3 toPlayer = playerPosition - enemyPosition;
-
-        if (toPlayer.magnitude <= VisionDistance) 
+        foreach (Collider hit in hits)
         {
-            currentState = EnemyState.Defending;
-            StartDefending();
+            Player playerComponent = hit.GetComponentInParent<Player>();
+            if (playerComponent != null)
+            {
+                player = playerComponent;
+                currentState = EnemyState.Defending;
+                StartDefending();
+                break;
+            }
         }
     }
 
     private bool IsPlayerOutOfSight()
     {
-        if (playerHealth == null)
+        if (player == null)
         {
             return true;
         }
 
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, playerHealth.transform.position.z);
-        Vector3 toPlayer = playerPosition - transform.position;
-
+        Vector3 toPlayer = player.transform.position - transform.position;
         return toPlayer.magnitude > VisionDistance;
     }
 
@@ -142,7 +130,6 @@ public class PorcupineAI : Enemy
             FireProjectileInDirection(Vector3.forward);
             FireProjectileInDirection(Vector3.back);
             FireProjectileInDirection(Vector3.up);
-
             FireProjectileInDirection((Vector3.forward + Vector3.up).normalized);
             FireProjectileInDirection((Vector3.back + Vector3.up).normalized);
 
@@ -158,7 +145,7 @@ public class PorcupineAI : Enemy
         if (projectileScript != null)
         {
             projectileScript.SetDirection(direction);
-            projectileScript.SetSpeed(ProjectileSpeed);  
+            projectileScript.SetSpeed(ProjectileSpeed);
         }
 
         if (direction == Vector3.up)
@@ -172,14 +159,6 @@ public class PorcupineAI : Enemy
         else if (direction == Vector3.back)
         {
             projectile.transform.rotation = Quaternion.Euler(0, 90, 90);
-        }
-        else if (direction == Vector3.left)
-        {
-            projectile.transform.rotation = Quaternion.Euler(0, 90, 0);
-        }
-        else if (direction == Vector3.right)
-        {
-            projectile.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else if (direction == (Vector3.forward + Vector3.up).normalized)
         {
@@ -195,7 +174,7 @@ public class PorcupineAI : Enemy
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, VisionDistance); 
+        Gizmos.DrawWireSphere(transform.position, VisionDistance);
     }
 #endif
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-//
+
 public class BeetleAI : Enemy
 {
     [SerializeField] private float moveForwardDistance;
@@ -10,20 +10,18 @@ public class BeetleAI : Enemy
     [SerializeField] private float speed;
     [SerializeField] private int damage;
 
-    public GameObject playerPrefab;
-
     private Destructible destructible;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private int currentDirection = 0;
 
-    void Start()
+    private void Start()
     {
         startPosition = transform.position;
         SetNextTarget();
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
@@ -40,7 +38,7 @@ public class BeetleAI : Enemy
         }
     }
 
-    void SetNextTarget()
+    private void SetNextTarget()
     {
         switch (currentDirection)
         {
@@ -66,14 +64,15 @@ public class BeetleAI : Enemy
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == playerPrefab)
+        Player playerComponent = other.GetComponent<Player>();
+        if (playerComponent != null)
         {
-            Destructible playerDestructable = other.GetComponent<Destructible>();
-            if (playerDestructable != null)
+            Destructible playerDestructible = other.GetComponent<Destructible>();
+            if (playerDestructible != null)
             {
-                playerDestructable.ApplyDamage(damage);
+                playerDestructible.ApplyDamage(damage);
 
                 Vector3 directionToPlayer = other.transform.position - transform.position;
                 Vector3 beetleForward = transform.forward;
@@ -83,14 +82,14 @@ public class BeetleAI : Enemy
                     Rigidbody playerRb = other.GetComponent<Rigidbody>();
                     if (playerRb != null)
                     {
-                        playerRb.AddForce(beetleForward * KnockbackForce, ForceMode.Impulse); 
+                        playerRb.AddForce(beetleForward * KnockbackForce, ForceMode.Impulse);
                     }
                 }
             }
         }
     }
 
-    bool IsPlayerInFront(Vector3 beetleForward, Vector3 directionToPlayer)
+    private bool IsPlayerInFront(Vector3 beetleForward, Vector3 directionToPlayer)
     {
         float angle = Vector3.Angle(beetleForward, directionToPlayer);
         return angle < 45f;
