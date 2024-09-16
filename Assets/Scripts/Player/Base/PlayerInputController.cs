@@ -8,6 +8,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     public event UnityAction RunEvent; // event
     public event UnityAction JumpEvent;
     public event UnityAction SlideEvent;
+    public event UnityAction ParryEvent;
 
     private Turret turret;
 
@@ -23,6 +24,11 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         if (Input.GetMouseButton(0) && turret != null)
         {
             turret.Fire();
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            ParryEvent?.Invoke();
         }
 
         if (Input.GetKey(KeyCode.Space))
