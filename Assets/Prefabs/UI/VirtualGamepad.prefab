@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8888842970184156434}
   - component: {fileID: 2961328615208710179}
   m_Layer: 5
-  m_Name: JumpButton
+  m_Name: SlideButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3253868265804386735}
   - component: {fileID: 5803308145964794616}
   m_Layer: 5
-  m_Name: FirstAbilityButton
+  m_Name: JumpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 3056825527971824531}
   - component: {fileID: 7566016924735327918}
   m_Layer: 5
-  m_Name: SlideButton
+  m_Name: FirstAbilityButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca5e8612dd7340379afd26230070f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstAbility: {fileID: 5803308145964794616}
+  FirstAbility: {fileID: 7566016924735327918}
   SecondAbility: {fileID: 8840599006094613822}
-  Slide: {fileID: 7566016924735327918}
-  Jump: {fileID: 2961328615208710179}
+  Slide: {fileID: 2961328615208710179}
+  Jump: {fileID: 5803308145964794616}

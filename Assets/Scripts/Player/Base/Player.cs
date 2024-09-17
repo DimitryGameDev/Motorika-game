@@ -6,6 +6,8 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float runSpeed = 5f; //run velocity
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
+    [Header("Dash")]
+    [SerializeField] private float dashForce = 10f;
     [Header("Jump")]
     [SerializeField] private float maxJumpForce; // additional max jump force
     [SerializeField] private float chargeRate; // max jump time
@@ -17,6 +19,7 @@ public class Player : MonoSingleton<Player>
     [Header("Collider")]
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
+
 
     private float currentJumpForce = 0f;
     private float slideTime = 0;
@@ -33,14 +36,16 @@ public class Player : MonoSingleton<Player>
         animator = GetComponentInChildren<Animator>();
 
         PlayerInputController.Instance.RunEvent += Run;
+        PlayerInputController.Instance.SecondAbilityEvent += Dash;
         PlayerInputController.Instance.JumpEvent += Jump;
         PlayerInputController.Instance.SlideEvent += Slide;
     }
 
     private void OnDestroy()
     {
+        PlayerInputController.Instance.SecondAbilityEvent -= Dash;
         PlayerInputController.Instance.RunEvent -= Run;
-        PlayerInputController.Instance.JumpEvent += Jump;
+        PlayerInputController.Instance.JumpEvent -= Jump;
         PlayerInputController.Instance.SlideEvent -= Slide;
     }
 
@@ -89,7 +94,13 @@ public class Player : MonoSingleton<Player>
             //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
     }
-
+    private void Dash()
+    {
+        // ?????????? ???? ????? ?? ??? Z
+        // Needs Cooldown
+        if (IsGround()) return;
+        rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+    }
     private void Jump()
     {
         if (!IsGround()) return;
