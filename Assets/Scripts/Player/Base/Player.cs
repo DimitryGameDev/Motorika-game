@@ -18,32 +18,20 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
 
-  
-
     private float currentJumpForce = 0f;
     private float slideTime = 0;
-    private bool isPlayerFaster;
+
     private Rigidbody rb;
     private Animator animator;
-    private TimeScale ts;
     private Vector3 raycastDownPosition;
     private Vector3 raycastTopPosition;
     private Vector3 raycastBottomPosition;
 
-    private float normalRunSpeed;
-    private Vector3 rbNormalVelocity;
-    private float normalSlideSpeed;
-    private Vector3 normalGravity;
-
     private void Start()
     {
-        ts = GetComponent<TimeScale>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        normalRunSpeed = runSpeed;
-       // rbNormalVelocity = rb.velocity;
-        normalGravity = Physics.gravity;
-        normalSlideSpeed = slideSpeed;
+
         PlayerInputController.Instance.RunEvent += Run;
         PlayerInputController.Instance.JumpEvent += Jump;
         PlayerInputController.Instance.SlideEvent += Slide;
@@ -61,8 +49,7 @@ public class Player : MonoSingleton<Player>
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        //PlayerSpeedTimescale();
-    
+
         if (!Input.GetKey(KeyCode.S))
         {
             mainCollider.enabled = true;

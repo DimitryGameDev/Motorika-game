@@ -84,8 +84,8 @@ MonoBehaviour:
   runSpeed: 5
   slideSpeed: 8.5
   slideControlTime: 0.65
-  maxJumpForce: 3
-  chargeRate: 25
+  maxJumpForce: 10
+  chargeRate: 125
   raycastDistanceForward: 1.5
   raycastDistanceDown: 0.5
   rayPositionTop: 2.1
