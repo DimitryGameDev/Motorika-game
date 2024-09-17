@@ -8,7 +8,7 @@ public class TimeScale : MonoBehaviour
     public float SlowDownFactor => slowDownFactor;
     [SerializeField] private float slowDownDuration; 
     [SerializeField] private float radius; 
-    private KeyCode slowDownKey = KeyCode.T; 
+
 
     private bool isSlowed = false;
     public bool IsSlowed => isSlowed;
@@ -16,18 +16,21 @@ public class TimeScale : MonoBehaviour
 
     
     private Dictionary<GameObject, float> originalSpeeds = new Dictionary<GameObject, float>();
-
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(slowDownKey))
+        PlayerInputController.Instance.FirstAbilityEvent += AbilityCheck;
+    }
+    private void OnDestroy()
+    {
+        PlayerInputController.Instance.FirstAbilityEvent -= AbilityCheck;
+    }
+    public void AbilityCheck()
+    {
+        if (!isSlowed)
         {
-            if (!isSlowed)
-            {
-                StartCoroutine(SlowDown());
-            }
+            StartCoroutine(SlowDown());
         }
     }
-
     private IEnumerator SlowDown()
     {
          isSlowed = true;
