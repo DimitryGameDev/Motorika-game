@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7828878276168016492}
   - component: {fileID: 4071290014301704666}
   - component: {fileID: 7856028876953029743}
-  - component: {fileID: 8373558984210853146}
   - component: {fileID: 988563225731908279}
   m_Layer: 0
   m_Name: Player
@@ -84,6 +83,7 @@ MonoBehaviour:
   runSpeed: 5
   slideSpeed: 8.5
   slideControlTime: 0.65
+  dashForce: 1
   maxJumpForce: 10
   chargeRate: 125
   raycastDistanceForward: 1.5
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parryWindow: 3
-  parryForce: 25
+  parryForce: 15
   playerDamage: 50
   enemyDamage: 50
   parryMaterial: {fileID: 2100000, guid: 9090e5af6f0e4402397e9a85c21550e2, type: 2}
@@ -141,23 +141,6 @@ MonoBehaviour:
   slowDownFactor: 0.5
   slowDownDuration: 1
   radius: 16
---- !u!114 &8373558984210853146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247668268630907964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36699f6ffee4348de9f9e43a7da8c9d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashForce: 10
-  raycastDistanceForward: 1.5
-  raycastDistanceDown: 1.5
-  rayPositionTop: 0.5
-  rayPositionBot: 0.5
 --- !u!65 &988563225731908279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -250,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 7998094749212935472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.46000004, y: 0.961, z: 0.374}
+  m_LocalPosition: {x: 0, y: 1.5, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -264,6 +247,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1492040935694190889}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 029bbb9306e60734f858d76ff6b95fb7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 029bbb9306e60734f858d76ff6b95fb7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 029bbb9306e60734f858d76ff6b95fb7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 029bbb9306e60734f858d76ff6b95fb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
