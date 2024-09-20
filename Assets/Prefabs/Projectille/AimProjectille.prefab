@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 6504125589789768287}
   - component: {fileID: 8348910512740302527}
   m_Layer: 0
-  m_Name: AimProjectille 1
+  m_Name: AimProjectille
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4949,7 +4949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0db13925945b741900eda0dfd4d4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 25
+  velocity: 15
   lifetime: 5
-  damage: 50
+  damage: 25
+  freezeTime: 0
+  findRange: 2
   impactEffectPrefab: {fileID: 0}
