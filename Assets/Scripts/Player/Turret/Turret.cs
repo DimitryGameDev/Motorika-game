@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class Turret : MonoBehaviour
 {
     [SerializeField] private TurretMode mode;
     public TurretMode Mode => mode;
+
+
 
     [SerializeField] private TurretProperties turretProperties;
 
@@ -12,6 +16,7 @@ public class Turret : MonoBehaviour
 
     private Player player; // Parent object
     private Destructible destructable; // Parent object
+
 
     /*[SerializeField] private UpgradeAsset countTurretUpgrade;
     private int levelOfTurret;
@@ -53,17 +58,31 @@ public class Turret : MonoBehaviour
                 return;
         }
 
-       /* if (mode == TurretMode.AutoAiming)
-        {
-            Destructible nearestTarget = FindNearestTarget();
-            if (nearestTarget != null)
-            {
-                transform.forward = (nearestTarget.transform.position - transform.position).normalized;
-                Fire();
-            }
-        } */
+        /* if (mode == TurretMode.AutoAiming)
+         {
+             Destructible nearestTarget = FindNearestTarget();
+             if (nearestTarget != null)
+             {
+                 transform.forward = (nearestTarget.transform.position - transform.position).normalized;
+                 Fire();
+             }
+         } */
 
-        CreateProjectille();
+
+        if (mode == TurretMode.Lightning)
+        {
+            CreateLightningProjectille();
+        }
+
+        if(mode == TurretMode.Freezing)
+        {
+            CreateFreezingProjectille();
+        } 
+
+        if(mode == TurretMode.AutoAiming)
+        {
+            CreateAimingProjectille();
+        }
 
         refireTimer = turretProperties.RateOfFire;
 
@@ -81,38 +100,59 @@ public class Turret : MonoBehaviour
         refireTimer = 0;
     }
 
-    private void CreateProjectille()
+    private void CreateLightningProjectille()
     {
         var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
         projectile.transform.position = transform.position;
         projectile.transform.forward = transform.forward;
 
         projectile.SetParentShooter(destructable);
+        projectile.LightningProjectile();
     }
-/*
-    private Destructible FindNearestTarget()
-    {
-        // Поиск ближайшего врага с компонентом Destructible
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 15f);
-        Destructible nearestTarget = null;
-        float nearestDistance = 30;
 
-        foreach (var collider in colliders)
+    private void CreateFreezingProjectille()
+    {
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.FreezingProjectile();
+    }
+
+    private void CreateAimingProjectille()
+    {
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.AimingProjectile();
+    }
+    /*
+        private Destructible FindNearestTarget()
         {
-            Destructible destructible = collider.transform.root.GetComponent<Destructible>();
-            if (destructible != null && destructible != player && destructible != this.destructable)
+            // Поиск ближайшего врага с компонентом Destructible
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 15f);
+            Destructible nearestTarget = null;
+            float nearestDistance = 30;
+
+            foreach (var collider in colliders)
             {
-                float distance = Vector3.Distance(transform.position, destructible.transform.position);
-                if (distance < nearestDistance)
+                Destructible destructible = collider.transform.root.GetComponent<Destructible>();
+                if (destructible != null && destructible != player && destructible != this.destructable)
                 {
-                    nearestTarget = destructible;
-                    nearestDistance = distance;
+                    float distance = Vector3.Distance(transform.position, destructible.transform.position);
+                    if (distance < nearestDistance)
+                    {
+                        nearestTarget = destructible;
+                        nearestDistance = distance;
+                    }
                 }
             }
-        }
 
-        return nearestTarget;
-    }*/
+            return nearestTarget;
+        }*/
 }
 
 /*
