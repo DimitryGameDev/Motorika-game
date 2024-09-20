@@ -94,7 +94,7 @@ public class Player : MonoSingleton<Player>
             //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
     }
-    private void Dash()
+    public void Dash()
     {
         // ?????????? ???? ????? ?? ??? Z
         // Needs Cooldown
