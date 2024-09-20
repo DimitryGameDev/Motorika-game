@@ -7,11 +7,12 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject[] platformPrefabs; // Check your platform - they must be the same in x,z
     [SerializeField] private int countOfPlatforms; // 5 - 10 platforms - gold result 
     [SerializeField] private float platformLength; // Z size
+    [SerializeField] private float countPlatformBeforeDestroy; // Count platform behind
     // if u need  
     private float platformWidth;
     private float platformHeight;
 
-    private List<GameObject> activePlatforms = new List<GameObject>(); // Список активных платформ
+    private List<GameObject> activePlatforms = new List<GameObject>(); // List active platforms
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (activePlatforms[0].transform.position.z + platformLength * 2 < StartGenerationPoint.position.z)
+        if (activePlatforms[0].transform.position.z + platformLength * countPlatformBeforeDestroy < StartGenerationPoint.position.z)
         {
             DestroyPlatform();
             GeneratePlatform();
