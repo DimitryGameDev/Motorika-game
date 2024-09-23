@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SpaceShooter
-{
+
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private GameObject m_LevelSelectionPanel;
-        [SerializeField] private GameObject m_ShipSelectionPanel;
+        [SerializeField] private GameObject boostPanel;
+        [SerializeField] private GameObject settingsPanel;
         [SerializeField] private GameObject m_MainPanel;
         private void Start()
         {
@@ -15,23 +14,20 @@ namespace SpaceShooter
         public void ShowMainPanel()
         {
             m_MainPanel.SetActive(true);
-            m_ShipSelectionPanel.SetActive(false);
-            m_LevelSelectionPanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            boostPanel.SetActive(false);
         }
-        public void EX_ShowShipSelectionPanel()
+        public void EX_ShowSettingsPanel()
         {
-            m_ShipSelectionPanel.SetActive(true);
+            settingsPanel.SetActive(true);
             m_MainPanel.SetActive(false);
         }
-        public void EX_ShowLevelSelectionPanel()
+        public void EX_ShowBoostPanel()
         {
-            m_LevelSelectionPanel.SetActive(true);
+            boostPanel.SetActive(true);
             m_MainPanel.SetActive(false);
         }
-        public void EX_Quit()
-        {
-            Application.Quit();
-        }
+       
     }
-}
+
 
