@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField] private GameObject cam;
     [SerializeField] private float parallax;
 
     private float startPosX;
@@ -20,8 +19,7 @@ public class Parallax : MonoBehaviour
     {
         float distX = (transform.position.x * (1 - parallax));
         float distY = (transform.position.y * (1 - parallax));
-        float distZ = (transform.position.z * (1 - parallax));
 
-        transform.position = new Vector3(startPosX+distX, startPosY+distY, startPosZ + distZ);
+        transform.position = new Vector3(startPosX+distX, startPosY+distY, startPosZ);
     }
 }
