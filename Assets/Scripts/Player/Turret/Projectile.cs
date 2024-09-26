@@ -106,6 +106,13 @@ public class Projectile : MonoBehaviour
             if (destructible != null)
             {
                 transform.position = Vector3.MoveTowards(transform.position, destructible.transform.position, stepLength);
+
+                /*
+                Vector3 direction = destructible.transform.position - transform.position;
+                float angle = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg - 90f;
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, velocity * Time.deltaTime);
+                */
                 if (transform.position == destructible.transform.position)
                 {
                     destructible.ApplyDamage(damage);

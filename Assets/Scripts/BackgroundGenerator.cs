@@ -36,9 +36,10 @@ public class BackgroundGenerator : MonoBehaviour
         for (int i = 0; i < backgroundPrefabs.Length; i++)
         {
             GameObject image = Instantiate(backgroundPrefabs[i], gameObject.transform);
+            
 
             float platformZ = 0f;
-            var firstPlatforms = StartGenerationPoint.position.z - imagePosZ * 0.33f;
+            var firstPlatforms = StartGenerationPoint.position.z - imagePosZ * 2;
 
             if (activeImage.Count < backgroundPrefabs.Length)
             {
