@@ -36,14 +36,18 @@ public class Parry : MonoBehaviour
 
     private void OnTriggerEnter(Collider enemy)
     {
-        enemyDestructible = enemy.GetComponent<Destructible>();
-        enemyRenderer = enemy.GetComponent<Renderer>();
-
-        if (enemyDestructible != null && !enemyIsActive)
+        var beetle = enemy.GetComponent<NewBeetle>();
+        if (beetle == null)
         {
-            enemyIsActive = true;
-            enemyRenderer.material = parryMaterial;
-            parryTimer = parryWindow;
+            enemyDestructible = enemy.GetComponent<Destructible>();
+            enemyRenderer = enemy.GetComponent<Renderer>();
+            Debug.Log(enemy.name);
+            if (enemyDestructible != null && !enemyIsActive)
+            {
+                enemyIsActive = true;
+                enemyRenderer.material = parryMaterial;
+                parryTimer = parryWindow;
+            }
         }
     }
 

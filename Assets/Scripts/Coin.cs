@@ -13,8 +13,11 @@ public class Coin : Pikup
         if (bag != null)
         {
             bag.AddCoin(1);
-
+            
+            if(impactEffect != null)
             Instantiate(impactEffect);
+
+            Destroy(gameObject);
         }
     }
 }

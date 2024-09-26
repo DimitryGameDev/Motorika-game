@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Enemy : Destructible
 {
+    [SerializeField] private int damage;
+    public int Damage => damage; 
+
     [SerializeField] private float moveSpeed;
     public float MoveSpeed => moveSpeed; 
 

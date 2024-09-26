@@ -30,6 +30,8 @@ public class Player : MonoSingleton<Player>
     private Vector3 raycastTopPosition;
     private Vector3 raycastBottomPosition;
 
+    public bool isSlide;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -64,6 +66,8 @@ public class Player : MonoSingleton<Player>
 
     private void Run()
     {
+        isSlide = false;
+
         if (!IsBarrier())
         {
             transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
@@ -78,6 +82,8 @@ public class Player : MonoSingleton<Player>
     private void Slide()
     {
         if (!IsGround()) return;
+
+        isSlide = true;
 
         animator.SetTrigger("Slide");
 

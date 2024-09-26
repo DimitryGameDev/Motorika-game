@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4071290014301704666}
   - component: {fileID: 7856028876953029743}
   - component: {fileID: 988563225731908279}
+  - component: {fileID: 1272653489019343703}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -83,7 +84,7 @@ MonoBehaviour:
   runSpeed: 5
   slideSpeed: 8.5
   slideControlTime: 0.65
-  dashForce: 1
+  dashForce: 0.5
   maxJumpForce: 10
   chargeRate: 125
   raycastDistanceForward: 1.5
@@ -92,6 +93,7 @@ MonoBehaviour:
   rayPositionBottom: 0.2
   mainCollider: {fileID: 6302959998749190828}
   slideCollider: {fileID: 6283868882086292931}
+  isSlide: 0
 --- !u!114 &7828878276168016492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +164,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1272653489019343703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247668268630907964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b769a69e2db44a6bff6ea3a2dcac84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChangeCoinAmount:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4136450052995544561
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 4136450052995544561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.877}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0.877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
