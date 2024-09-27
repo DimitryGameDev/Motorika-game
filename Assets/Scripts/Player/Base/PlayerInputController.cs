@@ -92,7 +92,6 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             RunEvent?.Invoke();
         }
-       
     }
     private void ControlMixed()
     {

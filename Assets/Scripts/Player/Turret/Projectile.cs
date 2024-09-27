@@ -65,19 +65,18 @@ public class Projectile : MonoBehaviour
 
     public void FreezingProjectile()
     {
-        RaycastHit hit;
+        RaycastHit hit1;
 
         float stepLength = Time.deltaTime * velocity;
         Vector3 step = transform.forward * stepLength;
 
         Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, stepLength))
         {
             freezeTimer = freezeTime;
 
-            //OnHit(hit);
-            OnFreeze(hit);
-            OnProjectileLifeEnd(hit.collider, hit.point);
+            OnFreeze(hit1);
+            OnProjectileLifeEnd(hit1.collider, hit1.point);
         }
 
         timer += Time.deltaTime;
@@ -105,19 +104,20 @@ public class Projectile : MonoBehaviour
 
             if (destructible != null)
             {
+                Vector3 direction = (destructible.transform.position - transform.position).normalized;
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, stepLength*2);
                 transform.position = Vector3.MoveTowards(transform.position, destructible.transform.position, stepLength);
 
-                /*
-                Vector3 direction = destructible.transform.position - transform.position;
-                float angle = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg - 90f;
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, velocity * Time.deltaTime);
-                */
-                if (transform.position == destructible.transform.position)
+                if (Vector3.Distance(transform.position, destructible.transform.position) < 0.1f)
                 {
                     destructible.ApplyDamage(damage);
+                    Destroy(gameObject);
+                    return;
                 }
             }
+
             timer += Time.deltaTime;
 
             if (timer > lifetime)
@@ -133,29 +133,47 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnHit(RaycastHit hit)
     {
-        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
+        if (hit.collider == null) return;
 
-        if (destructible != null && destructible != parent)
+        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
+        var destructible1 = hit.collider.transform.GetComponent<Destructible>();
+
+        if ((destructible != null && destructible != parent) ||
+        (destructible1 != null && destructible1 != parent))
         {
-            destructible.ApplyDamage(damage);
+            if (destructible != null)
+            {
+                destructible.ApplyDamage(damage);
+            }
+            if (destructible1 != null)
+            {
+                destructible1.ApplyDamage(damage);
+            }
 
             // #Score
-            if (Player.Instance != null && destructible.HitPoints < 0)
+            if (Player.Instance != null)
             {
-                //  Player.Instance.AddScore(destructible.ScoreValue);
+                if (destructible != null && destructible.HitPoints < 0)
+                {
+                    //Player.Instance.AddScore(destructible.ScoreValue);
+                }
+                if (destructible1 != null && destructible1.HitPoints < 0)
+                {
+                    //Player.Instance.AddScore(destructible1.ScoreValue);
+                }
             }
         }
     }
 
     private void OnFreeze(RaycastHit hit)
     {
-        var enemy = hit.collider.transform.root.GetComponent<Enemy>();
-        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
+        var enemy = hit.collider.transform.GetComponent<Enemy>();
+        var destructible = hit.collider.transform.GetComponent<Destructible>();
 
         if (enemy != null)
             enemy.SetZeroSpeed(freezeTimer);
-        if (destructible != null)
-            Debug.Log(destructible.HitPoints);
+       // if (destructible != null)
+           // Debug.Log(destructible.HitPoints);
     }
 
     private void OnProjectileLifeEnd(Collider collider, Vector3 pos)
