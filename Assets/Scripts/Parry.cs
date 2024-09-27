@@ -41,7 +41,7 @@ public class Parry : MonoBehaviour
         {
             enemyDestructible = enemy.GetComponent<Destructible>();
             enemyRenderer = enemy.GetComponent<Renderer>();
-            Debug.Log(enemy.name);
+            
             if (enemyDestructible != null && !enemyIsActive)
             {
                 enemyIsActive = true;

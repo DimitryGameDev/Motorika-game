@@ -39,7 +39,6 @@ public class NewBeetle : Enemy
     private void Update()
     {
         MoveToNextCorner();
-        Debug.Log(state);
     }
 
     private void OnDestroy()
@@ -121,7 +120,6 @@ public class NewBeetle : Enemy
                 if (!player.IsGround() || player.isSlide || player.transform.position.y >= transform.position.y)
                 {
                     beetleDestructible.ApplyDamage(beetleDestructible.HitPoints);
-
                 }
                 else
                     playerDestructible.ApplyDamage(Damage);
@@ -133,7 +131,7 @@ public class NewBeetle : Enemy
 
     private void Attack()
     {
-        Debug.Log("Добавить звук урона");
+        //Debug.Log("Добавить звук урона");
     }
 
     private void AddCoin()

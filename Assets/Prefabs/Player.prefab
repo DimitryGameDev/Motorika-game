@@ -87,7 +87,7 @@ MonoBehaviour:
   dashForce: 0.5
   maxJumpForce: 10
   chargeRate: 125
-  raycastDistanceForward: 1.5
+  raycastDistanceForward: 0.9
   raycastDistanceDown: 0.5
   rayPositionTop: 2.1
   rayPositionBottom: 0.2
@@ -162,8 +162,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 3}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 2, y: 1.8, z: 1.47}
+  m_Center: {x: 0, y: 1.15, z: 0.2}
 --- !u!114 &1272653489019343703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192854451476882472}
   - component: {fileID: 1457096637014770848}
+  - component: {fileID: 3361323521629539060}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -205,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 4136450052995544561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0.877}
+  m_LocalPosition: {x: 0, y: 1.2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,8 +224,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9572673dc3c6c4c46bab93f70a5a82b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  turretProperties: {fileID: 11400000, guid: bc0f53d87f3ba39469b0d755e4af5c3c, type: 2}
+  mode: 2
+  turretProperties: {fileID: 11400000, guid: 2a243249bd75c9c4b92fae732ea85f94, type: 2}
+--- !u!114 &3361323521629539060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136450052995544561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b7117cfb057f34dbe75a10f0e187c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 250
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &7998094749212935472
 GameObject:
   m_ObjectHideFlags: 0

@@ -157,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 10
   lifetime: 5
-  damage: 0
-  freezeTime: 1
+  damage: -1
+  freezeTime: 5
   findRange: 0
   impactEffectPrefab: {fileID: 0}
 --- !u!114 &8076570377915016446
@@ -174,3 +174,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 250
+  direction: {x: 0, y: 0, z: 1}

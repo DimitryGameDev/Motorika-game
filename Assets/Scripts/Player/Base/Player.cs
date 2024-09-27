@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoSingleton<Player>
@@ -20,7 +21,6 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
 
-
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
@@ -28,6 +28,8 @@ public class Player : MonoSingleton<Player>
     private Animator animator;
     private Vector3 raycastDownPosition;
     private Vector3 raycastTopPosition;
+    private Vector3 raycastMiddlePosition1;
+    private Vector3 raycastMiddlePosition2;
     private Vector3 raycastBottomPosition;
 
     public bool isSlide;
@@ -75,7 +77,7 @@ public class Player : MonoSingleton<Player>
             if (IsGround())
                 animator.SetTrigger("Run");
         }
-        else if (IsGround())
+        else if (IsGround() && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.Space)) //TODO: change this
             animator.SetTrigger("Idle");
     }
 
@@ -100,13 +102,14 @@ public class Player : MonoSingleton<Player>
             //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
     }
-    public void Dash()
+
+    private void Dash()
     {
-        // ?????????? ???? ????? ?? ??? Z
         // Needs Cooldown
         if (IsGround()) return;
         rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
+
     private void Jump()
     {
         if (!IsGround()) return;
@@ -129,21 +132,25 @@ public class Player : MonoSingleton<Player>
     }
 
     public bool IsBarrier()
-    {
-        raycastTopPosition = new(transform.position.x, transform.position.y + rayPositionTop, transform.position.z);
-        raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
-        bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
-        bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
+     {
+         raycastTopPosition = new(transform.position.x, transform.position.y + rayPositionTop, transform.position.z);
+         raycastMiddlePosition1 = new(transform.position.x, transform.position.y + rayPositionTop*0.7f, transform.position.z);
+         raycastMiddlePosition2 = new(transform.position.x, transform.position.y + rayPositionTop *0.3f, transform.position.z);
+         raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
+         bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
+         bool hitMiddle1 = Physics.Raycast(raycastMiddlePosition1, transform.forward, out _, raycastDistanceForward);
+         bool hitMiddle2 = Physics.Raycast(raycastMiddlePosition2, transform.forward, out _, raycastDistanceForward);
+         bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
 
-        if (hitBottom || hitTop)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+         if (hitBottom || hitMiddle1 || hitMiddle2 || hitTop)
+         {
+             return true;
+         }
+         else
+         {
+             return false;
+         }
+}
 
     public bool IsGround()
     {
@@ -194,8 +201,11 @@ public class Player : MonoSingleton<Player>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
+        //Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + transform.localScale.y + 0.3f, transform.position.z + transform.localScale.z - 0.3f), new Vector3(2f, 2f, 0.5f));
         Gizmos.DrawRay(raycastDownPosition, -transform.up * raycastDistanceDown);
         Gizmos.DrawRay(raycastTopPosition, transform.forward * raycastDistanceForward);
+        Gizmos.DrawRay(raycastMiddlePosition1, transform.forward * raycastDistanceForward);
+        Gizmos.DrawRay(raycastMiddlePosition2, transform.forward * raycastDistanceForward);
         Gizmos.DrawRay(raycastBottomPosition, transform.forward * raycastDistanceForward);
     }
 #endif
