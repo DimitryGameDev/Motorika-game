@@ -1195,6 +1195,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1457096637014770848, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457096637014770848, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: turretProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: 490f34c151f6fbc48a9187590c96ffc7, type: 2}
     - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1234,6 +1242,10 @@ PrefabInstance:
     - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: chargeRate
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
