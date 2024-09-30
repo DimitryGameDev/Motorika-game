@@ -13,7 +13,7 @@ public class Enemy : Destructible
 
     [SerializeField] private float visionDistance;
     public float VisionDistance => visionDistance;
-
+    public bool isAttacking;
     [SerializeField] private float knockbackForce;
     public float KnockbackForce => knockbackForce; 
 

@@ -131,7 +131,7 @@ public class NewBeetle : Enemy
 
     private void Attack()
     {
-        //Debug.Log("Добавить звук урона");
+        //Debug.Log("???????? ???? ?????");
     }
 
     private void AddCoin()

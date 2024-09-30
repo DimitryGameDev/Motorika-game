@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1532031853530889256}
   - component: {fileID: 4031253998492051936}
   - component: {fileID: 8911668387330257100}
+  - component: {fileID: 949214574835484188}
   m_Layer: 0
   m_Name: Wolf_New
   m_TagString: Untagged
@@ -347,8 +348,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.61, y: 1.61, z: 1.61}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 738236406713585462}
   - {fileID: 3147660973686151870}
@@ -396,6 +397,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &949214574835484188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164276996249151122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd9ab3b7a30b4d3483f1b8e060664a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  indestructable: 0
+  hitPoints: 100
+  damage: 25
+  moveSpeed: 0
+  projectileSpeed: 0
+  visionDistance: 0
+  isAttacking: 0
+  knockbackForce: 0
 --- !u!1 &2496480954428994919
 GameObject:
   m_ObjectHideFlags: 0

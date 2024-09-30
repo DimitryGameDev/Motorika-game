@@ -100,7 +100,7 @@ public class Projectile : MonoBehaviour
         float stepLength = Time.deltaTime * velocity;
         foreach (var enemyCollider in enemiesCollider)
         {
-            var destructible = enemyCollider.GetComponent<Enemy>();
+            var destructible = enemyCollider.GetComponent<Destructible>();
 
             if (destructible != null)
             {
