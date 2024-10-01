@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8746513000407342602}
-  - component: {fileID: 5659600358645439805}
+  - component: {fileID: 6542689201403000124}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -135,7 +135,7 @@ Transform:
   - {fileID: 5618715109672031976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5659600358645439805
+--- !u!114 &6542689201403000124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,18 +144,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6179185716633175977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0edacbafca0c45c4c842520ff4389de1, type: 3}
+  m_Script: {fileID: 11500000, guid: 236487aa6401e964793bf34fb3569704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartGenerationPoint: {fileID: 0}
   backgroundPrefabs:
-  - {fileID: 6056937577394858552, guid: b76e9bc6d9f6dbb44a16caa35fbdf028, type: 3}
-  - {fileID: 5958384627306899062, guid: 3d8715134c18dad43a77de96b99c3bdc, type: 3}
-  countOfImage: 5
-  imagePosX: -5
-  imagePosY: 5
-  imagePosZ: 190.162
-  countImageBeforeDestroy: 3
+  - {fileID: 94752099943235385, guid: f7921b35e01e634409249516028d3461, type: 3}
+  - {fileID: 3349035712719602950, guid: 129b35d3aee925c4f953089d8aa4a133, type: 3}
+  - {fileID: 7524642353297031960, guid: 72678836a4bc9f348afa6f5005148ddc, type: 3}
+  - {fileID: 6605586828121235609, guid: 1150281b12980e041bcecb7e642f0782, type: 3}
+  backgroundSpacing: 10
+  offsetX: 5
+  offsetY: 3
+  destroyDistance: 50
+  player: {fileID: 0}
 --- !u!1 &8820598306394123081
 GameObject:
   m_ObjectHideFlags: 0

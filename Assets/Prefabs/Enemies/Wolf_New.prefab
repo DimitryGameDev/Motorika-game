@@ -414,12 +414,13 @@ MonoBehaviour:
       m_Calls: []
   indestructable: 0
   hitPoints: 100
+  parrySphere: {fileID: 8057977862307885828, guid: a4cbf1577cfae8f4da6adba775c101c2, type: 3}
   damage: 25
   parried: 0
   moveSpeed: 0
   projectileSpeed: 0
+  projectileDamage: 0
   visionDistance: 0
-  isAttacking: 0
   knockbackForce: 0
 --- !u!1 &2496480954428994919
 GameObject:

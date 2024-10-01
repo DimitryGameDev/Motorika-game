@@ -47,6 +47,7 @@ public class Parry : MonoSingleton<Parry>
         {
             enemyIsActive = true;
             parryTimer = parryWindow;
+            enemy.ParrySphere(true);
         }
     }
 
@@ -63,6 +64,9 @@ public class Parry : MonoSingleton<Parry>
     private void OnTriggerExit(Collider collider)
     {
         IdleAnimEvent?.Invoke();
+
+        if(enemy != null)
+        enemy.ParrySphere(false);
 
         ResetParry();
     }
@@ -110,7 +114,7 @@ public class Parry : MonoSingleton<Parry>
     {
         isParry = false;
         enemyIsActive = false;
-
+        
         parryTimer = 0;
     }
 }
