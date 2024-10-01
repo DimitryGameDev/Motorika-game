@@ -415,6 +415,7 @@ MonoBehaviour:
   indestructable: 0
   hitPoints: 100
   damage: 25
+  parried: 0
   moveSpeed: 0
   projectileSpeed: 0
   visionDistance: 0

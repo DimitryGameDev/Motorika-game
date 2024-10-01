@@ -24,10 +24,13 @@ public class BackgroundGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (activeImage[0].transform.position.z + imagePosZ * countImageBeforeDestroy < StartGenerationPoint.position.z)
+        if (StartGenerationPoint != null)
         {
-            DestroyPlatform();
-            GeneratePlatform();
+            if (activeImage[0].transform.position.z + imagePosZ * countImageBeforeDestroy < StartGenerationPoint.position.z)
+            {
+                DestroyPlatform();
+                GeneratePlatform();
+            }
         }
     }
 

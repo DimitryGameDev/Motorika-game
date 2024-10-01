@@ -84,9 +84,11 @@ MonoBehaviour:
   indestructable: 0
   hitPoints: 10
   damage: 10
+  parried: 1
   moveSpeed: 2
   projectileSpeed: 0
   visionDistance: 0
+  isAttacking: 0
   knockbackForce: 0
   platform: {fileID: 0}
   coinPrebab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
