@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -412,9 +412,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartGenerationPoint: {fileID: 1188118091}
   platformPrefabs:
-  - {fileID: 3153199387231346982, guid: 1a608fdaaa774e742bd91603186cf42c, type: 3}
+  - {fileID: 3153199387231346982, guid: 06fd4029e2cca3345af52a00fa5b3993, type: 3}
+  - {fileID: 3153199387231346982, guid: 86a48cb8b999f0443a39bb8ec76c85f4, type: 3}
   countOfPlatforms: 5
-  countOfBasePlatforms: 150
+  countOfBasePlatforms: 1
   platformLength: 15
   countPlatformBeforeDestroy: 3
 --- !u!4 &350047861
@@ -571,8 +572,8 @@ GameObject:
   - component: {fileID: 813579867}
   - component: {fileID: 813579866}
   - component: {fileID: 813579865}
-  - component: {fileID: 813579869}
   - component: {fileID: 813579870}
+  - component: {fileID: 813579871}
   m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
@@ -666,31 +667,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &813579869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813579863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de15c1e8c59b12c48b78bc3ab00ce6fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventOnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  indestructable: 0
-  hitPoints: 10
-  damage: 10
-  moveSpeed: 2
-  projectileSpeed: 0
-  visionDistance: 0
-  isAttacking: 0
-  knockbackForce: 0
-  platform: {fileID: 0}
-  coinPrebab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
 --- !u!54 &813579870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -718,6 +694,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &813579871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813579863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf75f125f20759846aa76a2eac644c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  indestructable: 0
+  hitPoints: 100
+  parrySphere: {fileID: 0}
+  damage: 10
+  parried: 0
+  moveSpeed: 0
+  projectileSpeed: 0
+  projectileDamage: 0
+  visionDistance: 0
+  knockbackForce: 0
 --- !u!1 &1177670558
 GameObject:
   m_ObjectHideFlags: 3
@@ -1235,6 +1236,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4071290014301704666, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: playerDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: runSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: chargeRate
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: maxJumpForce
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1257,14 +1274,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 718331167}
-    - target: {fileID: 5659600358645439805, guid: f30340bafa65f884cbdc58ef599681e8, type: 3}
-      propertyPath: StartGenerationPoint
-      value: 
-      objectReference: {fileID: 1188118091}
     - target: {fileID: 6179185716633175977, guid: f30340bafa65f884cbdc58ef599681e8, type: 3}
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 6542689201403000124, guid: f30340bafa65f884cbdc58ef599681e8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1188118091}
     - target: {fileID: 8746513000407342602, guid: f30340bafa65f884cbdc58ef599681e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

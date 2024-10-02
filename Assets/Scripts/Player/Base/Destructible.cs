@@ -15,7 +15,7 @@ public class Destructible : MonoBehaviour
     private int currentHitPoints;
     public int HitPoints => currentHitPoints;
 
-    private void Start()
+    private void Awake()
     {
         currentHitPoints = hitPoints;
     }

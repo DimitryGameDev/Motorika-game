@@ -1,25 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
+
 public class Parry : MonoSingleton<Parry>
 {
-    [SerializeField] private float parryWindow;
-    [SerializeField] private float parryForce;
-    
-    [SerializeField] private int playerDamage;
-    private int enemyDamage;
-  
     public event UnityAction AttackAnimEvent;
     public event UnityAction IdleAnimEvent;
-    [SerializeField] private Material parryMaterial;
-    //private Renderer enemyRenderer;
+
+    [SerializeField] private float parryWindow;
+    [SerializeField] private float parryForce;
+    [SerializeField] private int playerDamage;
 
     private Player player;
     private Destructible playerDestructible;
 
     private Enemy enemy;
+    private int enemyDamage;
 
     private float parryTimer;
-    public float ParryTimer => parryTimer; //TODO: Change enemy script Wolf
 
     private bool isParry = false;
     private bool enemyIsActive = false;
@@ -35,29 +32,22 @@ public class Parry : MonoSingleton<Parry>
     private void Update()
     {
         ParryTime();
-     
-      
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         if (collider == null) return;
-        
-        var beetle = collider.GetComponent<NewBeetle>();
-        if (beetle == null)
+
+        enemy = collider.GetComponent<Enemy>();
+
+        if (enemy == null) return;
+        enemyDamage = enemy.Damage;
+
+        if (enemy.Parried == Parried.On && !enemyIsActive)
         {
-            enemy = collider.GetComponent<Enemy>();
-         
-            // enemyRenderer = collider.GetComponent<Renderer>();
-            if (enemy == null) return;
-            
-            enemyDamage = enemy.Damage;
-            if (enemy != null && !enemyIsActive)
-            {
-                enemyIsActive = true;
-              //  enemyRenderer.material = parryMaterial;
-                parryTimer = parryWindow;
-            }
+            enemyIsActive = true;
+            parryTimer = parryWindow;
+            enemy.ParrySphere(true);
         }
     }
 
@@ -65,8 +55,6 @@ public class Parry : MonoSingleton<Parry>
     {
         if (enemy != null && enemyIsActive && !isParry && parryTimer > 0)
         {
-
-          
             if (Input.GetKey(KeyCode.W))
             {
                 PlayerParry();
@@ -77,14 +65,15 @@ public class Parry : MonoSingleton<Parry>
     {
         IdleAnimEvent?.Invoke();
 
+        if(enemy != null)
+        enemy.ParrySphere(false);
+
         ResetParry();
     }
 
     private void PlayerParry()
     {
-
         enemy.ApplyDamage(playerDamage);
-        
         Debug.Log("Успешное парирование, враг получает урон.");
 
         if (enemy.HitPoints > 0)
@@ -98,16 +87,13 @@ public class Parry : MonoSingleton<Parry>
 
     private void ApplyEnemyDamage()
     {
-
         AttackAnimEvent?.Invoke();
 
         playerDestructible.ApplyDamage(enemyDamage);
-       
         Debug.Log("Не успели парировать. Враг наносит урон.");
 
         if (playerDestructible.HitPoints > 0)
             player.Parry(parryForce);
-        //enemy.isAttacking = false;
     }
 
     public void ParryTime()

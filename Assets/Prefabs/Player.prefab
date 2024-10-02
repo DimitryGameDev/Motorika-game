@@ -123,10 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8819433a42e445d8178bda68b581a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DoNotDestroyOnLoad: 0
   parryWindow: 3
   parryForce: 15
   playerDamage: 50
-  enemyDamage: 50
   parryMaterial: {fileID: 2100000, guid: 9090e5af6f0e4402397e9a85c21550e2, type: 2}
 --- !u!114 &7856028876953029743
 MonoBehaviour:
@@ -189,7 +189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 192854451476882472}
   - component: {fileID: 1457096637014770848}
-  - component: {fileID: 3361323521629539060}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -226,20 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 2
   turretProperties: {fileID: 11400000, guid: 2a243249bd75c9c4b92fae732ea85f94, type: 2}
---- !u!114 &3361323521629539060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4136450052995544561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b7117cfb057f34dbe75a10f0e187c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 250
-  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &7998094749212935472
 GameObject:
   m_ObjectHideFlags: 0
