@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class BackgroundGeneratorNew : MonoBehaviour
 {
-    public GameObject[] backgroundPrefabs;
-    public float backgroundSpacing = 5f;
-    public float offsetX = 5f;
-    public float offsetY = 5f;
-    public float destroyDistance = 20f;
-    public Transform player;
+    [SerializeField] private GameObject[] backgroundPrefabs;
+    [SerializeField] private float backgroundSpacing = 5f;
+    [SerializeField] private float offsetX = 5f;
+    [SerializeField] private float offsetY = 5f;
+    [SerializeField] private float destroyDistance = 20f;
+    [SerializeField] private Transform player;
 
     private List<GameObject> backgrounds = new List<GameObject>();
     private float nextBackgroundPosition;
 
-    void Start()
+    private void Awake()
     {
         nextBackgroundPosition = -destroyDistance;
         GenerateBackground();
     }
 
-    void Update()
+    private void Update()
     {
         if (player.position.z > nextBackgroundPosition - destroyDistance)
         {
