@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class NewWolf : Enemy
 {
     private Animator mAnimator;
-    
+
     private void Start()
     {
         mAnimator = GetComponent<Animator>();
@@ -21,15 +18,11 @@ public class NewWolf : Enemy
     }
     private void AttackAnimation()
     {
-       
         if (mAnimator != null)
         {
-           
-                Debug.Log("123");
-                mAnimator.SetTrigger("Attack");
-            
+            mAnimator.SetTrigger("Attack");
         }
-            
+
     }
     private void IdleAnimation()
     {

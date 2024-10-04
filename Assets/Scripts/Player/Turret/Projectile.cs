@@ -19,23 +19,9 @@ public class Projectile : MonoBehaviour
     private float timer;
     private float freezeTimer;
     private Collider[] enemiesCollider;
-    public void SetFromOtherProjectile(Projectile other)
-    {
-        other.GetData(out velocity, out lifetime, out damage, out impactEffectPrefab);
-    }
-
-    private void GetData(out float m_Velocity, out float m_Lifetime, out int m_Damage, out ImpactEffect m_ImpactEffectPrefab)
-    {
-        m_Velocity = this.velocity;
-        m_Lifetime = this.lifetime;
-        m_Damage = this.damage;
-        m_ImpactEffectPrefab = this.impactEffectPrefab;
-    }
 
     private void Update()
     {
-        //Debug.Log(freezeTimer);
-
         LightningProjectile();
         FreezingProjectile();
         AimingProjectile();
@@ -100,28 +86,33 @@ public class Projectile : MonoBehaviour
         float stepLength = Time.deltaTime * velocity;
         foreach (var enemyCollider in enemiesCollider)
         {
-            var destructible = enemyCollider.GetComponent<Destructible>();
+            var player = enemyCollider.GetComponent<Player>();
 
-            if (destructible != null)
+            if (player == null)
             {
-                Vector3 direction = (destructible.transform.position - transform.position).normalized;
+                var destructible = enemyCollider.GetComponent<Destructible>();
 
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, stepLength*2);
-                transform.position = Vector3.MoveTowards(transform.position, destructible.transform.position, stepLength);
-
-                if (Vector3.Distance(transform.position, destructible.transform.position) < 0.1f)
+                if (destructible != null)
                 {
-                    destructible.ApplyDamage(damage);
-                    Destroy(gameObject);
-                    return;
+                    Vector3 direction = (destructible.transform.position - transform.position).normalized;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, stepLength * 2);
+                    transform.position = Vector3.MoveTowards(transform.position, destructible.transform.position, stepLength);
+
+                    if (Vector3.Distance(transform.position, destructible.transform.position) < 0.1f)
+                    {
+                        destructible.ApplyDamage(damage);
+                        Destroy(gameObject);
+                        return;
+                    }
                 }
+
+                timer += Time.deltaTime;
+
+                if (timer > lifetime)
+                    Destroy(gameObject);
             }
-
-            timer += Time.deltaTime;
-
-            if (timer > lifetime)
-                Destroy(gameObject);
         }
     }
 
@@ -168,12 +159,9 @@ public class Projectile : MonoBehaviour
     private void OnFreeze(RaycastHit hit)
     {
         var enemy = hit.collider.transform.GetComponent<Enemy>();
-        var destructible = hit.collider.transform.GetComponent<Destructible>();
 
         if (enemy != null)
             enemy.SetZeroSpeed(freezeTimer);
-       // if (destructible != null)
-           // Debug.Log(destructible.HitPoints);
     }
 
     private void OnProjectileLifeEnd(Collider collider, Vector3 pos)
@@ -193,11 +181,4 @@ public class Projectile : MonoBehaviour
     {
         this.parent = parent;
     }
-
-    /* TODO для самонаводящейся турели
-public void SetTarget(Destructible target)
-{
-
-}
-*/
 }
