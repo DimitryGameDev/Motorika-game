@@ -22,12 +22,17 @@ using UnityEngine;
             settingsPanel.SetActive(true);
             m_MainPanel.SetActive(false);
         }
-        public void EX_ShowBoostPanel()
+        public void EX_ShowCharacterPanel()
         {
             boostPanel.SetActive(true);
             m_MainPanel.SetActive(false);
         }
-       
+        public void EX_ShowJournalPanel()
+        {
+            boostPanel.SetActive(true);
+            m_MainPanel.SetActive(false);
+        }
+
     }
 
 
