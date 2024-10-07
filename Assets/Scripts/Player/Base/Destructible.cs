@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Destructible : MonoBehaviour
 {
+    public event UnityAction OnEnemyDeath;
+
     [SerializeField] private UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
 
@@ -48,5 +50,6 @@ public class Destructible : MonoBehaviour
         Destroy(gameObject);
 
         eventOnDeath?.Invoke();
+        OnEnemyDeath?.Invoke();
     }
 }

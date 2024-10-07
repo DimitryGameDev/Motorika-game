@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1532031853530889256}
   - component: {fileID: 4031253998492051936}
   - component: {fileID: 8911668387330257100}
+  - component: {fileID: 3740455209552764029}
   - component: {fileID: 949214574835484188}
   m_Layer: 0
   m_Name: Wolf_New
@@ -397,6 +398,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3740455209552764029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164276996249151122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea5ad8a7291a4244b382450db4ce27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffect: {fileID: 0}
+  anomalyPrefab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
 --- !u!114 &949214574835484188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +428,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   indestructable: 0
-  hitPoints: 100
+  hitPoints: 50
   parrySphere: {fileID: 8057977862307885828, guid: a4cbf1577cfae8f4da6adba775c101c2, type: 3}
   damage: 25
   parried: 0

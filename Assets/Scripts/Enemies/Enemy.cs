@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum Parried
 {
@@ -31,7 +32,7 @@ public class Enemy : Destructible
 
     [SerializeField] private float knockbackForce;
     public float KnockbackForce => knockbackForce;
-  
+
     public void SetZeroSpeed(float timer)
     {
         var move = moveSpeed;
@@ -57,5 +58,5 @@ public class Enemy : Destructible
            spawnSphere  = Instantiate(parrySphere, transform);
         else
             Destroy(spawnSphere);
-    }
+    } 
 }

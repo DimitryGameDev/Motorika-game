@@ -85,8 +85,8 @@ MonoBehaviour:
   slideSpeed: 8.5
   slideControlTime: 0.65
   dashForce: 0.5
-  maxJumpForce: 10
-  chargeRate: 125
+  maxJumpForce: 15
+  chargeRate: 150
   raycastDistanceForward: 0.9
   raycastDistanceDown: 0.5
   rayPositionTop: 2.1
@@ -124,10 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  parryWindow: 3
+  parryWindow: 0.5
   parryForce: 15
   playerDamage: 50
-  parryMaterial: {fileID: 2100000, guid: 9090e5af6f0e4402397e9a85c21550e2, type: 2}
 --- !u!114 &7856028876953029743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +178,9 @@ MonoBehaviour:
   ChangeCoinAmount:
     m_PersistentCalls:
       m_Calls: []
+  ChangeAnomaliesAmount:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4136450052995544561
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,8 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9572673dc3c6c4c46bab93f70a5a82b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
-  turretProperties: {fileID: 11400000, guid: 2a243249bd75c9c4b92fae732ea85f94, type: 2}
+  mode: 0
+  turretProperties: {fileID: 11400000, guid: bc0f53d87f3ba39469b0d755e4af5c3c, type: 2}
 --- !u!1 &7998094749212935472
 GameObject:
   m_ObjectHideFlags: 0
