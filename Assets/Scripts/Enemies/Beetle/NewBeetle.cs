@@ -12,7 +12,6 @@ public enum State
 public class NewBeetle : Enemy
 {
     [SerializeField] private Transform platform;
-    [SerializeField] private GameObject coinPrebab;
 
     private Vector3 rightUpPosition;
     private Vector3 rightDownPosition;
@@ -25,7 +24,6 @@ public class NewBeetle : Enemy
     private void Start()
     {
         beetleDestructible = GetComponent<Destructible>();
-        beetleDestructible.EventOnDeath.AddListener(AddCoin);
 
         rightUpPosition = new Vector3(platform.transform.position.x, platform.transform.position.y + platform.localScale.y / 2 + transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
         rightDownPosition = new Vector3(platform.transform.position.x, platform.transform.position.y - platform.localScale.y / 2 - transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
@@ -39,11 +37,6 @@ public class NewBeetle : Enemy
     private void Update()
     {
         MoveToNextCorner();
-    }
-
-    private void OnDestroy()
-    {
-        beetleDestructible.EventOnDeath.RemoveListener(AddCoin);
     }
 
     private void MoveToNextCorner()
@@ -131,12 +124,6 @@ public class NewBeetle : Enemy
 
     private void Attack()
     {
-        //Debug.Log("???????? ???? ?????");
-    }
-
-    private void AddCoin()
-    {
-        if(coinPrebab != null)
-        Instantiate(coinPrebab,transform.position,Quaternion.identity);
+        //TODO Add sound
     }
 }

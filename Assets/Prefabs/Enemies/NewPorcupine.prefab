@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5522974620169577182}
   - component: {fileID: 6968228927414104151}
+  - component: {fileID: 1052054617676002005}
   - component: {fileID: 5819788100237971458}
   m_Layer: 0
   m_Name: NewPorcupine
@@ -87,6 +88,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1052054617676002005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449653665733383662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea5ad8a7291a4244b382450db4ce27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffect: {fileID: 0}
+  anomalyPrefab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
 --- !u!114 &5819788100237971458
 MonoBehaviour:
   m_ObjectHideFlags: 0

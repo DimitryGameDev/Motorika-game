@@ -1206,9 +1206,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4561778681421334488, guid: 85725c3f2dcdf404d9f7483f8e88ae84, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838079703300024182, guid: 85725c3f2dcdf404d9f7483f8e88ae84, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9043098049451778714, guid: 85725c3f2dcdf404d9f7483f8e88ae84, type: 3}
       propertyPath: m_Name
       value: PlayerHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043098049451778714, guid: 85725c3f2dcdf404d9f7483f8e88ae84, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1298,6 +1310,10 @@ PrefabInstance:
     - target: {fileID: 7321762194784457047, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
       propertyPath: m_Name
       value: PlatformGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321762194784457047, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911289165535622867, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
       propertyPath: StartGenerationPoint
@@ -1399,22 +1415,6 @@ PrefabInstance:
     - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071290014301704666, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
-      propertyPath: playerDamage
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
-      propertyPath: runSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
-      propertyPath: chargeRate
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
-      propertyPath: maxJumpForce
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

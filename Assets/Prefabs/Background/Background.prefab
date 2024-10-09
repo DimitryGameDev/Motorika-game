@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 6605586828121235609, guid: 1150281b12980e041bcecb7e642f0782, type: 3}
   backgroundSpacing: 10
   offsetX: 5
-  offsetY: 3
+  offsetY: 2
   destroyDistance: 50
   player: {fileID: 0}
 --- !u!1 &8820598306394123081

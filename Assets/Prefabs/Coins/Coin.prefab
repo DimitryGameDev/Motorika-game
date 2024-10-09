@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7057991681011378014}
   - component: {fileID: 1234826657263433770}
   m_Layer: 0
-  m_Name: Coin_2
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 0}
+  coinName: 0
+  coinCount: 1
+  anomalyCount: 0
+  radius: 0
+  speed: 0
 --- !u!135 &7057991681011378014
 SphereCollider:
   m_ObjectHideFlags: 0

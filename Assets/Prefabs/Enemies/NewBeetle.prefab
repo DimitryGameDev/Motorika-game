@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7355620957274934317}
   - component: {fileID: 6330031680628096120}
   - component: {fileID: 2814948764963542013}
+  - component: {fileID: -2105899900405714506}
   m_Layer: 0
   m_Name: NewBeetle
   m_TagString: Untagged
@@ -83,15 +84,15 @@ MonoBehaviour:
       m_Calls: []
   indestructable: 0
   hitPoints: 10
+  parrySphere: {fileID: 0}
   damage: 10
   parried: 1
   moveSpeed: 2
   projectileSpeed: 0
+  projectileDamage: 0
   visionDistance: 0
-  isAttacking: 0
   knockbackForce: 0
   platform: {fileID: 0}
-  coinPrebab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
 --- !u!65 &2814948764963542013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113,6 +114,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2105899900405714506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673886386936398116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea5ad8a7291a4244b382450db4ce27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffect: {fileID: 0}
+  anomalyPrefab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
+  radius: 10
+  speed: 1
 --- !u!1001 &7836063145660303479
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4900,7 +4900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 7
   lifetime: 5
-  damage: 50
+  damage: 51
   freezeTime: 0
   findRange: 0
   impactEffectPrefab: {fileID: 0}
