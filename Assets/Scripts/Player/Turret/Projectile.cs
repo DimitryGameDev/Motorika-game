@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
         LightningProjectile();
         FreezingProjectile();
         AimingProjectile();
+        EnemyProjectile();
     }
 
     public void LightningProjectile()
@@ -48,7 +49,27 @@ public class Projectile : MonoBehaviour
 
         transform.position += step;
     }
+    public void EnemyProjectile()
+    {
+        RaycastHit hit;
 
+        float stepLength = Time.deltaTime * velocity;
+        Vector3 step = -transform.forward * stepLength;
+
+        Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
+        if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
+        {
+            OnHit(hit);
+            OnProjectileLifeEnd(hit.collider, hit.point);
+        }
+
+        timer += Time.deltaTime;
+
+        if (timer > lifetime)
+            Destroy(gameObject);
+
+        transform.position += step;
+    }
     public void FreezingProjectile()
     {
         RaycastHit hit1;
