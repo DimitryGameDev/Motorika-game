@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        player = transform.root.GetComponent<Player>();
+        destructable = transform.GetComponent<Destructible>();
     }
 
     private void Update()

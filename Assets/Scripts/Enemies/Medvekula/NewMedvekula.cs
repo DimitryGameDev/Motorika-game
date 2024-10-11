@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NewMedvekula : Enemy
 {
-    public GameObject projectilePrefab; // Префаб снаряда
+    // public GameObject projectilePrefab; // Префаб снаряда
+    private Turret turret;
     public Transform player; // Игрок
     public float shootingInterval = 2f; // Интервал между выстрелами
     public float teleportDistance = 2f; // Расстояние для телепортации
@@ -18,7 +19,8 @@ public class NewMedvekula : Enemy
     private void Start()
     {
         timer = teleportTime;
-     
+        turret = GetComponentInChildren<Turret>();
+
     }
     private void Update()
     {
@@ -47,9 +49,9 @@ public class NewMedvekula : Enemy
         //Vector3 direction = -(player.position - transform.position).normalized;
         //direction.y = 0; // Убедимся, что снаряд движется только по плоскости XY
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward*3, Quaternion.identity);
-
-        projectile.transform.position += transform.forward*ProjectileSpeed*Time.deltaTime; // Задайте скорость снаряда
+        //GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward*1, Quaternion.identity);
+        if (turret != null) turret.Fire();
+        //projectile.transform.position += transform.forward*ProjectileSpeed*Time.deltaTime; // Задайте скорость снаряда
     }
 
     private bool IsPlayerBehind()

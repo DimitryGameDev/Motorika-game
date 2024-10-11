@@ -25,7 +25,6 @@ public class Projectile : MonoBehaviour
         LightningProjectile();
         FreezingProjectile();
         AimingProjectile();
-        EnemyProjectile();
     }
 
     public void LightningProjectile()
@@ -54,7 +53,7 @@ public class Projectile : MonoBehaviour
         RaycastHit hit;
 
         float stepLength = Time.deltaTime * velocity;
-        Vector3 step = -transform.forward * stepLength;
+        Vector3 step = transform.forward * stepLength;
 
         Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
         if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
@@ -100,7 +99,7 @@ public class Projectile : MonoBehaviour
 
         transform.position += step;
     }
-
+   
     public void AimingProjectile()
     { 
         enemiesCollider = Physics.OverlapSphere(transform.position, findRange);
