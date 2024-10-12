@@ -21,6 +21,8 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
 
+    [SerializeField] private AbilitiesChanger abilitiesChanger;
+
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
@@ -40,14 +42,16 @@ public class Player : MonoSingleton<Player>
         animator = GetComponentInChildren<Animator>();
 
         PlayerInputController.Instance.RunEvent += Run;
-        PlayerInputController.Instance.SecondAbilityEvent += Dash;
+        PlayerInputController.Instance.FirstAbilityEvent += DashFirst;
+        PlayerInputController.Instance.SecondAbilityEvent += DashSecond;
         PlayerInputController.Instance.JumpEvent += Jump;
         PlayerInputController.Instance.SlideEvent += Slide;
     }
 
     private void OnDestroy()
     {
-        PlayerInputController.Instance.SecondAbilityEvent -= Dash;
+        PlayerInputController.Instance.FirstAbilityEvent -= DashFirst;
+        PlayerInputController.Instance.SecondAbilityEvent -= DashSecond;
         PlayerInputController.Instance.RunEvent -= Run;
         PlayerInputController.Instance.JumpEvent -= Jump;
         PlayerInputController.Instance.SlideEvent -= Slide;
@@ -103,11 +107,19 @@ public class Player : MonoSingleton<Player>
         }
     }
 
-    private void Dash()
+    private void DashFirst()
     {
         // Needs Cooldown
         if (IsGround()) return;
+        if(abilitiesChanger.PreviousFirstIndex == 2)
         rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+    }
+
+    private void DashSecond()
+    {
+        if (IsGround()) return;
+        if (abilitiesChanger.PrevoiusSecondIndex == 2)
+            rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 
     private void Jump()

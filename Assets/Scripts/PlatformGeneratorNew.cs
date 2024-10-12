@@ -38,7 +38,7 @@ public class PlatformGeneratorNew : MonoBehaviour
     private void Update()
     {
         ChangeIndex();
-        Debug.Log("level" + level + "levelInd" + levelIndexPlatforms);
+
         if (platformCount > countPlatformAddLevel && level < maxLevel)
         {
             level++;

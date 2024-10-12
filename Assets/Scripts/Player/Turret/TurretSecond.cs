@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class TurretSecond : MonoBehaviour
 {
     [SerializeField] private AbilitiesChanger abilitiesChanger;
     [SerializeField] private TurretMode mode;
@@ -27,14 +27,14 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        destructable = transform.root.GetComponent<Destructible>();
+        player = transform.root.GetComponent<Player>();
 
-        PlayerInputController.Instance.FirstAbilityEvent += Fire;
+        PlayerInputController.Instance.SecondAbilityEvent += FireSecond;
     }
 
     private void OnDestroy()
     {
-        PlayerInputController.Instance.FirstAbilityEvent -= Fire;
+        PlayerInputController.Instance.SecondAbilityEvent -= FireSecond;
     }
 
     private void Update()
@@ -46,7 +46,8 @@ public class Turret : MonoBehaviour
         //    Fire();
     }
 
-    public void Fire()
+
+    public void FireSecond()
     {
         if (refireTimer > 0)
             return;
@@ -63,23 +64,23 @@ public class Turret : MonoBehaviour
                 return;
         }
 
-        if(abilitiesChanger.PreviousFirstIndex != 3 || abilitiesChanger.PreviousFirstIndex != 4 || abilitiesChanger.PreviousFirstIndex != 5)
+        if (abilitiesChanger.PrevoiusSecondIndex != 3 || abilitiesChanger.PrevoiusSecondIndex != 4 || abilitiesChanger.PrevoiusSecondIndex != 5)
         {
             mode = TurretMode.Null;
             turretProperties = AllTurrets[3];
         }
 
-        if (abilitiesChanger.PreviousFirstIndex == 3)
+        if (abilitiesChanger.PrevoiusSecondIndex == 3)
         {
             mode = TurretMode.Lightning;
             turretProperties = AllTurrets[0];
         }
-        if (abilitiesChanger.PreviousFirstIndex == 4)
+        if (abilitiesChanger.PrevoiusSecondIndex == 4)
         {
             mode = TurretMode.Freezing;
             turretProperties = AllTurrets[1];
         }
-        if (abilitiesChanger.PreviousFirstIndex == 5)
+        if (abilitiesChanger.PrevoiusSecondIndex == 5)
         {
             mode = TurretMode.AutoAiming;
             turretProperties = AllTurrets[2];
