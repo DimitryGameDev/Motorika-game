@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class TimeScale : MonoBehaviour
 {
+    [SerializeField] private AbilitiesChanger abilitiesChanger;
     [SerializeField] private float slowDownFactor;
     public float SlowDownFactor => slowDownFactor;
     [SerializeField] private float slowDownDuration; 
     [SerializeField] private float radius; 
 
-
     private bool isSlowed = false;
     public bool IsSlowed => isSlowed;
     private float originalTimeScale;
 
-    
     private Dictionary<GameObject, float> originalSpeeds = new Dictionary<GameObject, float>();
     private void Start()
     {
-        PlayerInputController.Instance.FirstAbilityEvent += AbilityCheck;
+        PlayerInputController.Instance.FirstAbilityEvent += AbilityCheckFirst;
+        PlayerInputController.Instance.SecondAbilityEvent += AbilityCheckSecond;
     }
+
     private void OnDestroy()
     {
-        PlayerInputController.Instance.FirstAbilityEvent -= AbilityCheck;
+        PlayerInputController.Instance.FirstAbilityEvent -= AbilityCheckFirst;
+        PlayerInputController.Instance.SecondAbilityEvent -= AbilityCheckSecond;
     }
-    public void AbilityCheck()
+    public void AbilityCheckFirst()
     {
-        if (!isSlowed)
+        if (!isSlowed && abilitiesChanger.PreviousFirstIndex == 1)
         {
             StartCoroutine(SlowDown());
         }
     }
+    public void AbilityCheckSecond()
+    {
+        if (!isSlowed && abilitiesChanger.PrevoiusSecondIndex == 1)
+        {
+            StartCoroutine(SlowDown());
+        }
+    }
+
     private IEnumerator SlowDown()
     {
          isSlowed = true;

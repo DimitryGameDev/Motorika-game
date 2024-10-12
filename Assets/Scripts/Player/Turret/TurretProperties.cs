@@ -4,7 +4,8 @@ public enum TurretMode
 {
     Lightning,
     Freezing,
-    AutoAiming
+    AutoAiming,
+    Null
 }
 
 [CreateAssetMenu]
