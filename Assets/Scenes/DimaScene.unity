@@ -1295,6 +1295,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1188118096}
+    - target: {fileID: 7495129225086752471, guid: aa0cafccadba7446ba5d4f9dc438e64e, type: 3}
+      propertyPath: projectileSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7624779855801644006, guid: aa0cafccadba7446ba5d4f9dc438e64e, type: 3}
       propertyPath: m_Name
       value: Cube (1)
