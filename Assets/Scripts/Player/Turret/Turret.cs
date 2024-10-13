@@ -2,13 +2,16 @@
 
 public class Turret : MonoBehaviour
 {
+    [SerializeField] private AbilitiesChanger abilitiesChanger;
     [SerializeField] private TurretMode mode;
     public TurretMode Mode => mode;
 
     [SerializeField] private TurretProperties turretProperties;
 
+    [SerializeField] private TurretProperties[] AllTurrets;
+
     private float refireTimer; // Cooldown
-    public bool CanFire => refireTimer <= 0; // State of Colldown
+    public bool CanFire => refireTimer <= 0; // State of Cooldown
 
     private Player player; // Parent object
     private Destructible destructable; // Parent object
@@ -24,11 +27,19 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        player = transform.root.GetComponent<Player>();
+        destructable = transform.root.GetComponent<Destructible>();
+
+        PlayerInputController.Instance.FirstAbilityEvent += Fire;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.Instance.FirstAbilityEvent -= Fire;
     }
 
     private void Update()
     {
+        
         if (refireTimer > 0)
             refireTimer -= Time.deltaTime;
 
@@ -53,30 +64,130 @@ public class Turret : MonoBehaviour
                 return;
         }
 
-        CreateProjectille();
+        if (abilitiesChanger && AllTurrets.Length > 0)
+        {
+            if (abilitiesChanger.PreviousFirstIndex != 3 || abilitiesChanger.PreviousFirstIndex != 4 ||
+                abilitiesChanger.PreviousFirstIndex != 5)
+            {
+                mode = TurretMode.Null;
+                turretProperties = AllTurrets[3];
+            }
 
+            if (abilitiesChanger.PreviousFirstIndex == 3)
+            {
+                mode = TurretMode.Lightning;
+                turretProperties = AllTurrets[0];
+            }
+
+            if (abilitiesChanger.PreviousFirstIndex == 4)
+            {
+                mode = TurretMode.Freezing;
+                turretProperties = AllTurrets[1];
+            }
+
+            if (abilitiesChanger.PreviousFirstIndex == 5)
+            {
+                mode = TurretMode.AutoAiming;
+                turretProperties = AllTurrets[2];
+            }
+           
+        }
+        CreateLightningProjectille();
+        CreateAimingProjectille();
+        CreateFreezingProjectille();
+       
+    
         refireTimer = turretProperties.RateOfFire;
 
         {
             // SFX
         }
+    
+        
     }
-
-    public void AssignLoadout(TurretProperties props)
+    public void EnemyFire()
     {
-        if (mode != props.Mode)
+        if (refireTimer > 0)
             return;
 
-        turretProperties = props;
-        refireTimer = 0;
+        if (turretProperties == null)
+            return;
+
+    
+
+           
+        CreateEnemyProjectile();
+           
+        refireTimer = turretProperties.RateOfFire;
+
+
+       
+    }
+    public void AssignLoadout(TurretProperties props)
+    {
+        if (props == null)
+        {
+            // Логгирование или обработка случая, когда props равен null
+            return;
+        }
+
+        if (mode != props.Mode)
+        {
+            // Логгирование или уведомление о несоответствии режимов
+            return;
+        }
+
+        lock (this)
+        {
+            turretProperties = props;
+            refireTimer = 0;
+        }
     }
 
-    private void CreateProjectille()
+    private void CreateEnemyProjectile()
     {
+        if (mode != TurretMode.Enemy) return;
+
         var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
         projectile.transform.position = transform.position;
         projectile.transform.forward = transform.forward;
 
         projectile.SetParentShooter(destructable);
+        projectile.EnemyProjectile();
+    }
+    private void CreateLightningProjectille()
+    {
+        if (mode != TurretMode.Lightning) return;
+
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.LightningProjectile();
+    }
+
+    private void CreateFreezingProjectille()
+    {
+        if (mode != TurretMode.Freezing) return;
+
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.FreezingProjectile();
+    }
+
+    private void CreateAimingProjectille()
+    {
+        if (mode != TurretMode.AutoAiming) return;
+
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.AimingProjectile();
     }
 }

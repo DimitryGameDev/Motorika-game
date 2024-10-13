@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Destructible : MonoBehaviour
 {
+    public event UnityAction OnEnemyDeath;
+
     [SerializeField] private UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
 
@@ -15,7 +18,12 @@ public class Destructible : MonoBehaviour
     private int currentHitPoints;
     public int HitPoints => currentHitPoints;
 
-    private void Start()
+    private void Update()
+    {
+        Debug.Log(HitPoints);
+    }
+
+    private void Awake()
     {
         currentHitPoints = hitPoints;
     }
@@ -29,16 +37,7 @@ public class Destructible : MonoBehaviour
         if (currentHitPoints <= 0)
             OnDeath();
     }
-    public bool ParryDamage()
-    {
-        if (indestructable) return false;
 
-        if (currentHitPoints <= 0)
-            return true;
-        else
-            return true;
-     
-    }
     public void BlockDamage(float blockTime)
     {
         if ((blockTime += Time.time) >= Time.time)
@@ -57,5 +56,6 @@ public class Destructible : MonoBehaviour
         Destroy(gameObject);
 
         eventOnDeath?.Invoke();
+        OnEnemyDeath?.Invoke();
     }
 }

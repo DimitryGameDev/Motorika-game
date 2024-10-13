@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoSingleton<Player>
@@ -6,11 +7,11 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float runSpeed = 5f; //run velocity
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
+    [Header("Dash")]
+    [SerializeField] private float dashForce = 10f;
     [Header("Jump")]
     [SerializeField] private float maxJumpForce; // additional max jump force
     [SerializeField] private float chargeRate; // max jump time
-    [Header("Damage")]
-    [SerializeField] private int damage = 10;
     [Header("Raycast")]
     [SerializeField] private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
@@ -20,41 +21,39 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
 
-  
+    [SerializeField] private AbilitiesChanger abilitiesChanger;
 
     private float currentJumpForce = 0f;
     private float slideTime = 0;
-    private bool isPlayerFaster;
+
     private Rigidbody rb;
     private Animator animator;
-    private TimeScale ts;
     private Vector3 raycastDownPosition;
     private Vector3 raycastTopPosition;
+    private Vector3 raycastMiddlePosition1;
+    private Vector3 raycastMiddlePosition2;
     private Vector3 raycastBottomPosition;
 
-    private float normalRunSpeed;
-    private Vector3 rbNormalVelocity;
-    private float normalSlideSpeed;
-    private Vector3 normalGravity;
+    public bool isSlide;
 
     private void Start()
     {
-        ts = GetComponent<TimeScale>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        normalRunSpeed = runSpeed;
-       // rbNormalVelocity = rb.velocity;
-        normalGravity = Physics.gravity;
-        normalSlideSpeed = slideSpeed;
+
         PlayerInputController.Instance.RunEvent += Run;
+        PlayerInputController.Instance.FirstAbilityEvent += DashFirst;
+        PlayerInputController.Instance.SecondAbilityEvent += DashSecond;
         PlayerInputController.Instance.JumpEvent += Jump;
         PlayerInputController.Instance.SlideEvent += Slide;
     }
 
     private void OnDestroy()
     {
+        PlayerInputController.Instance.FirstAbilityEvent -= DashFirst;
+        PlayerInputController.Instance.SecondAbilityEvent -= DashSecond;
         PlayerInputController.Instance.RunEvent -= Run;
-        PlayerInputController.Instance.JumpEvent += Jump;
+        PlayerInputController.Instance.JumpEvent -= Jump;
         PlayerInputController.Instance.SlideEvent -= Slide;
     }
 
@@ -63,8 +62,7 @@ public class Player : MonoSingleton<Player>
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        //PlayerSpeedTimescale();
-    
+       
         if (!Input.GetKey(KeyCode.S))
         {
             mainCollider.enabled = true;
@@ -74,6 +72,8 @@ public class Player : MonoSingleton<Player>
 
     private void Run()
     {
+        isSlide = false;
+
         if (!IsBarrier())
         {
             transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
@@ -81,13 +81,15 @@ public class Player : MonoSingleton<Player>
             if (IsGround())
                 animator.SetTrigger("Run");
         }
-        else if (IsGround())
+        else if (IsGround() && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.Space)) //TODO: change this
             animator.SetTrigger("Idle");
     }
 
     private void Slide()
     {
         if (!IsGround()) return;
+
+        isSlide = true;
 
         animator.SetTrigger("Slide");
 
@@ -103,6 +105,21 @@ public class Player : MonoSingleton<Player>
             rb.velocity = new Vector3(0, rb.velocity.y, slideSpeed);
             //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
         }
+    }
+
+    private void DashFirst()
+    {
+        // Needs Cooldown
+        if (IsGround()) return;
+        if(abilitiesChanger.PreviousFirstIndex == 2)
+        rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+    }
+
+    private void DashSecond()
+    {
+        if (IsGround()) return;
+        if (abilitiesChanger.PrevoiusSecondIndex == 2)
+            rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 
     private void Jump()
@@ -127,21 +144,25 @@ public class Player : MonoSingleton<Player>
     }
 
     public bool IsBarrier()
-    {
-        raycastTopPosition = new(transform.position.x, transform.position.y + rayPositionTop, transform.position.z);
-        raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
-        bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
-        bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
+     {
+         raycastTopPosition = new(transform.position.x, transform.position.y + rayPositionTop, transform.position.z);
+         raycastMiddlePosition1 = new(transform.position.x, transform.position.y + rayPositionTop*0.7f, transform.position.z);
+         raycastMiddlePosition2 = new(transform.position.x, transform.position.y + rayPositionTop *0.3f, transform.position.z);
+         raycastBottomPosition = new(transform.position.x, transform.position.y + rayPositionBottom, transform.position.z);
+         bool hitBottom = Physics.Raycast(raycastBottomPosition, transform.forward, out _, raycastDistanceForward);
+         bool hitMiddle1 = Physics.Raycast(raycastMiddlePosition1, transform.forward, out _, raycastDistanceForward);
+         bool hitMiddle2 = Physics.Raycast(raycastMiddlePosition2, transform.forward, out _, raycastDistanceForward);
+         bool hitTop = Physics.Raycast(raycastTopPosition, transform.forward, out _, raycastDistanceForward);
 
-        if (hitBottom || hitTop)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+         if (hitBottom || hitMiddle1 || hitMiddle2 || hitTop)
+         {
+             return true;
+         }
+         else
+         {
+             return false;
+         }
+}
 
     public bool IsGround()
     {
@@ -192,8 +213,11 @@ public class Player : MonoSingleton<Player>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
+        //Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + transform.localScale.y + 0.3f, transform.position.z + transform.localScale.z - 0.3f), new Vector3(2f, 2f, 0.5f));
         Gizmos.DrawRay(raycastDownPosition, -transform.up * raycastDistanceDown);
         Gizmos.DrawRay(raycastTopPosition, transform.forward * raycastDistanceForward);
+        Gizmos.DrawRay(raycastMiddlePosition1, transform.forward * raycastDistanceForward);
+        Gizmos.DrawRay(raycastMiddlePosition2, transform.forward * raycastDistanceForward);
         Gizmos.DrawRay(raycastBottomPosition, transform.forward * raycastDistanceForward);
     }
 #endif

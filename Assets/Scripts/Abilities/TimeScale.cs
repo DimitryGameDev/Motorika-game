@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class TimeScale : MonoBehaviour
 {
+    [SerializeField] private AbilitiesChanger abilitiesChanger;
     [SerializeField] private float slowDownFactor;
     public float SlowDownFactor => slowDownFactor;
     [SerializeField] private float slowDownDuration; 
     [SerializeField] private float radius; 
-    private KeyCode slowDownKey = KeyCode.T; 
 
     private bool isSlowed = false;
     public bool IsSlowed => isSlowed;
     private float originalTimeScale;
 
-    
     private Dictionary<GameObject, float> originalSpeeds = new Dictionary<GameObject, float>();
-
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(slowDownKey))
+        PlayerInputController.Instance.FirstAbilityEvent += AbilityCheckFirst;
+        PlayerInputController.Instance.SecondAbilityEvent += AbilityCheckSecond;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.Instance.FirstAbilityEvent -= AbilityCheckFirst;
+        PlayerInputController.Instance.SecondAbilityEvent -= AbilityCheckSecond;
+    }
+    public void AbilityCheckFirst()
+    {
+        if (!isSlowed && abilitiesChanger.PreviousFirstIndex == 1)
         {
-            if (!isSlowed)
-            {
-                StartCoroutine(SlowDown());
-            }
+            StartCoroutine(SlowDown());
+        }
+    }
+    public void AbilityCheckSecond()
+    {
+        if (!isSlowed && abilitiesChanger.PrevoiusSecondIndex == 1)
+        {
+            StartCoroutine(SlowDown());
         }
     }
 

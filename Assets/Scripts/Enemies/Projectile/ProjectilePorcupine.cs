@@ -2,47 +2,28 @@ using UnityEngine;
 
 public class ProjectilePorcupine : MonoBehaviour
 {
-    [SerializeField] private float lifetime;        
-    [SerializeField] protected int damage;         
-
-    private float speed;                            
-
-    private float timer;        
-    private Vector3 direction;             
-    private Destructible parent;                
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void SetDirection(Vector3 newDirection)
-    {
-        direction = newDirection;
-        transform.forward = direction;
-    }
+    private float timer;
+    private NewPorcupine parent;
 
     private void Update()
     {
         RaycastHit hit;
+        float stepLength = Time.deltaTime * parent.ProjectileSpeed;
 
-        float stepLength = Time.deltaTime * speed;
-        Vector3 step = direction * stepLength;
+        Debug.DrawRay(transform.position, transform.up * stepLength, Color.green);
 
-        Debug.DrawRay(transform.position, direction * stepLength, Color.green);
-
-        if (Physics.Raycast(transform.position, direction, out hit, stepLength))
+        if (Physics.Raycast(transform.position, transform.up, out hit, stepLength))
         {
             OnHit(hit);
-            OnProjectileLifeEnd(hit.collider, hit.point);
         }
 
         timer += Time.deltaTime;
 
-        if (timer > lifetime)
-            Destroy(gameObject);
-
-        transform.position += step;
+        if (timer > parent.Lifetime)
+        {
+            //Debug.Log($"Projectile {gameObject.name} destroyed after {timer} seconds.");
+            OnProjectileLifeEnd();
+        }
     }
 
     protected virtual void OnHit(RaycastHit hit)
@@ -51,16 +32,25 @@ public class ProjectilePorcupine : MonoBehaviour
 
         if (destructible != null && destructible != parent)
         {
-            destructible.ApplyDamage(damage);
+            destructible.ApplyDamage(parent.ProjectileDamage);
+            Destroy(gameObject);
+            if (parent != null)
+            {
+                parent.NotifyProjectileDestroyed(this);
+            }
         }
     }
 
-    private void OnProjectileLifeEnd(Collider collider, Vector3 pos)
+    private void OnProjectileLifeEnd()
     {
+        if (parent != null)
+        {
+            parent.NotifyProjectileDestroyed(this);
+        }
         Destroy(gameObject);
     }
 
-    public void SetParentShooter(Destructible parent)
+    public void SetParent(NewPorcupine parent)
     {
         this.parent = parent;
     }

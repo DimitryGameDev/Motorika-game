@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7321762194784457047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9129409845067028994}
+  - component: {fileID: 7911289165535622867}
+  m_Layer: 0
+  m_Name: PlatformGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9129409845067028994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321762194784457047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7911289165535622867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321762194784457047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07984a4198c42844f9620f0f40364a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartGenerationPoint: {fileID: 0}
+  platformPrefabs:
+  - {fileID: 3153199387231346982, guid: 0f259fd3fc6c8c04e96439b0010a3a3b, type: 3}
+  - {fileID: 3153199387231346982, guid: 31596171d7806b049ae501ef6f9cd862, type: 3}
+  - {fileID: 3153199387231346982, guid: 80a1e6f8dabdcf04ba5ffb968276bfdd, type: 3}
+  - {fileID: 3153199387231346982, guid: 1a608fdaaa774e742bd91603186cf42c, type: 3}
+  - {fileID: 3153199387231346982, guid: cb69a9ae070d10647b4413a065facce5, type: 3}
+  - {fileID: 3153199387231346982, guid: a9804660dc69b234bb3212b3d663a182, type: 3}
+  - {fileID: 3153199387231346982, guid: 06fd4029e2cca3345af52a00fa5b3993, type: 3}
+  - {fileID: 1010102247577379948, guid: 1f30a71be31d46945a449686870cd8c4, type: 3}
+  - {fileID: 1010102247577379948, guid: b874e7c1ffe717a4fb071a58e433b9d6, type: 3}
+  - {fileID: 1878838895709875485, guid: ea2f62fd16b56ac46b056903fb8a4ae1, type: 3}
+  - {fileID: 1878838895709875485, guid: 8a0d7fb30bb833d48aa13feeab060210, type: 3}
+  - {fileID: 1878838895709875485, guid: ca125931428f19942888ead66a05eabd, type: 3}
+  - {fileID: 3153199387231346982, guid: 86a48cb8b999f0443a39bb8ec76c85f4, type: 3}
+  countOfPlatforms: 5
+  countOfBasePlatforms: 5
+  platformLength: 15
+  countPlatformBeforeDestroy: 3
+  maxLevel: 5
+  countPlatformAddLevel: 5

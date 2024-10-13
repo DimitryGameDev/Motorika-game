@@ -1,26 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Parry : MonoBehaviour
+public class Parry : MonoSingleton<Parry>
 {
-    [SerializeField] private float parryRange;
+    public event UnityAction AttackAnimEvent;
+    public event UnityAction IdleAnimEvent;
+
     [SerializeField] private float parryWindow;
     [SerializeField] private float parryForce;
-    [SerializeField] private float parryDamage;
-
-    [SerializeField] private Material parryMaterial;
-    private Renderer enemyRenderer;
-
-    private HashSet<Collider> ourEnemies = new HashSet<Collider>();
-    
-    private Collider[] enemiesCollider;
+    [SerializeField] private int playerDamage;
 
     private Player player;
     private Destructible playerDestructible;
-    private float parryTimer;
-    public float ParryTimer => parryTimer;
 
-    private bool isParry;
+    private Enemy enemy;
+    private int enemyDamage;
+
+    private float parryTimer;
+
+    private bool isParry = false;
+    private bool enemyIsActive = false;
 
     private void Start()
     {
@@ -32,88 +31,90 @@ public class Parry : MonoBehaviour
 
     private void Update()
     {
-        //enemiesCollider = Physics.OverlapSphere(transform.position, parryRange);
-
-        ResetDamage();
+        ParryTime();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other == null) return;
+        if (collider == null) return;
+
+        enemy = collider.GetComponent<Enemy>();
+
+        if (enemy == null) return;
+        enemyDamage = enemy.Damage;
+
+        if (enemy.Parried == Parried.On && !enemyIsActive)
+        {
+            enemyIsActive = true;
+            parryTimer = parryWindow;
+            enemy.ParrySphere(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (enemy != null && enemyIsActive && !isParry && parryTimer > 0)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                PlayerParry();
+            }
+        }
+    }
+    private void OnTriggerExit(Collider collider)
+    {
+        IdleAnimEvent?.Invoke();
+
+        if(enemy != null)
+        enemy.ParrySphere(false);
+
+        ResetParry();
+    }
+
+    private void PlayerParry()
+    {
+        enemy.ApplyDamage(playerDamage);
+        Debug.Log("Успешное парирование, враг получает урон.");
+
+        if (enemy.HitPoints > 0)
+            player.Parry(parryForce);
+        else
+            Debug.Log("Враг уничтожен, продолжаем движение.");
+
+        isParry = true;
+        ResetParry();
+    }
+
+    private void ApplyEnemyDamage()
+    {
+        AttackAnimEvent?.Invoke();
+
+        playerDestructible.ApplyDamage(enemyDamage);
+        Debug.Log("Не успели парировать. Враг наносит урон.");
+
+        if (playerDestructible.HitPoints > 0)
+            player.Parry(parryForce);
+    }
+
+    public void ParryTime()
+    {
+        if (enemyIsActive)
+        {
+            parryTimer -= Time.deltaTime;
+
+            if (parryTimer <= 0 && !isParry)
+            {
+                ApplyEnemyDamage();
+                ResetParry();
+            }
+        }
+    }
+
+    private void ResetParry()
+    {
+        isParry = false;
+        enemyIsActive = false;
         
-        enemiesCollider = other.GetComponents<Collider>();
-
-        foreach (var enemyCollider in enemiesCollider)
-        {
-            HandleParry(enemyCollider);
-        }
+        parryTimer = 0;
     }
-
-    private void HandleParry(Collider enemyCollider)
-    {
-        var destructible = enemyCollider.GetComponent<Destructible>();
-        enemyRenderer = enemyCollider.GetComponent<Renderer>();
-
-        if (destructible != null)
-        {
-            ParryTime();
-            isParry = true;
-            if (parryTimer > 0 && isParry )
-            {
-               if (Input.GetKey(KeyCode.W))
-               {
-                    var result = destructible.ParryDamage();
-                    if (!result)
-                    {
-                        playerDestructible.ApplyDamage(50);
-                        player.Parry(parryForce);
-                        Debug.Log("Успели парировать. Вы наносите урон.");
-                    }
-               }
-                Debug.Log("Окно открылось. Вы наносите урон.");
-            }
-            else if (!ourEnemies.Contains(enemyCollider))
-            {   
-                player.Parry(parryForce);
-                playerDestructible.ApplyDamage(50);
-                ourEnemies.Add(enemyCollider);
-                parryTimer = parryWindow;
-                Debug.Log("Не успели парировать. Враг наносит урон.");
-            }
-        }
-    }
-
-    private void ChangeMaterial(Renderer renderer, Color color)
-    {
-        renderer.material.color = color;
-    }
-
-    private void ResetDamage()
-    {
-        ourEnemies.Clear();
-    }
-   
-    private void ParryTime()
-    {
-        if (isParry)
-        {
-            if (parryTimer > 0)
-            {
-                parryTimer -= Time.deltaTime;
-            }
-            else
-            {
-                isParry = false;
-                parryTimer = 0;
-            }
-        }
-    }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, parryRange);
-    }
-#endif
 }
