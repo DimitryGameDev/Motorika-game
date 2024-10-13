@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
         LightningProjectile();
         FreezingProjectile();
         AimingProjectile();
+        EnemyProjectile();
     }
 
     public void LightningProjectile()
@@ -58,8 +59,8 @@ public class Projectile : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
         if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
         {
-            OnHit(hit);
-            OnProjectileLifeEnd(hit.collider, hit.point);
+            OnHitEnemy(hit);
+           
         }
 
         timer += Time.deltaTime;
@@ -142,24 +143,41 @@ public class Projectile : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, findRange);
     }
 
-    protected virtual void OnHit(RaycastHit hit)
+    private void OnHitEnemy(RaycastHit hit)
     {
-        if (hit.collider == null) return;
-
-        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
-        var destructible1 = hit.collider.transform.GetComponent<Destructible>();
-
-        if ((destructible != null && destructible != parent) ||
-        (destructible1 != null && destructible1 != parent))
+        var player = hit.collider.transform.root.GetComponent<Player>();
+        if (player)
         {
+            var destructible = hit.collider.GetComponent<Destructible>();
             if (destructible != null)
             {
                 destructible.ApplyDamage(damage);
+                Destroy(gameObject);
             }
+         
+        }
+    }
+    protected virtual void OnHit(RaycastHit hit)
+    {
+        if (hit.collider == null) return;
+        Debug.Log(hit.collider.name);
+        var destructible = hit.collider.transform.root.GetComponent<Destructible>();
+        var destructible1 = hit.collider.transform.GetComponent<Destructible>();
+        
+        if ((destructible != null && destructible != parent) ||
+        (destructible1 != null && destructible1 != parent))
+        {
             if (destructible1 != null)
             {
                 destructible1.ApplyDamage(damage);
+                return;
             }
+            if (destructible != null)
+            {
+                destructible.ApplyDamage(damage);
+              
+            }
+           
 
             // #Score
             if (Player.Instance != null)

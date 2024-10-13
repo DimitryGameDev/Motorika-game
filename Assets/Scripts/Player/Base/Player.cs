@@ -62,7 +62,7 @@ public class Player : MonoSingleton<Player>
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
-
+       
         if (!Input.GetKey(KeyCode.S))
         {
             mainCollider.enabled = true;

@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8041271766248354075}
-  - component: {fileID: 6504125589789768287}
   - component: {fileID: 8348910512740302527}
-  - component: {fileID: 4112906715870985293}
+  - component: {fileID: 4919110612834941906}
   m_Layer: 0
   m_Name: 'EnemyProjectille '
   m_TagString: Untagged
@@ -35,8 +34,26 @@ Transform:
   - {fileID: 3721737470619063406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6504125589789768287
-SphereCollider:
+--- !u!114 &8348910512740302527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828619654587466925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0db13925945b741900eda0dfd4d4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 2
+  lifetime: 100
+  damage: 40
+  freezeTime: 0
+  findRange: 0
+  impactEffectPrefab: {fileID: 0}
+--- !u!136 &4919110612834941906
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,41 +70,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.6029204
-  m_Center: {x: -1.9310658, y: 0.099999905, z: -0.120399594}
---- !u!114 &8348910512740302527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828619654587466925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0db13925945b741900eda0dfd4d4bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 7
-  lifetime: 5
-  damage: 50
-  freezeTime: 0
-  findRange: 0
-  impactEffectPrefab: {fileID: 0}
---- !u!114 &4112906715870985293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828619654587466925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b7117cfb057f34dbe75a10f0e187c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 250
-  direction: {x: 0, y: 0, z: 1}
+  serializedVersion: 2
+  m_Radius: 0.64549035
+  m_Height: 2.62183
+  m_Direction: 1
+  m_Center: {x: 0.06808743, y: 0.05844608, z: -0.19117661}
 --- !u!1001 &3759659063646876549
 PrefabInstance:
   m_ObjectHideFlags: 0

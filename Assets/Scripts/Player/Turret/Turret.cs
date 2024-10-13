@@ -39,6 +39,7 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
+        
         if (refireTimer > 0)
             refireTimer -= Time.deltaTime;
 
@@ -112,17 +113,10 @@ public class Turret : MonoBehaviour
         if (turretProperties == null)
             return;
 
-        if (player)
-        {
-            if (!player.DrawEnergy(turretProperties.EnergyUsage))
-                return;
-
-            if (!player.DrawAmmo(turretProperties.AmmoUsage))
-                return;
-        }
+    
 
            
-        CreateLightningProjectille();
+        CreateEnemyProjectile();
            
         refireTimer = turretProperties.RateOfFire;
 
@@ -148,6 +142,18 @@ public class Turret : MonoBehaviour
             turretProperties = props;
             refireTimer = 0;
         }
+    }
+
+    private void CreateEnemyProjectile()
+    {
+        if (mode != TurretMode.Enemy) return;
+
+        var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
+        projectile.transform.position = transform.position;
+        projectile.transform.forward = transform.forward;
+
+        projectile.SetParentShooter(destructable);
+        projectile.EnemyProjectile();
     }
     private void CreateLightningProjectille()
     {

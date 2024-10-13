@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf42aaab9c394104a9f7e8f1b19901bb, type: 3}
   m_Name: EnemyTurret
   m_EditorClassIdentifier: 
-  mode: 0
-  projectilePrefab: {fileID: 8348910512740302527, guid: 5ff3c7eb772c6434c824915766afd146, type: 3}
+  mode: 4
+  projectilePrefab: {fileID: 3837967032593902080, guid: f3adba4a9c1a24e47b22a700e99cd867, type: 3}
   rateOfFire: 3
   energyUsage: 0
   ammoUsage: 0

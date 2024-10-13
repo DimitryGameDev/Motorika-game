@@ -5,19 +5,18 @@ public class NewMedvekula : Enemy
 {
     private Turret turret;
     public Transform player;
-    public float shootingInterval = 2f;
+   
     public float teleportDistance = 2f;
-    public float shootingRange = 10f;
+   
     public float teleportDuration = 1f;
-    private float nextShootTime;
+
     private float timer;
-    private Collider collider;
-    private SkinnedMeshRenderer skinnedMeshRenderer;
+ 
     private Animator animator;
     [SerializeField] private float lifetime;
     public float Lifetime => lifetime;
     [SerializeField] private float teleportTime;
-
+    [SerializeField] private float minDistance;
     private bool isTeleporting;
     [SerializeField] private float teleportAnimationDuration = 0.5f;
 
@@ -26,8 +25,7 @@ public class NewMedvekula : Enemy
         timer = teleportTime;
         turret = GetComponentInChildren<Turret>();
         animator = GetComponentInChildren<Animator>();
-        collider = GetComponent<Collider>(); 
-        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+      
     }
 
     private void Update()
@@ -39,7 +37,14 @@ public class NewMedvekula : Enemy
             animator.SetTrigger("idleTrigger");
         }
 
-        ShootAtPlayer();
+
+        if (distanceToPlayer <= VisionDistance && distanceToPlayer > minDistance )
+        {
+            
+            ShootAtPlayer();
+        }
+
+   
 
         if (!isTeleporting)
         {
@@ -49,9 +54,10 @@ public class NewMedvekula : Enemy
                 if (timer <= 0)
                 {
                     
-                    StartCoroutine(TeleportCoroutine());
-                    skinnedMeshRenderer.enabled = false;
-                    collider.enabled = false;
+                    NextPositionCalculation();
+                    animator.SetTrigger("jumpupTrigger");
+                    StartCoroutine(FinalPositionCalculation());
+                   
                     timer = teleportTime;
                 }
             }
@@ -78,43 +84,34 @@ public class NewMedvekula : Enemy
       
     }
 
-    private IEnumerator TeleportCoroutine()
-    {
-        isTeleporting = true;
-
-        // Анимация перед телепортацией
-      // animator.SetTrigger("diveTrigger");
-
-        // Ждем время, равное длительности анимации телепортации
-      //  yield return new WaitForSeconds(teleportAnimationDuration);
-
-        // Телепортируем объект
-        NextPositionCalculation();
-
-        // Ждем короткое время для завершения телепортации
-      
-
-        // Анимация после телепортации
-      
-        yield return new WaitForSeconds(teleportAnimationDuration);
-        collider.enabled = true;
-        skinnedMeshRenderer.enabled = true;
-        animator.SetTrigger("jumpupTrigger");
-      
-        // Задержка, чтобы дождаться окончания анимации
-        
-       
-        isTeleporting = false;
-    }
+   
 
     private void NextPositionCalculation()
     {
         Vector3 targetPosition = player.position + new Vector3(0, 0, 1) * teleportDistance;
 
-        targetPosition.y = transform.position.y;
+        targetPosition.y = transform.position.y-2f;
         targetPosition.x = transform.position.x;
         
         transform.position = targetPosition;
         
+    }
+
+    private IEnumerator FinalPositionCalculation()
+    {
+        var startPosition = transform.position;
+        var endPosition = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+
+        var duration = 1.0f; // Duration of the movement
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPosition;
     }
 }
