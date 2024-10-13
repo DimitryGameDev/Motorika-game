@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadScene(string SampleScene)
+    [SerializeField] private int levelID;
+    public void LoadScene()
     {
-        SceneManager.LoadScene(SampleScene);
+        SceneManager.LoadScene(levelID);
     }
 }
