@@ -33,7 +33,7 @@ public class VirtualGamepad : MonoBehaviour
     private void Update()
     {
         SetButton();
-        SetColldown();
+        SetCooldown();
 
         timerFirst -= Time.deltaTime;
         timerSecond -= Time.deltaTime;
@@ -45,7 +45,7 @@ public class VirtualGamepad : MonoBehaviour
         abilitiesChanger.SetSecondAbility(secondAbility);
     }
 
-    private void SetColldown()
+    private void SetCooldown()
     {
         if (FirstAbility.IsHold)
         {

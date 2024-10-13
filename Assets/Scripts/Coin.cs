@@ -25,7 +25,7 @@ public class Coin : Pikup
     {
         SearchTarget();
 
-        if (coinName == Name.Anomaly && player != null)
+        if (coinName == Name.Anomaly && player)
             Movement(player.transform);
     }
 
@@ -35,12 +35,12 @@ public class Coin : Pikup
 
         Bag bag = other.GetComponent<Bag>();
 
-        if (bag != null)
+        if (bag)
         {
             bag.AddCoin(coinCount);
             bag.AddAnomalies(anomalyCount);
 
-            if (impactEffect != null)
+            if (impactEffect)
                 Instantiate(impactEffect, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
@@ -53,7 +53,7 @@ public class Coin : Pikup
 
         foreach (var collider in colliders)
         {
-            if (collider == null) return;
+            if (!collider) return;
 
             if (collider.TryGetComponent(out Player detectedPlayer))
             {

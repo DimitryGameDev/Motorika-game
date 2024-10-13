@@ -11,7 +11,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private TurretProperties[] AllTurrets;
 
     private float refireTimer; // Cooldown
-    public bool CanFire => refireTimer <= 0; // State of Colldown
+    public bool CanFire => refireTimer <= 0; // State of Cooldown
 
     private Player player; // Parent object
     private Destructible destructable; // Parent object
@@ -63,48 +63,92 @@ public class Turret : MonoBehaviour
                 return;
         }
 
-        if(abilitiesChanger.PreviousFirstIndex != 3 || abilitiesChanger.PreviousFirstIndex != 4 || abilitiesChanger.PreviousFirstIndex != 5)
+        if (abilitiesChanger && AllTurrets.Length > 0)
         {
-            mode = TurretMode.Null;
-            turretProperties = AllTurrets[3];
-        }
+            if (abilitiesChanger.PreviousFirstIndex != 3 || abilitiesChanger.PreviousFirstIndex != 4 ||
+                abilitiesChanger.PreviousFirstIndex != 5)
+            {
+                mode = TurretMode.Null;
+                turretProperties = AllTurrets[3];
+            }
 
-        if (abilitiesChanger.PreviousFirstIndex == 3)
-        {
-            mode = TurretMode.Lightning;
-            turretProperties = AllTurrets[0];
-        }
-        if (abilitiesChanger.PreviousFirstIndex == 4)
-        {
-            mode = TurretMode.Freezing;
-            turretProperties = AllTurrets[1];
-        }
-        if (abilitiesChanger.PreviousFirstIndex == 5)
-        {
-            mode = TurretMode.AutoAiming;
-            turretProperties = AllTurrets[2];
-        }
+            if (abilitiesChanger.PreviousFirstIndex == 3)
+            {
+                mode = TurretMode.Lightning;
+                turretProperties = AllTurrets[0];
+            }
 
+            if (abilitiesChanger.PreviousFirstIndex == 4)
+            {
+                mode = TurretMode.Freezing;
+                turretProperties = AllTurrets[1];
+            }
+
+            if (abilitiesChanger.PreviousFirstIndex == 5)
+            {
+                mode = TurretMode.AutoAiming;
+                turretProperties = AllTurrets[2];
+            }
+           
+        }
         CreateLightningProjectille();
-        CreateFreezingProjectille();
         CreateAimingProjectille();
-
+        CreateFreezingProjectille();
+       
+    
         refireTimer = turretProperties.RateOfFire;
 
         {
             // SFX
         }
+    
+        
     }
-
-    public void AssignLoadout(TurretProperties props)
+    public void EnemyFire()
     {
-        if (mode != props.Mode)
+        if (refireTimer > 0)
             return;
 
-        turretProperties = props;
-        refireTimer = 0;
-    }
+        if (turretProperties == null)
+            return;
 
+        if (player)
+        {
+            if (!player.DrawEnergy(turretProperties.EnergyUsage))
+                return;
+
+            if (!player.DrawAmmo(turretProperties.AmmoUsage))
+                return;
+        }
+
+           
+        CreateLightningProjectille();
+           
+        refireTimer = turretProperties.RateOfFire;
+
+
+       
+    }
+    public void AssignLoadout(TurretProperties props)
+    {
+        if (props == null)
+        {
+            // Логгирование или обработка случая, когда props равен null
+            return;
+        }
+
+        if (mode != props.Mode)
+        {
+            // Логгирование или уведомление о несоответствии режимов
+            return;
+        }
+
+        lock (this)
+        {
+            turretProperties = props;
+            refireTimer = 0;
+        }
+    }
     private void CreateLightningProjectille()
     {
         if (mode != TurretMode.Lightning) return;
