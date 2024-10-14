@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPD">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" afterDir="false" />
-    </list>
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPD" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,48 +16,60 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
     {
-      &quot;state&quot;: &quot;OPEN&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "OPEN",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;assignee&quot;: &quot;DimitryGameDev&quot;,
-      &quot;reviewState&quot;: &quot;CHANGES_REQUESTED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "assignee": "DimitryGameDev",
+      "reviewState": "CHANGES_REQUESTED",
+      "author": "DimitryGameDev"
+    },
+    {
+      "state": "OPEN"
     }
   ],
-  &quot;lastFilter&quot;: {}
-}</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
     {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMooPfs5-acJN&quot;,
-        &quot;number&quot;: 41
+      "id": {
+        "id": "PR_kwDOMooPfs5-acJN",
+        "number": 41
       },
-      &quot;lastSeen&quot;: 1728754212551
+      "lastSeen": 1728754212551
     },
     {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMooPfs5-bRba&quot;,
-        &quot;number&quot;: 42
+      "id": {
+        "id": "PR_kwDOMooPfs5-bRba",
+        "number": 42
       },
-      &quot;lastSeen&quot;: 1728755365833
+      "lastSeen": 1728755365833
+    },
+    {
+      "id": {
+        "id": "PR_kwDOMooPfs5-mjDI",
+        "number": 45
+      },
+      "lastSeen": 1728947781846
     }
   ]
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/DimitryGameDev/Motorika-game.git&quot;,
@@ -129,7 +126,7 @@
   "keyToString": {
     "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "TestConflict",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -267,7 +264,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/TestConflict" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
         <entry key="a18549da-69b2-4f75-aa67-2139b85ee675">
