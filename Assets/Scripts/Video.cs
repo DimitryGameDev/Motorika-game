@@ -5,20 +5,20 @@ using UnityEngine.Video;
 
 public class Video : MonoBehaviour
 {
-    private VideoPlayer video;
+    private VideoPlayer Player;
     void Start()
     {
-        video.GetComponent<VideoPlayer>();
+        Player.GetComponent<VideoPlayer>();
 
-        if(video != null )
-        video.Play();
+        if(Player != null )
+        Player.Play();
     }
 
     public void PlayVideoClip()
     {
-        if (!video.isPlaying)
+        if (!Player.isPlaying)
         {
-            video.Play();
+            Player.Play();
         }
     }
 }
