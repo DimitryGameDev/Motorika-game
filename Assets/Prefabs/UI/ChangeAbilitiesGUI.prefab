@@ -1147,7 +1147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8202258056160672655
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   descriptionTextRight: {fileID: 3739771638062264791}
   closeButton: {fileID: 1316061570777454817}
   playerBag: {fileID: 0}
-  countForChange: 1
+  countForChange: 3
 --- !u!223 &165853062603026968
 Canvas:
   m_ObjectHideFlags: 0

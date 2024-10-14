@@ -4,21 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPD">
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPDui">
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (1).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (2).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (1).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (2).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/кнопка 4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/кнопка 4.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/ui/frame1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ui/frame1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Buttons/Button.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Buttons/Button.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/LevelGUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/LevelGUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelGUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelGUI.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +129,7 @@
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Player/Base/Destructible.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Player/Turret/ImpactEffect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -125,20 +145,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeInspectionSettingsId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeInspectionSettingsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.24f1/Unity.app/Contents/MacOS/Unity" />
@@ -192,7 +212,9 @@
       <workItem from="1728758004091" duration="171000" />
       <workItem from="1728758195109" duration="3310000" />
       <workItem from="1728762961140" duration="9532000" />
-      <workItem from="1728822544621" duration="23942000" />
+      <workItem from="1728822544621" duration="24378000" />
+      <workItem from="1728888300935" duration="593000" />
+      <workItem from="1728892793415" duration="5177000" />
     </task>
     <task id="LOCAL-00001" summary="111">
       <option name="closed" value="true" />
@@ -218,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728836197052</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="DYupd&#10;&#10;Added new fbx files for Gnom enemy model to Assets/Prefabs/Enemies/Gnom directory. Removed outdated GnomProj.prefab configuration to clean up unused assets.">
+      <option name="closed" value="true" />
+      <created>1728855138462</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728855138462</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +332,9 @@
     <MESSAGE value="111" />
     <MESSAGE value="GnomUPD" />
     <MESSAGE value="UPD" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPD" />
+    <MESSAGE value="DYupd&#10;&#10;Added new fbx files for Gnom enemy model to Assets/Prefabs/Enemies/Gnom directory. Removed outdated GnomProj.prefab configuration to clean up unused assets." />
+    <MESSAGE value="UPDui" />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDui" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
