@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="EEEEEE" />
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="LLL" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +69,7 @@
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
@@ -107,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728949093983</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="LLL">
+      <option name="closed" value="true" />
+      <created>1728949503856</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728949503856</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -116,7 +125,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RESHIL" />
     <MESSAGE value="EEEEEE" />
-    <option name="LAST_COMMIT_MESSAGE" value="EEEEEE" />
+    <MESSAGE value="LLL" />
+    <option name="LAST_COMMIT_MESSAGE" value="LLL" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
