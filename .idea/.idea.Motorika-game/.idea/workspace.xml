@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="Test" />
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="EEEEEE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,7 +65,14 @@
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
@@ -84,11 +91,33 @@
   }
 }]]></component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="RESHIL">
+      <option name="closed" value="true" />
+      <created>1728948894000</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728948894000</updated>
+    </task>
+    <task id="LOCAL-00002" summary="EEEEEE">
+      <option name="closed" value="true" />
+      <created>1728949093983</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728949093983</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="RESHIL" />
+    <MESSAGE value="EEEEEE" />
+    <option name="LAST_COMMIT_MESSAGE" value="EEEEEE" />
+  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
