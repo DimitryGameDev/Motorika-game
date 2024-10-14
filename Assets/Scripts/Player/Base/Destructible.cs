@@ -18,11 +18,6 @@ public class Destructible : MonoBehaviour
     private int currentHitPoints;
     public int HitPoints => currentHitPoints;
 
-    private void Update()
-    {
-        Debug.Log(HitPoints);
-    }
-
     private void Awake()
     {
         currentHitPoints = hitPoints;
