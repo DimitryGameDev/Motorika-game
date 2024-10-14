@@ -35,7 +35,7 @@ public class BackgroundGeneratorNew : MonoBehaviour
     private void GenerateBackground()
     {
         GameObject selectedPrefab = backgroundPrefabs[Random.Range(0, backgroundPrefabs.Length)];
-        GameObject newBackground = Instantiate(selectedPrefab);
+        GameObject newBackground = Instantiate(selectedPrefab, transform);
         float yPos = Random.Range(-offsetY, offsetY);
         newBackground.transform.position = new Vector3(newBackground.transform.position.x - offsetX, newBackground.transform.position.y + yPos, newBackground.transform.position.z + nextBackgroundPosition);
         backgrounds.Add(newBackground);

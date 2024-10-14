@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a24827239b31439fae595eac2d771df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: Control
   buttonSprites:
   - {fileID: 21300000, guid: ac8f1982fdc084b9abbfbc096d25db3f, type: 3}
   - {fileID: 21300000, guid: 7c21f89f533174c1e80eb5fefd56fc8f, type: 3}
@@ -478,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3454939487381103273, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4124987978017597266, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
       propertyPath: m_text
@@ -490,6 +491,26 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ac565864a5a8c407f8894a190eb85da1, type: 2}
     - target: {fileID: 4124987978017597266, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262366161647321415, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262366161647321415, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2062989977}
+    - target: {fileID: 4262366161647321415, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262366161647321415, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262366161647321415, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4581305988933929639, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
@@ -639,6 +660,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1183889655}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8514202256581781171, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062989977}
     - targetCorrespondingSourceObject: {fileID: 6513091112969635321, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 933904578}
@@ -749,6 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a24827239b31439fae595eac2d771df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: Sound
   buttonSprites:
   - {fileID: 21300000, guid: 55405de5d6baa4569b0309b5da9793a3, type: 3}
   - {fileID: 21300000, guid: 971f96c826d684a24aa40f9b3e305cc3, type: 3}
@@ -821,6 +846,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2062989975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8514202256581781171, guid: 51257ba09746a41e3ac85fce5d3ee6bd, type: 3}
+  m_PrefabInstance: {fileID: 1043548778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2062989977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062989975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485819f5e4cca4b80849f713ac2a46d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelID: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
