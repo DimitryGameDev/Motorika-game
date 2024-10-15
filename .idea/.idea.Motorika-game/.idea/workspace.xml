@@ -5,39 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPDui">
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (1).png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (2).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки (2).png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопки.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (1).png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (2).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные (2).png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/Журнальные кнопкиактивные.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/кнопка 4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/ui/кнопка 4.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ui/frame1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/ui/frame1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Buttons/Button.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Buttons/Button.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/LevelGUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/LevelGUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelGUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelGUI.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
