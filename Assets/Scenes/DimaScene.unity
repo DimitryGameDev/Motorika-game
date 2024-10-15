@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8304867665644994650, guid: 7ec2bb959861c40d3a02622b86ed28fc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 8448189753977520198, guid: 7ec2bb959861c40d3a02622b86ed28fc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1095,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
   player: {fileID: 1188118090}
-  m_ControlMode: 2
+  m_ControlMode: 0
   m_VirtualGamepad: {fileID: 977499210}
 --- !u!4 &1754909015
 Transform:
@@ -1134,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3631882704807575162, guid: f88797c6f7094415bb85984f2d4f9396, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.22
+      value: -6.96
       objectReference: {fileID: 0}
     - target: {fileID: 3631882704807575162, guid: f88797c6f7094415bb85984f2d4f9396, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1293,7 +1297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774701889368046849, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7828878276168016492, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: hitPoints

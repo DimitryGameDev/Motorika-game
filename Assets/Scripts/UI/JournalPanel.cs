@@ -13,66 +13,36 @@ public enum JournalType
 
 public class JournalPanel : MonoBehaviour
 {
-    [SerializeField] private List<TMP_Text> loreModeTexts;
-    [SerializeField] private List<TMP_Text> loreModeTitles;
-    [SerializeField] private List<Image> loreModeImages;
-    [SerializeField] private List<TMP_Text> enemiesModeTexts;
-    [SerializeField] private List<TMP_Text> enemiesModeTitles;
-    [SerializeField] private List<Image> enemiesModeImages;
-    [SerializeField] private List<TMP_Text> abilitiesModeTexts;
-    [SerializeField] private List<TMP_Text> abilitiesModeTitles;
-    [SerializeField] private List<Image> abilitiesModeImages;
-    private Dictionary<JournalType, List<TMP_Text>> journalTexts;
-    private Dictionary<JournalType, List<TMP_Text>> journalTitles;
-    private Dictionary<JournalType, List<Image>> journalImages;
+    
+    [SerializeField] private List<GameObject> loreModeContent;
+    [SerializeField] private List<GameObject> enemiesModeContent;
+    [SerializeField] private List<GameObject> abilitiesModeContent;
+    private Dictionary<JournalType, List<GameObject>> journalContents;
     private JournalType currentJournalType = JournalType.LoreMode;
     private int currentIndex;
 
     private void Start()
     {
         currentIndex = 0;
-        journalTexts = new Dictionary<JournalType, List<TMP_Text>>()
+        journalContents = new Dictionary<JournalType, List<GameObject>>()
         {
-            { JournalType.LoreMode, loreModeTexts },
-            { JournalType.EnemiesMode, enemiesModeTexts },
-            { JournalType.AbilitiesMode, abilitiesModeTexts },
+            { JournalType.LoreMode, loreModeContent },
+            { JournalType.EnemiesMode, enemiesModeContent },
+            { JournalType.AbilitiesMode, abilitiesModeContent },
             
         };
-        journalTitles = new Dictionary<JournalType, List<TMP_Text>>()
-        {
-            { JournalType.LoreMode, loreModeTitles },
-            { JournalType.EnemiesMode, enemiesModeTitles },
-            { JournalType.AbilitiesMode, abilitiesModeTitles },
-            
-        };
-        Debug.Log(currentJournalType);
-        journalImages = new Dictionary<JournalType, List<Image>>()
-        {
-            { JournalType.LoreMode, loreModeImages },
-            { JournalType.EnemiesMode, enemiesModeImages },
-            { JournalType.AbilitiesMode, abilitiesModeImages }
-        };
-        journalTitles[currentJournalType][currentIndex].gameObject.SetActive(true);
-        journalTexts[currentJournalType][currentIndex].gameObject.SetActive(true);
-        journalImages[currentJournalType][currentIndex].gameObject.SetActive(true);
-       
+
+        journalContents[currentJournalType][currentIndex].SetActive(true);
     }
 
     private void SwitchJournalType(JournalType newJournalType)
     {
-        journalTexts[currentJournalType][currentIndex].gameObject.SetActive(false);
-        journalTitles[currentJournalType][currentIndex].gameObject.SetActive(false);
-        journalImages[currentJournalType][currentIndex].gameObject.SetActive(false);
-
+        journalContents[currentJournalType][currentIndex].SetActive(false);
 
         currentJournalType = newJournalType;
         currentIndex = 0;
 
-
-        journalTexts[currentJournalType][currentIndex].gameObject.SetActive(true);
-        journalTitles[currentJournalType][currentIndex].gameObject.SetActive(true);
-
-        journalImages[currentJournalType][currentIndex].gameObject.SetActive(true);
+        journalContents[currentJournalType][currentIndex].SetActive(true);
 
         Debug.Log(currentIndex + " : " + currentJournalType);
     }
@@ -94,29 +64,24 @@ public class JournalPanel : MonoBehaviour
     public void ShowNextContent()
     {
         Debug.Log(currentIndex + " : " + currentJournalType);
-        journalTexts[currentJournalType][currentIndex].gameObject.SetActive(false);
-        journalTitles[currentJournalType][currentIndex].gameObject.SetActive(false);
-        journalImages[currentJournalType][currentIndex].gameObject.SetActive(false);
+        journalContents[currentJournalType][currentIndex].SetActive(false);
 
-        currentIndex ++ ;
-        journalTexts[currentJournalType][currentIndex].gameObject.SetActive(true);
-        journalTitles[currentJournalType][currentIndex].gameObject.SetActive(true);
-        journalImages[currentJournalType][currentIndex].gameObject.SetActive(true);
+        currentIndex++;
+
+        if (currentIndex >= journalContents[currentJournalType].Count) currentIndex = 0;
+
+         journalContents[currentJournalType][currentIndex].SetActive(true);
     }
 
     public void ShowPreviousContent()
     {
         if (currentIndex > 0)
         {
-            journalTexts[currentJournalType][currentIndex].gameObject.SetActive(false);
-            journalTitles[currentJournalType][currentIndex].gameObject.SetActive(false);
-            journalImages[currentJournalType][currentIndex].gameObject.SetActive(false);
+            journalContents[currentJournalType][currentIndex].SetActive(false);
 
-            currentIndex --;
+            currentIndex--;
 
-            journalTexts[currentJournalType][currentIndex].gameObject.SetActive(true);
-            journalTitles[currentJournalType][currentIndex].gameObject.SetActive(true);
-            journalImages[currentJournalType][currentIndex].gameObject.SetActive(true);
+            journalContents[currentJournalType][currentIndex].SetActive(true);
         }
         else
         {
