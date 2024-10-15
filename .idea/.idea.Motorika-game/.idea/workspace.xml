@@ -41,24 +41,31 @@
   ],
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
     {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMooPfs5-acJN&quot;,
-        &quot;number&quot;: 41
+      "id": {
+        "id": "PR_kwDOMooPfs5-acJN",
+        "number": 41
       },
-      &quot;lastSeen&quot;: 1728754212551
+      "lastSeen": 1728754212551
     },
     {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMooPfs5-bRba&quot;,
-        &quot;number&quot;: 42
+      "id": {
+        "id": "PR_kwDOMooPfs5-bRba",
+        "number": 42
       },
-      &quot;lastSeen&quot;: 1728755365833
+      "lastSeen": 1728755365833
+    },
+    {
+      "id": {
+        "id": "PR_kwDOMooPfs5-mkFQ",
+        "number": 46
+      },
+      "lastSeen": 1728954797539
     }
   ]
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/DimitryGameDev/Motorika-game.git&quot;,
