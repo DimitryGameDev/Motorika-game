@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenuGUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/StartPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
-    </list>
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="JournalUpd" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +20,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;history&quot;: [
@@ -297,7 +293,8 @@
     <MESSAGE value="UPD" />
     <MESSAGE value="DYupd&#10;&#10;Added new fbx files for Gnom enemy model to Assets/Prefabs/Enemies/Gnom directory. Removed outdated GnomProj.prefab configuration to clean up unused assets." />
     <MESSAGE value="UPDui" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPDui" />
+    <MESSAGE value="JournalUpd" />
+    <option name="LAST_COMMIT_MESSAGE" value="JournalUpd" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
