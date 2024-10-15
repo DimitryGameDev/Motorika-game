@@ -118,7 +118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   indestructable: 0
-  hitPoints: 100
+  hitPoints: 80
   parrySphere: {fileID: 8057977862307885828, guid: 248cbc6df28208b4181ca20796c07477, type: 3}
   damage: 15
   parried: 0

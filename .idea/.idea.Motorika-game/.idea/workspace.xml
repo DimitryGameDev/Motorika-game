@@ -4,6 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPDui" />
+=======
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
     <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="DY2">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -75,6 +82,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/_GitBuilds/Motorika-game/Assets/Scripts/Coin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
@@ -122,6 +130,11 @@
   "keyToString": {
     "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< Updated upstream
+    "git-widget-placeholder": "restore-point",
+=======
+    "git-widget-placeholder": "54bd2a40",
+>>>>>>> Stashed changes
     "git-widget-placeholder": "dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
