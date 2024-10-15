@@ -11,9 +11,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
     </list>
 >>>>>>> Stashed changes
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="DY2">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="gitignore">
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
     </list>
+    <list id="8e8a92be-682a-44c0-a59e-d088324a2e79" name="Trash" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +73,13 @@
         "number": 46
       },
       "lastSeen": 1728954797539
+    },
+    {
+      "id": {
+        "id": "PR_kwDOMooPfs5-mjDI",
+        "number": 45
+      },
+      "lastSeen": 1728958632475
     }
   ]
 }]]></component>
@@ -103,6 +111,7 @@
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scenes/DimaScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
@@ -141,7 +150,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -262,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728955080483</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1728958264732</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728958264732</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +368,8 @@
     <MESSAGE value="JournalUpd" />
     <MESSAGE value="DY" />
     <MESSAGE value="DY2" />
-    <option name="LAST_COMMIT_MESSAGE" value="DY2" />
+    <MESSAGE value="gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
