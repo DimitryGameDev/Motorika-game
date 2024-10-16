@@ -160,7 +160,7 @@ public class Projectile : MonoBehaviour
     protected virtual void OnHit(RaycastHit hit)
     {
         if (hit.collider == null) return;
-        Debug.Log(hit.collider.name);
+
         var destructible = hit.collider.transform.root.GetComponent<Destructible>();
         var destructible1 = hit.collider.transform.GetComponent<Destructible>();
         

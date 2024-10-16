@@ -15,18 +15,18 @@ public class BackgroundGeneratorNew : MonoBehaviour
 
     private void Awake()
     {
-        nextBackgroundPosition = -destroyDistance;
+        nextBackgroundPosition = player.position.z + backgroundSpacing*3;
         GenerateBackground();
     }
 
     private void Update()
     {
-        if (player.position.z > nextBackgroundPosition - destroyDistance)
+        if (player != null && player.position.z > nextBackgroundPosition - destroyDistance)
         {
             GenerateBackground();
         }
 
-        if (backgrounds.Count > 0 && player.position.z > backgrounds[0].transform.position.z + destroyDistance)
+        if (player != null && backgrounds.Count > 0 && player.position.z > backgrounds[0].transform.position.z + destroyDistance)
         {
             DestroyBackground(backgrounds[0]);
         }
@@ -37,7 +37,7 @@ public class BackgroundGeneratorNew : MonoBehaviour
         GameObject selectedPrefab = backgroundPrefabs[Random.Range(0, backgroundPrefabs.Length)];
         GameObject newBackground = Instantiate(selectedPrefab, transform);
         float yPos = Random.Range(-offsetY, offsetY);
-        newBackground.transform.position = new Vector3(newBackground.transform.position.x - offsetX, newBackground.transform.position.y + yPos, newBackground.transform.position.z + nextBackgroundPosition);
+        newBackground.transform.position = new Vector3(newBackground.transform.position.x - offsetX, newBackground.transform.position.y + yPos, player.position.z + nextBackgroundPosition);
         backgrounds.Add(newBackground);
         nextBackgroundPosition += backgroundSpacing;
     }

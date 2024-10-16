@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4349838693948586138}
   - component: {fileID: 8047014581811543248}
   - component: {fileID: 4798059618617514029}
+  - component: {fileID: 5436921577391540008}
   m_Layer: 0
   m_Name: Pl_ice
   m_TagString: Untagged
@@ -87,6 +88,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5436921577391540008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920891297306353610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b7117cfb057f34dbe75a10f0e187c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 250
+  direction: {x: 0, y: 1, z: 1}
 --- !u!1 &8828619654587466925
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +113,6 @@ GameObject:
   - component: {fileID: 8041271766248354075}
   - component: {fileID: 6504125589789768287}
   - component: {fileID: 8348910512740302527}
-  - component: {fileID: 8076570377915016446}
   m_Layer: 0
   m_Name: FreezingProjectille
   m_TagString: Untagged
@@ -157,21 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 10
   lifetime: 5
-  damage: -1
+  damage: 0
   freezeTime: 5
   findRange: 0
   impactEffectPrefab: {fileID: 0}
---- !u!114 &8076570377915016446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828619654587466925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b7117cfb057f34dbe75a10f0e187c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 250
-  direction: {x: 0, y: 0, z: 1}

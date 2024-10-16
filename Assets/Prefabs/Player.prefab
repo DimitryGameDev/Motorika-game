@@ -85,7 +85,7 @@ MonoBehaviour:
   runSpeed: 5
   slideSpeed: 8.5
   slideControlTime: 0.65
-  dashForce: 0.5
+  dashForce: 5
   maxJumpForce: 15
   chargeRate: 150
   raycastDistanceForward: 0.9
@@ -96,6 +96,7 @@ MonoBehaviour:
   slideCollider: {fileID: 6283868882086292931}
   abilitiesChanger: {fileID: 0}
   isSlide: 0
+  isJump: 0
 --- !u!114 &7828878276168016492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   indestructable: 0
-  hitPoints: 100
+  hitPoints: 120
 --- !u!114 &4071290014301704666
 MonoBehaviour:
   m_ObjectHideFlags: 0

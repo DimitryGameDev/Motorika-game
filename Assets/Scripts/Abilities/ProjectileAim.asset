@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: 5
   icon: {fileID: 21300000, guid: 857fd8126f1fa4300a010cc9e69f85b2, type: 3}
+  description: "\u0422\u0415\u0425\u041D\u041E\u0421\u0422\u0420\u0410\u0416"

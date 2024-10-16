@@ -1,14 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AchievementManager : MonoBehaviour
+public class AchievementManager : MonoSingleton<AchievementManager>
 {
     public static List<Achievement> achievements;
 
-    public int NumKILLS = 0;
-    public float NumDEATHS = 0;
+    [HideInInspector] public int NumKILLS = 0;
+    [HideInInspector] public float NumDEATHS = 0;
 
     public void OnEnemyDeath()
     {
@@ -38,7 +37,7 @@ public class AchievementManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
         InitializeAchievements();
     }
 

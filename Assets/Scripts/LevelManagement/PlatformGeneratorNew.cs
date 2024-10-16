@@ -45,7 +45,7 @@ public class PlatformGeneratorNew : MonoBehaviour
             platformCount = 0;
         }
 
-        if (activePlatforms[0].transform.position.z + platformLength * countPlatformBeforeDestroy < StartGenerationPoint.position.z)
+        if (StartGenerationPoint != null && activePlatforms[0].transform.position.z + platformLength * countPlatformBeforeDestroy < StartGenerationPoint.position.z)
         {
             DestroyPlatform();
             GeneratePlatform();
@@ -87,27 +87,4 @@ public class PlatformGeneratorNew : MonoBehaviour
     {
         levelIndexPlatforms = Mathf.Clamp((platformPrefabs.Length * level) / maxLevel, 1, platformPrefabs.Length);
     }
-
-    /*
-    private void ChangeIndex()
-    {
-        switch (level)
-        {
-            case 1:
-                levelIndexPlatforms = platformPrefabs.Length / platformPrefabs.Length;
-                break;
-            case 2:
-                levelIndexPlatforms = platformPrefabs.Length / level - level;
-                break;
-            case 3:
-                levelIndexPlatforms = platformPrefabs.Length / level - level;
-                break;
-            case 4:
-                levelIndexPlatforms = platformPrefabs.Length / level;
-                break;
-            case 5:
-                levelIndexPlatforms = platformPrefabs.Length;
-                break;
-        }
-    }*/
 }

@@ -25,13 +25,16 @@ public class NewBeetle : Enemy
     {
         beetleDestructible = GetComponent<Destructible>();
 
-        rightUpPosition = new Vector3(platform.transform.position.x, platform.transform.position.y + platform.localScale.y / 2 + transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
-        rightDownPosition = new Vector3(platform.transform.position.x, platform.transform.position.y - platform.localScale.y / 2 - transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
-        leftUpPosition = new Vector3(platform.transform.position.x, platform.transform.position.y + platform.localScale.y / 2 + transform.localScale.y / 2, platform.transform.position.z - platform.localScale.z / 2 - transform.localScale.z / 2);
-        leftDownPosition = new Vector3(platform.transform.position.x, platform.transform.position.y - platform.localScale.y / 2 - transform.localScale.y / 2, platform.transform.position.z - platform.localScale.z / 2 - transform.localScale.z / 2);
+        if (platform != null)
+        {
+            rightUpPosition = new Vector3(platform.transform.position.x, platform.transform.position.y + platform.localScale.y / 2 + transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
+            rightDownPosition = new Vector3(platform.transform.position.x, platform.transform.position.y - platform.localScale.y / 2 - transform.localScale.y / 2, platform.transform.position.z + platform.localScale.z / 2 + transform.localScale.z / 2);
+            leftUpPosition = new Vector3(platform.transform.position.x, platform.transform.position.y + platform.localScale.y / 2 + transform.localScale.y / 2, platform.transform.position.z - platform.localScale.z / 2 - transform.localScale.z / 2);
+            leftDownPosition = new Vector3(platform.transform.position.x, platform.transform.position.y - platform.localScale.y / 2 - transform.localScale.y / 2, platform.transform.position.z - platform.localScale.z / 2 - transform.localScale.z / 2);
 
-        transform.position = rightUpPosition;
-        state = State.rightUp;
+            transform.position = rightUpPosition;
+            state = State.rightUp;
+        }
     }
 
     private void Update()

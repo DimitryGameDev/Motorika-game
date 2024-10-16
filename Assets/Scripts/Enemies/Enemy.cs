@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public enum Parried
 {
@@ -60,6 +60,9 @@ public class Enemy : Destructible
             Destroy(spawnSphere);
     }
 
-   
-    
+    public override void OnDeath()
+    {
+        base.OnDeath(); 
+        AchievementManager.Instance.OnEnemyDeath();
+    }
 }
