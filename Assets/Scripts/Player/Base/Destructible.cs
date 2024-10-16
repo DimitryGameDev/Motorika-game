@@ -8,7 +8,6 @@ public class Destructible : MonoBehaviour
 
     [SerializeField] private UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
-
     [SerializeField] private bool indestructable;
     public bool IsIndestructable => indestructable;
 
@@ -17,11 +16,6 @@ public class Destructible : MonoBehaviour
 
     private int currentHitPoints;
     public int HitPoints => currentHitPoints;
-
-    private void Update()
-    {
-        Debug.Log(HitPoints);
-    }
 
     private void Awake()
     {
@@ -36,6 +30,9 @@ public class Destructible : MonoBehaviour
 
         if (currentHitPoints <= 0)
             OnDeath();
+
+        if (currentHitPoints > hitPoints)
+            currentHitPoints = hitPoints;
     }
 
     public void BlockDamage(float blockTime)
@@ -51,11 +48,14 @@ public class Destructible : MonoBehaviour
         indestructable = false;
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
+       
         Destroy(gameObject);
 
         eventOnDeath?.Invoke();
         OnEnemyDeath?.Invoke();
     }
+
+    
 }

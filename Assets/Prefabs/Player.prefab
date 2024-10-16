@@ -50,7 +50,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247668268630907964}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -83,10 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
   runSpeed: 5
-  slideSpeed: 8.5
+  slideSpeed: 10
   slideControlTime: 0.65
-  dashForce: 0.5
-  maxJumpForce: 15
+  dashForce: 500
+  maxJumpForce: 10000
   chargeRate: 150
   raycastDistanceForward: 0.9
   raycastDistanceDown: 0.5
@@ -96,6 +96,7 @@ MonoBehaviour:
   slideCollider: {fileID: 6283868882086292931}
   abilitiesChanger: {fileID: 0}
   isSlide: 0
+  isJump: 0
 --- !u!114 &7828878276168016492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   indestructable: 0
-  hitPoints: 100
+  hitPoints: 120
 --- !u!114 &4071290014301704666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  parryWindow: 0.5
-  parryForce: 15
+  parryWindow: 3
+  parryForce: 1000
   playerDamage: 50
 --- !u!114 &7856028876953029743
 MonoBehaviour:

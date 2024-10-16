@@ -22,7 +22,14 @@ public class AbilitiesChanger : MonoBehaviour
 
     [SerializeField] private Bag playerBag;
     [SerializeField] private int countForChange;
-
+    
+    private Image firstAbility;
+    private Image secondAbility;
+    
+    public int CountForChange => countForChange;
+    
+    private int controlID;
+    
     private int firstAbilitiesIndex;
     private int secondAbilitiesIndex;
 
@@ -32,11 +39,11 @@ public class AbilitiesChanger : MonoBehaviour
     public int PrevoiusSecondIndex => previousSecondIndex;
 
     private bool isFirstChanging;
-
+    
     private void Awake()
     {
         leftPanel.SetActive(false);
-        //rightPanel.SetActive(false);
+        rightPanel.SetActive(false);
 
         previousFirstIndex = firstAbilitiesIndex;
         previousSecondIndex = secondAbilitiesIndex;
@@ -45,6 +52,8 @@ public class AbilitiesChanger : MonoBehaviour
     private void Start()
     {
         RandomValue();
+
+       controlID = PlayerPrefs.GetInt("Control");
     }
 
     private void Update()
@@ -54,24 +63,47 @@ public class AbilitiesChanger : MonoBehaviour
 
     private void OpenPanel()
     {
-        if (playerBag.GetAnomaliesAmount() >= countForChange)
+        if (controlID == 0)
         {
-            if (isFirstChanging)
+            if (playerBag.GetAnomaliesAmount() >= countForChange)
             {
-                currentAbilityImageLeft.sprite = abilities[previousFirstIndex].Icon;
-                changeAbilityImageLeft.sprite = abilities[firstAbilitiesIndex].Icon;
-                descriptionTextLeft.text = abilities[firstAbilitiesIndex].SetText(firstAbilitiesIndex);
-            }
-            else
-            {
-                currentAbilityImageLeft.sprite = abilities[previousSecondIndex].Icon;
-                changeAbilityImageLeft.sprite = abilities[secondAbilitiesIndex].Icon;
-                descriptionTextLeft.text = abilities[secondAbilitiesIndex].SetText(secondAbilitiesIndex);
-            }
+                if (isFirstChanging)
+                {
+                    currentAbilityImageLeft.sprite = abilities[previousFirstIndex].Icon;
+                    changeAbilityImageLeft.sprite = abilities[firstAbilitiesIndex].Icon;
+                    descriptionTextLeft.text = abilities[firstAbilitiesIndex].Description;
+                }
+                else
+                {
+                    currentAbilityImageLeft.sprite = abilities[previousSecondIndex].Icon;
+                    changeAbilityImageLeft.sprite = abilities[secondAbilitiesIndex].Icon;
+                    descriptionTextLeft.text = abilities[secondAbilitiesIndex].Description;
+                }
 
-            leftPanel.SetActive(true);
-            //rightPanel.SetActive(true);
-            Time.timeScale = 0;
+                leftPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            if (playerBag.GetAnomaliesAmount() >= countForChange)
+            {
+                if (isFirstChanging)
+                {
+                    currentAbilityImageRight.sprite = abilities[previousFirstIndex].Icon;
+                    changeAbilityImageRight.sprite = abilities[firstAbilitiesIndex].Icon;
+                    descriptionTextRight.text = abilities[firstAbilitiesIndex].Description;
+                }
+                else
+                {
+                    currentAbilityImageRight.sprite = abilities[previousSecondIndex].Icon;
+                    changeAbilityImageRight.sprite = abilities[secondAbilitiesIndex].Icon;
+                    descriptionTextRight.text = abilities[secondAbilitiesIndex].Description;
+                }
+
+                rightPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 
@@ -94,7 +126,7 @@ public class AbilitiesChanger : MonoBehaviour
         DrawAnomalies();
 
         leftPanel.SetActive(false);
-        //rightPanel.SetActive(false);
+        rightPanel.SetActive(false);
         Time.timeScale = 1;
         RandomValue();
     }
@@ -118,13 +150,13 @@ public class AbilitiesChanger : MonoBehaviour
         ClosePanel();
     }
 
-    public void SetFirstAbility(Image image)
+    public void SetFirstAbility(Image newAbility)
     {
-        image.sprite = abilities[previousFirstIndex].Icon;
+        newAbility.sprite = abilities[previousFirstIndex].Icon;
     }
 
-    public void SetSecondAbility(Image image)
+    public void SetSecondAbility(Image newAbility)
     {
-        image.sprite = abilities[previousSecondIndex].Icon;
+        newAbility.sprite = abilities[previousSecondIndex].Icon;
     }
 }

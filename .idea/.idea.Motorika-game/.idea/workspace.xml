@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPD">
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/GnomProj.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectille/EnemyProjectille .prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Medvekula/NewMedvekula.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/EnemyTurret.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Turret/TurretProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,30 +26,35 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
     {
-      &quot;state&quot;: &quot;OPEN&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "OPEN",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;assignee&quot;: &quot;DimitryGameDev&quot;,
-      &quot;reviewState&quot;: &quot;CHANGES_REQUESTED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "assignee": "DimitryGameDev",
+      "reviewState": "CHANGES_REQUESTED",
+      "author": "DimitryGameDev"
+    },
+    {
+      "state": "OPEN"
     }
   ],
-  &quot;lastFilter&quot;: {}
-}</component>
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
   <component name="GitHubPullRequestState">{
   &quot;prStates&quot;: [
     {
@@ -70,6 +70,20 @@
         &quot;number&quot;: 42
       },
       &quot;lastSeen&quot;: 1728755365833
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-mkFQ&quot;,
+        &quot;number&quot;: 46
+      },
+      &quot;lastSeen&quot;: 1728954797539
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-mjDI&quot;,
+        &quot;number&quot;: 45
+      },
+      &quot;lastSeen&quot;: 1728958632475
     }
   ]
 }</component>
@@ -80,38 +94,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Player/Turret/ImpactEffect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIElements/PanelEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -125,20 +113,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeInspectionSettingsId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeInspectionSettingsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.24f1/Unity.app/Contents/MacOS/Unity" />
@@ -192,7 +180,15 @@
       <workItem from="1728758004091" duration="171000" />
       <workItem from="1728758195109" duration="3310000" />
       <workItem from="1728762961140" duration="9532000" />
-      <workItem from="1728822544621" duration="23942000" />
+      <workItem from="1728822544621" duration="24378000" />
+      <workItem from="1728888300935" duration="593000" />
+      <workItem from="1728892793415" duration="5267000" />
+      <workItem from="1728908683052" duration="2393000" />
+      <workItem from="1728911558711" duration="9000" />
+      <workItem from="1728911584060" duration="5535000" />
+      <workItem from="1728918598261" duration="16475000" />
+      <workItem from="1729076605253" duration="5000" />
+      <workItem from="1729076629787" duration="12989000" />
     </task>
     <task id="LOCAL-00001" summary="111">
       <option name="closed" value="true" />
@@ -302,7 +298,14 @@
     <MESSAGE value="111" />
     <MESSAGE value="GnomUPD" />
     <MESSAGE value="UPD" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPD" />
+    <MESSAGE value="DYupd&#10;&#10;Added new fbx files for Gnom enemy model to Assets/Prefabs/Enemies/Gnom directory. Removed outdated GnomProj.prefab configuration to clean up unused assets." />
+    <MESSAGE value="UPDui" />
+    <MESSAGE value="JournalUpd" />
+    <MESSAGE value="DY" />
+    <MESSAGE value="DY2" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
