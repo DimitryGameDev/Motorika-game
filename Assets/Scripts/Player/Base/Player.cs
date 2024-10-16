@@ -23,6 +23,8 @@ public class Player : MonoSingleton<Player>
 
     [SerializeField] private AbilitiesChanger abilitiesChanger;
 
+    private Parry parry;
+    
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
@@ -35,9 +37,11 @@ public class Player : MonoSingleton<Player>
     private Vector3 raycastBottomPosition;
 
     public bool isSlide;
+    public bool isJump;
 
     private void Start()
     {
+        parry = GetComponent<Parry>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
 
@@ -57,13 +61,13 @@ public class Player : MonoSingleton<Player>
         PlayerInputController.Instance.SlideEvent -= Slide;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
        
-        if (!Input.GetKey(KeyCode.S))
+        if (!isSlide)
         {
             mainCollider.enabled = true;
             slideCollider.enabled = false;
@@ -76,40 +80,39 @@ public class Player : MonoSingleton<Player>
 
         if (!IsBarrier())
         {
-            transform.Translate(Vector3.forward * runSpeed * Time.deltaTime);
-
+            transform.Translate(transform.forward * runSpeed * Time.deltaTime);
+            
             if (IsGround())
                 animator.SetTrigger("Run");
         }
-        else if (IsGround() && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.Space)) //TODO: change this
+        else if (IsGround() && !isSlide && !isJump)
             animator.SetTrigger("Idle");
     }
 
     private void Slide()
     {
-        if (!IsGround()) return;
-
-        isSlide = true;
-
-        animator.SetTrigger("Slide");
-
-        slideTime = 0;
-
-        mainCollider.enabled = false;
-        slideCollider.enabled = true;
-
-        slideTime += Time.deltaTime;
-
-        if (slideTime < slideControlTime)
+        if (IsGround() && !parry.IsParry)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, slideSpeed);
-            //transform.Translate(Vector3.forward * slideSpeed * Time.deltaTime);
+            isSlide = true;
+
+            animator.SetTrigger("Slide");
+
+            slideTime = 0;
+
+            mainCollider.enabled = false;
+            slideCollider.enabled = true;
+
+            slideTime += Time.deltaTime;
+
+            if (slideTime < slideControlTime)
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, slideSpeed);
+            }
         }
     }
 
     private void DashFirst()
     {
-        // Needs Cooldown
         if (IsGround()) return;
         if(abilitiesChanger.PreviousFirstIndex == 2)
         rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
@@ -124,17 +127,23 @@ public class Player : MonoSingleton<Player>
 
     private void Jump()
     {
-        if (!IsGround()) return;
-
-        animator.SetTrigger("Jump");
-
-        currentJumpForce = 0f;
-
-        if (currentJumpForce < maxJumpForce)
+        if (IsGround())
         {
-            currentJumpForce += Time.deltaTime * chargeRate;
-            rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
+
+            isJump = true;
+
+            animator.SetTrigger("Jump");
+
+            currentJumpForce = 0f;
+
+            if (currentJumpForce < maxJumpForce)
+            {
+                currentJumpForce += Time.deltaTime * chargeRate;
+                rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
+            }
         }
+        else
+            isJump = false;
     }
 
     public void Parry(float parryForce)

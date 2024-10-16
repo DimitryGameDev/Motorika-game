@@ -27,7 +27,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (activePlatforms[0].transform.position.z + platformLength * countPlatformBeforeDestroy < StartGenerationPoint.position.z)
+        if (StartGenerationPoint != null && activePlatforms[0].transform.position.z + platformLength * countPlatformBeforeDestroy < StartGenerationPoint.position.z)
         {
             DestroyPlatform();
             GeneratePlatform();

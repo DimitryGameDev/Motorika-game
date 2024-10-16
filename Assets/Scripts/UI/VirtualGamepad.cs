@@ -1,4 +1,7 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class VirtualGamepad : MonoBehaviour
@@ -28,15 +31,23 @@ public class VirtualGamepad : MonoBehaviour
 
         firstButton = FirstAbility.GetComponent<Button>();
         secondButton = SecondAbility.GetComponent<Button>();
+        
+        firstButton.interactable = true;
+        secondButton.interactable = true;
+    }
+
+    private void Start()
+    {
+        FirstAbility.Click += () => SetCooldown(ref timerFirst, firstButton);
+        SecondAbility.Click += () => SetCooldown(ref timerSecond, secondButton);
     }
 
     private void Update()
     {
-        SetButton();
-        SetCooldown();
-
-        timerFirst -= Time.deltaTime;
-        timerSecond -= Time.deltaTime;
+        UpdateCooldown(ref timerFirst, firstButton);
+        UpdateCooldown(ref timerSecond, secondButton);
+        
+            SetButton();
     }
 
     private void SetButton()
@@ -45,29 +56,22 @@ public class VirtualGamepad : MonoBehaviour
         abilitiesChanger.SetSecondAbility(secondAbility);
     }
 
-    private void SetCooldown()
+    private void SetCooldown(ref float timer, Button button)
     {
-        if (FirstAbility.IsHold)
-        {
-            firstButton.interactable = false;
-            timerFirst = cooldown;
-        }
+        button.interactable = false;
+        timer = cooldown;
+    }
 
-        if(SecondAbility.IsHold)
+    private void UpdateCooldown(ref float timer, Button button)
+    {
+        if (timer > 0)
         {
-            secondButton.interactable = false;
-            timerSecond = cooldown;
-        }
-
-        if(timerFirst <= 0 )
-        {
-            firstButton.interactable = true;
-            timerFirst = 0;
-        }
-        if (timerSecond <= 0)
-        {
-            secondButton.interactable = true;
-            timerSecond = 0;
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                button.interactable = true;
+                timer = 0;
+            }
         }
     }
 }

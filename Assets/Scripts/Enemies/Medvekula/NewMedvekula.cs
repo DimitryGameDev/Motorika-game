@@ -18,7 +18,9 @@ public class NewMedvekula : Enemy
     [SerializeField] private float teleportTime;
     [SerializeField] private float minDistance;
     private bool isTeleporting;
-    [SerializeField] private float teleportAnimationDuration = 0.5f;
+    //[SerializeField] private float teleportAnimationDuration = 0.5f;
+
+    private Collider[] colliders;
 
     private void Start()
     {
@@ -30,6 +32,8 @@ public class NewMedvekula : Enemy
 
     private void Update()
     {
+        PlayerPosition();
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (animator)
@@ -37,14 +41,11 @@ public class NewMedvekula : Enemy
             animator.SetTrigger("idleTrigger");
         }
 
-
         if (distanceToPlayer <= VisionDistance && distanceToPlayer > minDistance )
         {
             
             ShootAtPlayer();
         }
-
-   
 
         if (!isTeleporting)
         {
@@ -68,6 +69,18 @@ public class NewMedvekula : Enemy
         }
     }
 
+    private void PlayerPosition()
+    {
+        colliders = Physics.OverlapSphere(transform.position, 5);
+
+        foreach (var collider in colliders)
+        {
+            var p = collider.transform.root.GetComponent<Player>();
+            if (p != null)
+            player = p.transform;
+        }
+    }
+
     private void ShootAtPlayer()
     {
         if (turret != null)
@@ -83,8 +96,6 @@ public class NewMedvekula : Enemy
         return directionToPlayer.z > 2;
       
     }
-
-   
 
     private void NextPositionCalculation()
     {

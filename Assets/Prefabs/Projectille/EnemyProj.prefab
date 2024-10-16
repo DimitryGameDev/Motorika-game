@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 2
   lifetime: 30
-  damage: 30
+  damage: 20
   freezeTime: 0
   findRange: 0
   impactEffectPrefab: {fileID: 0}

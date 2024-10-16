@@ -1,11 +1,12 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField] private Button button;
+    public event UnityAction Click;
 
     private bool m_Hold;
     public bool IsHold => m_Hold;
@@ -18,7 +19,7 @@ public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHa
 
         if (levelID == 0)
         {
-            transform.position = new Vector2(0 + transform.position.x, transform.position.y);
+            transform.position = new Vector2(transform.position.x, transform.position.y);
         }
         else
         {
@@ -37,5 +38,11 @@ public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHa
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
         m_Hold = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (button != null && button.interactable)
+        Click?.Invoke();
     }
 }
