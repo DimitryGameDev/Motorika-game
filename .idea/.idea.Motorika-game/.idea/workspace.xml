@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="UPDui" />
-=======
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="">
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-    </list>
->>>>>>> Stashed changes
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="gitignore">
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
     </list>
-    <list id="8e8a92be-682a-44c0-a59e-d088324a2e79" name="Trash" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,63 +26,67 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
     {
-      &quot;state&quot;: &quot;OPEN&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "OPEN",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "author": "DimitryGameDev"
     },
     {
-      &quot;state&quot;: &quot;MERGED&quot;,
-      &quot;assignee&quot;: &quot;DimitryGameDev&quot;,
-      &quot;reviewState&quot;: &quot;CHANGES_REQUESTED&quot;,
-      &quot;author&quot;: &quot;DimitryGameDev&quot;
+      "state": "MERGED",
+      "assignee": "DimitryGameDev",
+      "reviewState": "CHANGES_REQUESTED",
+      "author": "DimitryGameDev"
+    },
+    {
+      "state": "OPEN"
     }
   ],
-  &quot;lastFilter&quot;: {}
-}</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDOMooPfs5-acJN",
-        "number": 41
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-acJN&quot;,
+        &quot;number&quot;: 41
       },
-      "lastSeen": 1728754212551
+      &quot;lastSeen&quot;: 1728754212551
     },
     {
-      "id": {
-        "id": "PR_kwDOMooPfs5-bRba",
-        "number": 42
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-bRba&quot;,
+        &quot;number&quot;: 42
       },
-      "lastSeen": 1728755365833
+      &quot;lastSeen&quot;: 1728755365833
     },
     {
-      "id": {
-        "id": "PR_kwDOMooPfs5-mkFQ",
-        "number": 46
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-mkFQ&quot;,
+        &quot;number&quot;: 46
       },
-      "lastSeen": 1728954797539
+      &quot;lastSeen&quot;: 1728954797539
     },
     {
-      "id": {
-        "id": "PR_kwDOMooPfs5-mjDI",
-        "number": 45
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-mjDI&quot;,
+        &quot;number&quot;: 45
       },
-      "lastSeen": 1728958632475
+      &quot;lastSeen&quot;: 1728958632475
     }
   ]
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/DimitryGameDev/Motorika-game.git&quot;,
@@ -90,38 +94,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/_GitBuilds/Motorika-game/Assets/Scripts/Coin.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Models/motoricafonts/ENGfonts/Modernist Three SDF.asset" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Cube (1).prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scenes/DimaScene.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Scripts/Video.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIElements/PanelEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -135,25 +113,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-<<<<<<< Updated upstream
-    "git-widget-placeholder": "restore-point",
-=======
-    "git-widget-placeholder": "54bd2a40",
->>>>>>> Stashed changes
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeInspectionSettingsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.24f1/Unity.app/Contents/MacOS/Unity" />
@@ -214,6 +187,8 @@
       <workItem from="1728911558711" duration="9000" />
       <workItem from="1728911584060" duration="5535000" />
       <workItem from="1728918598261" duration="16475000" />
+      <workItem from="1729076605253" duration="5000" />
+      <workItem from="1729076629787" duration="12989000" />
     </task>
     <task id="LOCAL-00001" summary="111">
       <option name="closed" value="true" />
@@ -239,47 +214,7 @@
       <option name="project" value="LOCAL" />
       <updated>1728836197052</updated>
     </task>
-    <task id="LOCAL-00004" summary="DYupd&#10;&#10;Added new fbx files for Gnom enemy model to Assets/Prefabs/Enemies/Gnom directory. Removed outdated GnomProj.prefab configuration to clean up unused assets.">
-      <option name="closed" value="true" />
-      <created>1728855138462</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1728855138462</updated>
-    </task>
-    <task id="LOCAL-00005" summary="UPDui">
-      <option name="closed" value="true" />
-      <created>1728908597966</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1728908597966</updated>
-    </task>
-    <task id="LOCAL-00006" summary="DY">
-      <option name="closed" value="true" />
-      <created>1728955070785</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1728955070785</updated>
-    </task>
-    <task id="LOCAL-00007" summary="DY2">
-      <option name="closed" value="true" />
-      <created>1728955080483</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1728955080483</updated>
-    </task>
-    <task id="LOCAL-00008" summary="gitignore">
-      <option name="closed" value="true" />
-      <created>1728958264732</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1728958264732</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +304,8 @@
     <MESSAGE value="DY" />
     <MESSAGE value="DY2" />
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

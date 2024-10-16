@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject aimPanel;
     [SerializeField] private GameObject icePanel;
     [SerializeField] private GameObject lightningPanel;
+    [SerializeField] private GameObject achievementPanel;
     [SerializeField] private GameObject m_MainPanel;
     private void Start()
     {
@@ -106,6 +107,16 @@ public class MainMenu : MonoBehaviour
     {
         lightningPanel.SetActive(true);
         characterPanel.SetActive(false);
+    }
+    public void CP_ShowAchievementPanel()
+    {
+        achievementPanel.SetActive(true);
+        characterPanel.SetActive(false);
+    }
+    public void CP_CloseAchievementPanel()
+    {
+        achievementPanel.SetActive(false);
+        characterPanel.SetActive(true);
     }
     public void CP_CloseLightningPanel()
     {

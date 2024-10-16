@@ -8,7 +8,7 @@ public class Destructible : MonoBehaviour
 
     [SerializeField] private UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
-
+    [SerializeField] protected AchievementManager achievementManager;
     [SerializeField] private bool indestructable;
     public bool IsIndestructable => indestructable;
 
@@ -48,9 +48,12 @@ public class Destructible : MonoBehaviour
 
     public void OnDeath()
     {
+       
         Destroy(gameObject);
 
         eventOnDeath?.Invoke();
         OnEnemyDeath?.Invoke();
     }
+
+    
 }

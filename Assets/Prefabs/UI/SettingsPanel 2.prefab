@@ -150,7 +150,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3687522449921347788}
-  - {fileID: 6240184451334366513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -727,6 +726,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 81c61e95dfda9430783fe25fa74f1cd7, type: 3}
   - {fileID: 21300000, guid: b978082f5a7184be2bb067d60845966b, type: 3}
   targetButton: {fileID: 6748474777913325048}
+  onStartClickedButton: {fileID: 0}
+  otherbuttonBasicSprites: []
+  otherbuttonChangedSprites: []
+  otherButtons: []
 --- !u!1 &8386020246846221864
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +881,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 55405de5d6baa4569b0309b5da9793a3, type: 3}
   - {fileID: 21300000, guid: 971f96c826d684a24aa40f9b3e305cc3, type: 3}
   targetButton: {fileID: 3713031786821999022}
+  onStartClickedButton: {fileID: 0}
+  otherbuttonBasicSprites: []
+  otherbuttonChangedSprites: []
+  otherButtons: []
 --- !u!1 &8681372132986849880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1054,7 @@ RectTransform:
   - {fileID: 6457279843979140400}
   - {fileID: 2885066514431598789}
   - {fileID: 2592793303506227313}
+  - {fileID: 6240184451334366513}
   m_Father: {fileID: 6250107848880130731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1256,7 +1264,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6250107848880130731}
+    m_TransformParent: {fileID: 3687522449921347788}
     m_Modifications:
     - target: {fileID: 4446142738929825305, guid: 2fef57aaaff7e4f8186ac418e7da6bd2, type: 3}
       propertyPath: m_Pivot.x
@@ -1320,7 +1328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446142738929825305, guid: 2fef57aaaff7e4f8186ac418e7da6bd2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -241
+      value: -125.99999
       objectReference: {fileID: 0}
     - target: {fileID: 4446142738929825305, guid: 2fef57aaaff7e4f8186ac418e7da6bd2, type: 3}
       propertyPath: m_AnchoredPosition.y
