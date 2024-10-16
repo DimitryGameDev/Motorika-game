@@ -85,7 +85,9 @@ public class JournalPanel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Невозможно перейти к предыдущему контенту, текущий индекс уже на нуле.");
+            journalContents[currentJournalType][currentIndex].SetActive(false);
+            currentIndex = journalContents[currentJournalType].Count - 1;
+            journalContents[currentJournalType][currentIndex].SetActive(true);
         }
     }
 }

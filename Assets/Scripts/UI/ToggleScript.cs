@@ -6,6 +6,7 @@ public class ToggleScript : MonoBehaviour
     [SerializeField] private string key;
     [SerializeField] private Sprite[] buttonSprites;
     [SerializeField] private Image targetButton;
+    [SerializeField] private Image onStartClickedButton;
     [SerializeField] private Sprite[] otherbuttonBasicSprites;
     [SerializeField] private Sprite[] otherbuttonChangedSprites;
     [SerializeField] private Image[] otherButtons;
@@ -21,7 +22,11 @@ public class ToggleScript : MonoBehaviour
             else
                 targetButton.sprite = buttonSprites[1];
         }
-     
+
+        if (onStartClickedButton)
+        {
+            onStartClickedButton.sprite = buttonSprites[1];
+        }
     }
 
     public void ChangeSprite()
@@ -45,14 +50,14 @@ public class ToggleScript : MonoBehaviour
             if (targetButton.sprite == buttonSprites[0])
             {
                 targetButton.sprite = buttonSprites[1];
-                return;
+               
             }
-            targetButton.sprite = buttonSprites[0];
+           
 
         }
     }
 
-
+    
     public void ChangeAllOtherSprites()
     {
      
