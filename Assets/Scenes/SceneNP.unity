@@ -958,9 +958,17 @@ PrefabInstance:
       value: PlatformGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 7911289165535622867, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
+      propertyPath: maxLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911289165535622867, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
       propertyPath: StartGenerationPoint
       value: 
       objectReference: {fileID: 1188118091}
+    - target: {fileID: 7911289165535622867, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
+      propertyPath: countPlatformAddLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9129409845067028994, guid: 4de173b3b8fff224699d090ca22ec2d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

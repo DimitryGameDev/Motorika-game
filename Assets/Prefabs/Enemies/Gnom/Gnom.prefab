@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3631882704807575162}
   - component: {fileID: 7452860034220889388}
   - component: {fileID: 6831021802360130798}
+  - component: {fileID: -1228754612576129356}
   m_Layer: 0
   m_Name: Gnom
   m_TagString: Untagged
@@ -66,7 +67,6 @@ MonoBehaviour:
   lifetime: 0
   teleportTime: 2
   minDistance: 5
-  teleportAnimationDuration: 0
 --- !u!65 &6831021802360130798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88,6 +88,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0970278, y: 4.1063843, z: 1.7658119}
   m_Center: {x: 0.06866383, y: 0.7689168, z: -0.28277782}
+--- !u!114 &-1228754612576129356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148899708279869105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea5ad8a7291a4244b382450db4ce27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffect: {fileID: 0}
+  anomalyPrefab: {fileID: 6828879856208700392, guid: 606b9e5e5a84b534f88c73125a8a6bba, type: 3}
 --- !u!1 &6890374264786765447
 GameObject:
   m_ObjectHideFlags: 0

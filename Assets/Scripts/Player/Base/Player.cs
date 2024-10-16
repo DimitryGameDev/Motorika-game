@@ -134,13 +134,14 @@ public class Player : MonoSingleton<Player>
 
             animator.SetTrigger("Jump");
 
-            currentJumpForce = 0f;
+            rb.AddForce(Vector3.up * maxJumpForce * Time.deltaTime, ForceMode.Impulse);
+           /* currentJumpForce = 0f;
 
             if (currentJumpForce < maxJumpForce)
             {
                 currentJumpForce += Time.deltaTime * chargeRate;
                 rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
-            }
+            }*/
         }
         else
             isJump = false;
