@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5970972916361738660}
   - component: {fileID: 6082492480450374393}
-  - component: {fileID: 946400227391017311}
+  - component: {fileID: 700005162176311591}
   m_Layer: 0
   m_Name: Wood3
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &946400227391017311
+--- !u!114 &700005162176311591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
