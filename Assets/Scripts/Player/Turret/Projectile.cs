@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,6 +21,17 @@ public class Projectile : MonoBehaviour
     private float freezeTimer;
     private Collider[] enemiesCollider;
 
+    private int lightningLevel;
+    private int freezingLevel;
+    private int aimingLevel;
+    
+    private void Start()
+    {
+        lightningLevel = PlayerPrefs.GetInt("Ability3");
+        freezingLevel = PlayerPrefs.GetInt("Ability4");
+        lightningLevel = PlayerPrefs.GetInt("Ability5");
+    }
+
     private void Update()
     {
         LightningProjectile();
@@ -32,7 +44,7 @@ public class Projectile : MonoBehaviour
     {
         RaycastHit hit;
 
-        float stepLength = Time.deltaTime * velocity;
+        float stepLength = Time.deltaTime * (velocity + lightningLevel);
         Vector3 step = transform.forward * stepLength;
 
         Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
@@ -74,7 +86,7 @@ public class Projectile : MonoBehaviour
     {
         RaycastHit hit1;
 
-        float stepLength = Time.deltaTime * velocity;
+        float stepLength = Time.deltaTime * (velocity + freezingLevel);
         Vector3 step = transform.forward * stepLength;
 
         Debug.DrawRay(transform.position, transform.forward * stepLength, Color.green);
@@ -104,7 +116,7 @@ public class Projectile : MonoBehaviour
     public void AimingProjectile()
     { 
         enemiesCollider = Physics.OverlapSphere(transform.position, findRange);
-        float stepLength = Time.deltaTime * velocity;
+        float stepLength = Time.deltaTime * (velocity + aimingLevel);
         foreach (var enemyCollider in enemiesCollider)
         {
             var player = enemyCollider.GetComponent<Player>();
@@ -121,9 +133,9 @@ public class Projectile : MonoBehaviour
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, stepLength * 2);
                     transform.position = Vector3.MoveTowards(transform.position, destructible.transform.position, stepLength);
 
-                    if (Vector3.Distance(transform.position, destructible.transform.position) < 0.1f)
+                    if (Vector3.Distance(transform.position, destructible.transform.position) <= 0.1f)
                     {
-                        destructible.ApplyDamage(damage);
+                        destructible.ApplyDamage(damage + aimingLevel);
                         Destroy(gameObject);
                         return;
                     }
@@ -169,12 +181,12 @@ public class Projectile : MonoBehaviour
         {
             if (destructible1 != null)
             {
-                destructible1.ApplyDamage(damage);
+                destructible1.ApplyDamage(damage + lightningLevel);
                 return;
             }
             if (destructible != null)
             {
-                destructible.ApplyDamage(damage);
+                destructible.ApplyDamage(damage + lightningLevel);
               
             }
            
@@ -199,7 +211,10 @@ public class Projectile : MonoBehaviour
         var enemy = hit.collider.transform.GetComponent<Enemy>();
 
         if (enemy != null)
+        {
             enemy.SetZeroSpeed(freezeTimer);
+            enemy.ApplyDamage(damage + freezingLevel);
+        }
     }
 
     private void OnProjectileLifeEnd(Collider collider, Vector3 pos)

@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +14,13 @@ public class TimeScale : MonoBehaviour
     public bool IsSlowed => isSlowed;
     private float originalTimeScale;
 
+    private int timeLevel;
+    
     private Dictionary<GameObject, float> originalSpeeds = new Dictionary<GameObject, float>();
     private void Start()
     {
+        timeLevel = PlayerPrefs.GetInt("Ability1");
+        
         PlayerInputController.Instance.FirstAbilityEvent += AbilityCheckFirst;
         PlayerInputController.Instance.SecondAbilityEvent += AbilityCheckSecond;
     }
@@ -47,12 +51,11 @@ public class TimeScale : MonoBehaviour
          originalTimeScale = Time.timeScale;
          Time.timeScale = slowDownFactor;
          Time.fixedDeltaTime = 0.02f * Time.timeScale; 
-
     
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-     
 
-        yield return new WaitForSeconds(slowDownDuration);
+        var timer = slowDownDuration + (timeLevel * 0.5f);
+        yield return new WaitForSeconds(timer);
 
         Time.timeScale = originalTimeScale;
         Time.fixedDeltaTime = 0.02f * Time.timeScale; 

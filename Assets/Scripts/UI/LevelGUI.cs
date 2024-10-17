@@ -5,8 +5,6 @@ using UnityEngine.Serialization;
 
 public class LevelGUI : MonoBehaviour
 {
-    private const string text1 = "���������� ����: ";
-
     [FormerlySerializedAs("m_Panel")][SerializeField] private GameObject m_PausePanel;
     [SerializeField] private GameObject m_ResultPanel;
     [SerializeField] private GameObject m_SettingsPanel;
@@ -14,6 +12,7 @@ public class LevelGUI : MonoBehaviour
     [SerializeField] private GameObject pauseButtonRight;
     [SerializeField] private TMP_Text coinText;
 
+    [SerializeField] private VirtualGamepad virtualGamepad;
     [SerializeField] private Destructible playerDestructible;
 
     private Bag bag;
@@ -56,8 +55,17 @@ public class LevelGUI : MonoBehaviour
     {
         m_SettingsPanel.SetActive(true);
         m_PausePanel.SetActive(false);
-
     }
+
+    public void EX_HideSettingsPanel()
+    {
+        m_SettingsPanel.SetActive(false); 
+        m_PausePanel.SetActive(true);
+
+        SetPauseButton();
+        SetGamepadPosition();
+    }
+
     public void HidePause()
     {
         m_PausePanel.SetActive(false);
@@ -77,7 +85,7 @@ public class LevelGUI : MonoBehaviour
 
         if (bag != null)
         {
-            coinText.text = text1 + bag.GetCoinAmount();
+            coinText.text = bag.GetCoinAmount().ToString();
             PlayerPrefs.SetInt("Coin", coinID + bag.GetCoinAmount());
             PlayerPrefs.Save();
         }
@@ -85,6 +93,8 @@ public class LevelGUI : MonoBehaviour
 
     private void SetPauseButton()
     {
+        controlID = PlayerPrefs.GetInt("Control");
+
         if (controlID == 0)
         {
             pauseButtonLeft.SetActive(true);
@@ -95,5 +105,13 @@ public class LevelGUI : MonoBehaviour
             pauseButtonLeft.SetActive(false);
             pauseButtonRight.SetActive(true);
         }
+    }
+
+    private void SetGamepadPosition()
+    {
+        virtualGamepad.FirstAbility.SetButtonPosition();
+        virtualGamepad.SecondAbility.SetButtonPosition();
+        virtualGamepad.Jump.SetButtonPosition();
+        virtualGamepad.Slide.SetButtonPosition();
     }
 }

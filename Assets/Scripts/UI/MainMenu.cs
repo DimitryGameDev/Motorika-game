@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -15,9 +14,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject lightningPanel;
     [SerializeField] private GameObject achievementPanel;
     [SerializeField] private GameObject m_MainPanel;
+    [SerializeField] private TMP_Text coinText;
+    
     private void Start()
     {
         ShowMainPanel();
+        coinText.text = PlayerPrefs.GetInt("Coin").ToString();
     }
 
     public void ShowMainPanel()

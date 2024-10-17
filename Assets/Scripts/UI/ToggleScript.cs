@@ -14,6 +14,11 @@ public class ToggleScript : MonoBehaviour
 
     private void Start()
     {
+        SetSprite();
+    }
+
+    public void SetSprite()
+    {
         ID = PlayerPrefs.GetInt(key);
         if (key != "")
         {
@@ -42,7 +47,6 @@ public class ToggleScript : MonoBehaviour
             targetButton.sprite = buttonSprites[0];
         
             PlayerPrefs.SetInt(key, 0);
-            Debug.Log(PlayerPrefs.GetInt(key));
             PlayerPrefs.Save();
         }
         else

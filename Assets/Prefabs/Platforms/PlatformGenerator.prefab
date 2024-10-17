@@ -50,9 +50,9 @@ MonoBehaviour:
   - {fileID: 3153199387231346982, guid: cb69a9ae070d10647b4413a065facce5, type: 3}
   - {fileID: 1010102247577379948, guid: 1f30a71be31d46945a449686870cd8c4, type: 3}
   - {fileID: 1878838895709875485, guid: ea2f62fd16b56ac46b056903fb8a4ae1, type: 3}
+  - {fileID: 3153199387231346982, guid: 06fd4029e2cca3345af52a00fa5b3993, type: 3}
   - {fileID: 3153199387231346982, guid: 1a608fdaaa774e742bd91603186cf42c, type: 3}
   - {fileID: 1010102247577379948, guid: b874e7c1ffe717a4fb071a58e433b9d6, type: 3}
-  - {fileID: 3153199387231346982, guid: 06fd4029e2cca3345af52a00fa5b3993, type: 3}
   - {fileID: 3153199387231346982, guid: 86a48cb8b999f0443a39bb8ec76c85f4, type: 3}
   - {fileID: 3153199387231346982, guid: 898105cb5f167a44a959437ec40a911c, type: 3}
   - {fileID: 3153199387231346982, guid: a9804660dc69b234bb3212b3d663a182, type: 3}
@@ -63,9 +63,9 @@ MonoBehaviour:
   - {fileID: 3153199387231346982, guid: 2089e6838fc6bf947a91e0f2f935fbd6, type: 3}
   - {fileID: 3153199387231346982, guid: 31596171d7806b049ae501ef6f9cd862, type: 3}
   - {fileID: 3153199387231346982, guid: 25be58a53faf9e1408d9e02055bfa20c, type: 3}
+  - {fileID: 3153199387231346982, guid: 0f259fd3fc6c8c04e96439b0010a3a3b, type: 3}
   - {fileID: 1878838895709875485, guid: 8a0d7fb30bb833d48aa13feeab060210, type: 3}
   - {fileID: 3153199387231346982, guid: 2e0d66de31d9b1a4e8986e27e2d8960b, type: 3}
-  - {fileID: 3153199387231346982, guid: 0f259fd3fc6c8c04e96439b0010a3a3b, type: 3}
   countOfPlatforms: 5
   countOfBasePlatforms: 5
   platformLength: 15
