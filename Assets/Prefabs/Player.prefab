@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4774701889368046849}
   - component: {fileID: 9186395601992508815}
   - component: {fileID: 7828878276168016492}
-  - component: {fileID: 4071290014301704666}
   - component: {fileID: 7856028876953029743}
   - component: {fileID: 988563225731908279}
   - component: {fileID: 1272653489019343703}
@@ -114,22 +113,6 @@ MonoBehaviour:
       m_Calls: []
   indestructable: 0
   hitPoints: 120
---- !u!114 &4071290014301704666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247668268630907964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8819433a42e445d8178bda68b581a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DoNotDestroyOnLoad: 0
-  parryWindow: 0.5
-  parryForce: 15
-  playerDamage: 50
 --- !u!114 &7856028876953029743
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,12 +61,11 @@ MonoBehaviour:
   visionDistance: 10
   knockbackForce: 0
   player: {fileID: 0}
-  teleportDistance: 5
+  teleportDistance: 10
   teleportDuration: 3
   lifetime: 0
   teleportTime: 2
   minDistance: 5
-  teleportAnimationDuration: 0
 --- !u!65 &6831021802360130798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86,8 +85,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0970278, y: 4.1063843, z: 1.7658119}
-  m_Center: {x: 0.06866383, y: 0.7689168, z: -0.28277782}
+  m_Size: {x: 2.27592, y: 4.1063843, z: 1.8373699}
+  m_Center: {x: -0.038671058, y: 0.7689168, z: 0.3791216}
 --- !u!1 &6890374264786765447
 GameObject:
   m_ObjectHideFlags: 0
