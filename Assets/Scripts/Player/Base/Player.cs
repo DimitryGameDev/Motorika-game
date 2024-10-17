@@ -25,6 +25,8 @@ public class Player : MonoSingleton<Player>
 
     private Parry parry;
     
+    private int dashLevel;
+    
     private float currentJumpForce = 0f;
     private float slideTime = 0;
 
@@ -41,6 +43,8 @@ public class Player : MonoSingleton<Player>
 
     private void Start()
     {
+        dashLevel = PlayerPrefs.GetInt("Ability2");
+        
         parry = GetComponent<Parry>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
@@ -115,14 +119,14 @@ public class Player : MonoSingleton<Player>
     {
         if (IsGround()) return;
         if(abilitiesChanger.PreviousFirstIndex == 2)
-        rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+        rb.AddForce(transform.forward * (dashForce + dashLevel), ForceMode.Impulse);
     }
 
     private void DashSecond()
     {
         if (IsGround()) return;
         if (abilitiesChanger.PrevoiusSecondIndex == 2)
-            rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+            rb.AddForce(transform.forward * (dashForce + dashLevel) , ForceMode.Impulse);
     }
 
     private void Jump()
@@ -134,13 +138,14 @@ public class Player : MonoSingleton<Player>
 
             animator.SetTrigger("Jump");
 
-            currentJumpForce = 0f;
+            rb.AddForce(Vector3.up * maxJumpForce * Time.deltaTime, ForceMode.Impulse);
+           /* currentJumpForce = 0f;
 
             if (currentJumpForce < maxJumpForce)
             {
                 currentJumpForce += Time.deltaTime * chargeRate;
                 rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
-            }
+            }*/
         }
         else
             isJump = false;

@@ -12,14 +12,20 @@ public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHa
     public bool IsHold => m_Hold;
 
     private int levelID;
-
+    private Vector2 startPosition;
     private void Start()
+    {
+        startPosition = transform.position;
+        SetButtonPosition();
+    }
+
+    public void SetButtonPosition()
     {
         levelID = PlayerPrefs.GetInt("Control");
 
         if (levelID == 0)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y);
+            transform.position = startPosition;
         }
         else
         {

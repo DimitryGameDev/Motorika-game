@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitiesChanger: {fileID: 0}
-  cooldown: 5
+  cooldown: 3
   FirstAbility: {fileID: 7566016924735327918}
   SecondAbility: {fileID: 8840599006094613822}
   Slide: {fileID: 8858021868283879306}
