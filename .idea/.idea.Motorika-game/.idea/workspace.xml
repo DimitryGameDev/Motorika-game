@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly.">
+    <list default="true" id="00670efe-6acb-4922-a51c-b546e4da8581" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motorika-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SettingsPanel 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/gears.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DimaScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Background/Wood4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/NewPorcupine.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/NewPorcupine.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform_3 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platforms/Platform_3 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SceneNP.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/main_menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Base/Destructible.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,35 +30,35 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="abadb87208e83eba26ff2e4c236bdb1d339bde64" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "author": "DimitryGameDev"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;author&quot;: &quot;DimitryGameDev&quot;
     },
     {
-      "state": "MERGED",
-      "author": "DimitryGameDev"
+      &quot;state&quot;: &quot;MERGED&quot;,
+      &quot;author&quot;: &quot;DimitryGameDev&quot;
     },
     {
-      "state": "MERGED",
-      "assignee": "DimitryGameDev",
-      "reviewState": "CHANGES_REQUESTED",
-      "author": "DimitryGameDev"
+      &quot;state&quot;: &quot;MERGED&quot;,
+      &quot;assignee&quot;: &quot;DimitryGameDev&quot;,
+      &quot;reviewState&quot;: &quot;CHANGES_REQUESTED&quot;,
+      &quot;author&quot;: &quot;DimitryGameDev&quot;
     },
     {
-      "state": "OPEN"
+      &quot;state&quot;: &quot;OPEN&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GitHubPullRequestState">{
   &quot;prStates&quot;: [
     {
@@ -84,6 +88,27 @@
         &quot;number&quot;: 45
       },
       &quot;lastSeen&quot;: 1728958632475
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-32KY&quot;,
+        &quot;number&quot;: 52
+      },
+      &quot;lastSeen&quot;: 1729110424171
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-5bXC&quot;,
+        &quot;number&quot;: 53
+      },
+      &quot;lastSeen&quot;: 1729121264366
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMooPfs5-_lBv&quot;,
+        &quot;number&quot;: 54
+      },
+      &quot;lastSeen&quot;: 1729184368675
     }
   ]
 }</component>
@@ -94,7 +119,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/Gnom/Gnom.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Enemies/NewPorcupine.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/dmitrijanin/GitHub/Motorika-game/Assets/Prefabs/Player.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelManagement/Parallax.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Turret/Turret.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/JournalPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PanelManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -188,7 +216,10 @@
       <workItem from="1728911584060" duration="5535000" />
       <workItem from="1728918598261" duration="16475000" />
       <workItem from="1729076605253" duration="5000" />
-      <workItem from="1729076629787" duration="12989000" />
+      <workItem from="1729076629787" duration="17434000" />
+      <workItem from="1729111431914" duration="2461000" />
+      <workItem from="1729114725154" duration="4412000" />
+      <workItem from="1729184246220" duration="742000" />
     </task>
     <task id="LOCAL-00001" summary="111">
       <option name="closed" value="true" />
@@ -214,7 +245,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728836197052</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly.">
+      <option name="closed" value="true" />
+      <created>1729099865935</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729099865935</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add new assets and AchievementManager script&#10;&#10;Included new UI textures and icons to the asset folder. Introduced AchievementManager script to manage player achievements based on in-game events like kills and deaths. This update also involves metadata for the newly added scripts and assets.">
+      <option name="closed" value="true" />
+      <created>1729100052380</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729100052380</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +280,21 @@
       <map>
         <entry key="a18549da-69b2-4f75-aa67-2139b85ee675" value="TOOL_WINDOW" />
         <entry key="12ac0b78-4782-4990-ab28-2aa7c02e73e3" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="TAB_STATES">
@@ -263,7 +325,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
         <entry key="a18549da-69b2-4f75-aa67-2139b85ee675">
@@ -305,7 +379,8 @@
     <MESSAGE value="DY2" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add AchievementManager to DimaScene&#10;&#10;Introduced the AchievementManager GameObject to DimaScene with relevant components and Transform properties. This update includes linking the AchievementManager to eventOnDeath callbacks for better game event handling. Adjusted other configuration details to reflect these changes properly." />
+    <MESSAGE value="Add new assets and AchievementManager script&#10;&#10;Included new UI textures and icons to the asset folder. Introduced AchievementManager script to manage player achievements based on in-game events like kills and deaths. This update also involves metadata for the newly added scripts and assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
