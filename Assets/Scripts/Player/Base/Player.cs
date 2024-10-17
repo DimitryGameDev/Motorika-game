@@ -27,7 +27,7 @@ public class Player : MonoSingleton<Player>
     
     private int dashLevel;
     
-    private float currentJumpForce = 0f;
+    //private float currentJumpForce = 0f;
     private float slideTime = 0;
 
     private Rigidbody rb;
@@ -76,6 +76,8 @@ public class Player : MonoSingleton<Player>
             mainCollider.enabled = true;
             slideCollider.enabled = false;
         }
+        
+        Debug.Log(dashForce*dashLevel);
     }
 
     private void Run()
@@ -119,14 +121,14 @@ public class Player : MonoSingleton<Player>
     {
         if (IsGround()) return;
         if(abilitiesChanger.PreviousFirstIndex == 2)
-        rb.AddForce(transform.forward * (dashForce + dashLevel), ForceMode.Impulse);
+        rb.AddForce(transform.forward * (dashForce * dashLevel), ForceMode.Impulse);
     }
 
     private void DashSecond()
     {
         if (IsGround()) return;
         if (abilitiesChanger.PrevoiusSecondIndex == 2)
-            rb.AddForce(transform.forward * (dashForce + dashLevel) , ForceMode.Impulse);
+            rb.AddForce(transform.forward * (dashForce * dashLevel) , ForceMode.Impulse);
     }
 
     private void Jump()
