@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class VirtualGamepad : MonoBehaviour
@@ -47,7 +44,7 @@ public class VirtualGamepad : MonoBehaviour
         UpdateCooldown(ref timerFirst, firstButton);
         UpdateCooldown(ref timerSecond, secondButton);
         
-            SetButton();
+        SetButton();
     }
 
     private void SetButton()
