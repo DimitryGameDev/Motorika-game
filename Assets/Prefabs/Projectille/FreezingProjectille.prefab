@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0db13925945b741900eda0dfd4d4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSFX: {fileID: 5323323714629980194, guid: 786c899fa07bb9c4993425c30106a56a, type: 3}
   velocity: 10
   lifetime: 5
   damage: 0

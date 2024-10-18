@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +8,10 @@ public class TimeScale : MonoBehaviour
     [SerializeField] private float slowDownFactor;
     public float SlowDownFactor => slowDownFactor;
     [SerializeField] private float slowDownDuration; 
-    [SerializeField] private float radius; 
-
+    [SerializeField] private float radius;
+    [SerializeField] private GameObject TimeSFXin;
+    [SerializeField] private GameObject TimeSFXout;
+    
     private bool isSlowed = false;
     public bool IsSlowed => isSlowed;
     private float originalTimeScale;
@@ -34,6 +36,11 @@ public class TimeScale : MonoBehaviour
     {
         if (!isSlowed && abilitiesChanger.PreviousFirstIndex == 1)
         {
+            if (TimeSFXin != null)
+            {
+                GameObject sfx = Instantiate(TimeSFXin, transform.position, Quaternion.identity);
+            }
+            
             StartCoroutine(SlowDown());
         }
     }
@@ -41,6 +48,11 @@ public class TimeScale : MonoBehaviour
     {
         if (!isSlowed && abilitiesChanger.PrevoiusSecondIndex == 1)
         {
+            if (TimeSFXin != null)
+            {
+                GameObject sfx = Instantiate(TimeSFXin, transform.position, Quaternion.identity);
+            }
+            
             StartCoroutine(SlowDown());
         }
     }
@@ -57,6 +69,11 @@ public class TimeScale : MonoBehaviour
         var timer = slowDownDuration + (timeLevel * 0.5f);
         yield return new WaitForSeconds(timer);
 
+        if (TimeSFXout != null)
+        {
+            GameObject sfx = Instantiate(TimeSFXout, transform.position, Quaternion.identity);
+        }
+        
         Time.timeScale = originalTimeScale;
         Time.fixedDeltaTime = 0.02f * Time.timeScale; 
 

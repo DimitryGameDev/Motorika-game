@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public enum Parried
@@ -7,8 +6,19 @@ public enum Parried
     Off
 }
 
+public enum Sound
+{
+    Wolf,
+    Ezh,
+    Gnom
+}
+
 public class Enemy : Destructible
 {
+    [SerializeField] private GameObject deathSFX;
+    [SerializeField] private Sound typeSound;
+    public Sound TypeSound => typeSound; 
+    
     [SerializeField] private GameObject parrySphere;
     private GameObject spawnSphere;
 
@@ -62,7 +72,13 @@ public class Enemy : Destructible
 
     public override void OnDeath()
     {
-        base.OnDeath(); 
+        base.OnDeath();
+
+        if (deathSFX != null)
+        {
+            GameObject deathImpact = Instantiate(deathSFX, transform.position, Quaternion.identity);
+        }
+
         AchievementManager.Instance.OnEnemyDeath();
     }
 }
