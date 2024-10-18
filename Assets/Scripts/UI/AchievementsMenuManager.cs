@@ -12,7 +12,8 @@ public class AchievementsMenuManager : MonoBehaviour
     public TMP_Text detailsTitleText;
     public TMP_Text detailsDescriptionText;
     public Image detailsImage; 
-
+    [SerializeField] private Button closeButton;
+    [SerializeField] private GameObject backButton;
     private void Start()
     {
         DisplayAchievements();
@@ -33,8 +34,14 @@ public class AchievementsMenuManager : MonoBehaviour
         }
     }
 
+    public void CloseAchievementDetails()
+    {
+        achievementDetailsPanel.SetActive(false);
+        backButton.SetActive(true);
+    }
     public void DisplayAchievementDetails(AchievementData achievementData)
     {
+        backButton.SetActive(false);
         achievementDetailsPanel.SetActive(true);
         detailsTitleText.text = achievementData.title;
         detailsDescriptionText.text = achievementData.description;

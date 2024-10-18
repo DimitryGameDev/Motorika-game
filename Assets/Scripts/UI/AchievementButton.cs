@@ -15,7 +15,7 @@ public class AchievementButton : MonoBehaviour
         menuManager = FindObjectOfType<AchievementsMenuManager>();
         button.onClick.AddListener(OnButtonClick);
 
-        SetButtonTransparency(achievementData.achieved ? 1.0f : 0.2f);
+        SetButtonTransparency(achievementData.achieved ? 1.0f : 0.5f);
     }
 
     private void OnButtonClick()
