@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private GameObject targetSFX;
+    
     // For projectile prefab
     [SerializeField] private float velocity;
     [SerializeField] private float lifetime;
@@ -51,6 +53,12 @@ public class Projectile : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
         {
             OnHit(hit);
+            
+            if (targetSFX != null)
+            {
+                GameObject sfx = Instantiate(targetSFX, transform.position, Quaternion.identity);
+            }
+            
             OnProjectileLifeEnd(hit.collider, hit.point);
         }
 
@@ -72,7 +80,10 @@ public class Projectile : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, stepLength))
         {
             OnHitEnemy(hit);
-           
+            if (targetSFX != null)
+            {
+                GameObject sfx = Instantiate(targetSFX, transform.position, Quaternion.identity);
+            }
         }
 
         timer += Time.deltaTime;
@@ -95,6 +106,11 @@ public class Projectile : MonoBehaviour
             freezeTimer = freezeTime;
 
             OnFreeze(hit1);
+            
+            if (targetSFX != null)
+            {
+                GameObject sfx = Instantiate(targetSFX, transform.position, Quaternion.identity);
+            }
             OnProjectileLifeEnd(hit1.collider, hit1.point);
         }
 
@@ -136,6 +152,11 @@ public class Projectile : MonoBehaviour
                     if (Vector3.Distance(transform.position, destructible.transform.position) <= 0.1f)
                     {
                         destructible.ApplyDamage(damage + aimingLevel);
+                        
+                        if (targetSFX != null)
+                        {
+                            GameObject sfx = Instantiate(targetSFX, transform.position, Quaternion.identity);
+                        }
                         Destroy(gameObject);
                         return;
                     }

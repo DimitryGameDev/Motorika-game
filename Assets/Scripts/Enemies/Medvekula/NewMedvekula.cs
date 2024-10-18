@@ -34,17 +34,21 @@ public class NewMedvekula : Enemy
     {
         PlayerPosition();
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        if (animator)
+        if (player != null)
         {
-            animator.SetTrigger("idleTrigger");
-        }
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= VisionDistance && distanceToPlayer > minDistance )
-        {
-            
-            ShootAtPlayer();
+
+            if (animator)
+            {
+                animator.SetTrigger("idleTrigger");
+            }
+
+            if (distanceToPlayer <= VisionDistance && distanceToPlayer > minDistance)
+            {
+
+                ShootAtPlayer();
+            }
         }
 
         if (!isTeleporting)

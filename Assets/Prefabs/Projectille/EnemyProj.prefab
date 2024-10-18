@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0db13925945b741900eda0dfd4d4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSFX: {fileID: 5323323714629980194, guid: ad3f578a6a3a9d4468664988f18fc633, type: 3}
   velocity: 2
   lifetime: 30
   damage: 20
