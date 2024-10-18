@@ -84,6 +84,7 @@ MonoBehaviour:
       m_Calls: []
   indestructable: 0
   hitPoints: 10
+  deathSFX: {fileID: 5323323714629980194, guid: a62ea8db72099da43805b74408b4ecf7, type: 3}
   parrySphere: {fileID: 0}
   damage: 10
   parried: 1
