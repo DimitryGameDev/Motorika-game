@@ -10,7 +10,10 @@ public class AchievementManager : MonoSingleton<AchievementManager>
 
     [HideInInspector] public int NumKILLS = 0;
     [HideInInspector] public float NumDEATHS = 0;
-
+    [HideInInspector] public int NumProjAim = 0;
+    [HideInInspector] public int NumProjFreeze = 0;
+    [HideInInspector] public int NumProjLightning = 0;
+    [HideInInspector] public int NumTimeScale = 0;
     public GameObject achievementPanel; // Панель для отображения достижений
     public TMP_Text achievementTitleText; // TextMeshPro для отображения заголовка достижения
     public TMP_Text achievementDescriptionText; // TextMeshPro для отображения описания достижения
@@ -26,6 +29,24 @@ public class AchievementManager : MonoSingleton<AchievementManager>
         NumDEATHS++;
     }
 
+    public void LightningWeapon()
+    {
+        NumProjLightning++;
+    }
+
+    public void AimWeapon()
+    {
+        NumProjAim++;
+    }
+    public void FreezeWeapon()
+    {
+        NumProjFreeze++;
+    }
+
+    public void TimeScale()
+    {
+        NumTimeScale++;
+    }
     public bool AchievementUnlocked(string achievementName)
     {
         if (achievementsData == null)
@@ -56,13 +77,30 @@ public class AchievementManager : MonoSingleton<AchievementManager>
         {
             // Здесь назначать условия для каждого достижения, например:
             // Вы можете расширить ScriptableObject для условий и заполнить их в редакторе
-            if (achievement.title == "PLEASURE TO KILL")
-            {
-                achievement.requirement = o => NumKILLS >= 1;
-                Debug.Log(achievement.title);
-            }
-            else if (achievement.title == "Oh, Shit!")
+            if (achievement.title == "Неплохое начало")
+                achievement.requirement = o => NumKILLS >= 10;
+            if (achievement.title == "Мастер")
+                achievement.requirement = o => NumKILLS >= 30;
+            if (achievement.title == "ЧЕМПИОН")
+                achievement.requirement = o => NumKILLS >= 50;
+            if (achievement.title == "ЛЕГЕНДА")
+                achievement.requirement = o => NumKILLS >= 100;
+            if (achievement.title == "Бывает")
                 achievement.requirement = o => NumDEATHS >= 1;
+            if (achievement.title == "Авто-аимер:новичок")
+                achievement.requirement = o => NumProjAim >= 10; 
+            if (achievement.title == "Ниже нуля:новичок")
+                achievement.requirement = o => NumProjFreeze >= 10;
+            if (achievement.title == "Молния:новичок")
+                achievement.requirement = o => NumProjLightning >= 10;
+            if (achievement.title == "Авто-аимер:мастер")
+                achievement.requirement = o => NumProjAim >= 30; 
+            if (achievement.title == "Ниже нуля:мастер")
+                achievement.requirement = o => NumProjFreeze >= 30;
+            if (achievement.title == "Молния:мастер")
+                achievement.requirement = o => NumProjLightning >= 30;
+            if (achievement.title == "Слоумо")
+                achievement.requirement = o => NumTimeScale >= 3;
         }
     }
 
@@ -102,7 +140,6 @@ public class AchievementManager : MonoSingleton<AchievementManager>
         // Отображаем панель достижений
         if (achievementPanel != null)
         {
-            Debug.Log("ПОКАЗЫВАЮ");
             achievementPanel.SetActive(true);
         }
 

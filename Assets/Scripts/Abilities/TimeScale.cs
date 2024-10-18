@@ -72,6 +72,7 @@ public class TimeScale : MonoBehaviour
         }
 
         isSlowed = false;
+        AchievementManager.Instance.TimeScale();
     }
 
     private void OnDrawGizmosSelected()

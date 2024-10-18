@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4249dba17ef47e1a587e91e37391c6, type: 3}
-  m_Name: LOSER
+  m_Name: Timescale
   m_EditorClassIdentifier: 
-  title: Oh, Shit!
-  description: 
-  image: {fileID: 0}
+  title: "\u0421\u043B\u043E\u0443\u043C\u043E"
+  description: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435
+    \u0445\u0440\u043E\u043D\u043E-\u0442\u043E\u0440\u043C\u043E\u0437 3 \u0440\u0430\u0437\u0430"
+  image: {fileID: 21300000, guid: 8bdfd70eb6cbc4f74a58389515aad8f1, type: 3}
   achieved: 0

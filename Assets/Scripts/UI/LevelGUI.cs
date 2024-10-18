@@ -11,7 +11,7 @@ public class LevelGUI : MonoBehaviour
     [SerializeField] private GameObject pauseButtonLeft;
     [SerializeField] private GameObject pauseButtonRight;
     [SerializeField] private TMP_Text coinText;
-
+    [SerializeField] private GameObject m_AchievementPanel;
     [SerializeField] private VirtualGamepad virtualGamepad;
     [SerializeField] private Destructible playerDestructible;
 
@@ -57,6 +57,11 @@ public class LevelGUI : MonoBehaviour
         m_PausePanel.SetActive(false);
     }
 
+    public void EX_HideAchievementPanel()
+    {
+        m_AchievementPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
     public void EX_HideSettingsPanel()
     {
         m_SettingsPanel.SetActive(false); 
@@ -82,7 +87,7 @@ public class LevelGUI : MonoBehaviour
     private void ShowResult()
     {
         m_ResultPanel.SetActive(true);
-
+        AchievementManager.Instance.OnPlayerDeath();
         if (bag != null)
         {
             coinText.text = bag.GetCoinAmount().ToString();
