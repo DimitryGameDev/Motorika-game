@@ -36,8 +36,8 @@ public class AchievementsMenuManager : MonoBehaviour
 
     public void CloseAchievementDetails()
     {
-        achievementDetailsPanel.SetActive(false);
         backButton.SetActive(true);
+        achievementDetailsPanel.SetActive(false);
     }
     public void DisplayAchievementDetails(AchievementData achievementData)
     {

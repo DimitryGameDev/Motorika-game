@@ -159,4 +159,6 @@ public class AchievementManager : MonoSingleton<AchievementManager>
             achievementImage.sprite = achievement.image;
         }
     }
+
+  
 }
