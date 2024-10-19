@@ -158,7 +158,7 @@ public class Turret : MonoBehaviour
     private void CreateLightningProjectille()
     {
         if (mode != TurretMode.Lightning) return;
-
+        AchievementManager.Instance.LightningWeapon();
         var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
         projectile.transform.position = transform.position;
         projectile.transform.forward = transform.forward;
@@ -170,7 +170,7 @@ public class Turret : MonoBehaviour
     private void CreateFreezingProjectille()
     {
         if (mode != TurretMode.Freezing) return;
-
+        AchievementManager.Instance.FreezeWeapon();
         var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
         projectile.transform.position = transform.position;
         projectile.transform.forward = transform.forward;
@@ -182,7 +182,7 @@ public class Turret : MonoBehaviour
     private void CreateAimingProjectille()
     {
         if (mode != TurretMode.AutoAiming) return;
-
+        AchievementManager.Instance.AimWeapon();
         var projectile = Instantiate(turretProperties.ProjectilePrefab.gameObject).GetComponent<Projectile>();
         projectile.transform.position = transform.position;
         projectile.transform.forward = transform.forward;

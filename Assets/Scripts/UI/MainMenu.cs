@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject achievementPanel;
     [SerializeField] private GameObject m_MainPanel;
     [SerializeField] private TMP_Text coinText;
+    [SerializeField] private AudioMute audioMute;
     
     private void Start()
     {
@@ -42,6 +43,7 @@ public class MainMenu : MonoBehaviour
     }
     public void EX_CloseSettingsPanel()
     {
+        audioMute.SetSoundVolume();
         settingsPanel.SetActive(false);
         m_MainPanel.SetActive(true);
     }

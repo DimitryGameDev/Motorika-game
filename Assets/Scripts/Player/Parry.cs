@@ -6,6 +6,10 @@ public class Parry : MonoSingleton<Parry>
     public event UnityAction AttackAnimEvent;
     public event UnityAction IdleAnimEvent;
 
+    [SerializeField] private GameObject parrySFXwolf;
+    [SerializeField] private GameObject parrySFXezh;
+    [SerializeField] private GameObject parrySFXgnom;
+    
     [SerializeField] private float parryWindow;
     [SerializeField] private float parryForce;
     [SerializeField] private int playerDamage;
@@ -89,6 +93,21 @@ public class Parry : MonoSingleton<Parry>
         AttackAnimEvent?.Invoke();
 
         playerDestructible.ApplyDamage(enemyDamage);
+
+        if (enemy.TypeSound == Sound.Wolf && parrySFXwolf != null)
+        {
+            GameObject parrySFXw = Instantiate(parrySFXwolf, transform.position, Quaternion.identity);
+        }
+
+        if (enemy.TypeSound == Sound.Ezh && parrySFXezh != null)
+        {
+            GameObject parrySFXe = Instantiate(parrySFXezh, transform.position, Quaternion.identity);
+        }
+        
+        if (enemy.TypeSound == Sound.Gnom && parrySFXgnom != null)
+        {
+            GameObject parrySFXg = Instantiate(parrySFXgnom, transform.position, Quaternion.identity);
+        }
 
         if (playerDestructible.HitPoints > 0)
             player.Parry(parryForce);

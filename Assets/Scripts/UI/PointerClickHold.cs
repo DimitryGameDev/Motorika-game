@@ -1,54 +1,49 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
+public class PointerClickHold : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Button button;
+
+    private bool isHold;
+    public bool IsHold => isHold;
     public event UnityAction Click;
+    
+    private Vector2 leftPosition;
+    private Vector2 rightPosition;
 
-    private bool m_Hold;
-    public bool IsHold => m_Hold;
-
-    private int levelID;
-    private Vector2 startPosition;
     private void Start()
     {
-        startPosition = transform.position;
-        SetButtonPosition();
+        leftPosition = transform.position;
+        rightPosition= new Vector2(Screen.width - transform.position.x, transform.position.y);
     }
 
-    public void SetButtonPosition()
+    public void SetButtonPositionLeft()
     {
-        levelID = PlayerPrefs.GetInt("Control");
-
-        if (levelID == 0)
-        {
-            transform.position = startPosition;
-        }
-        else
-        {
-            transform.position = new Vector2(Screen.width - transform.position.x, transform.position.y);
-        }
+        transform.position = leftPosition;
     }
 
-    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    public void SetButtonPositionRight()
     {
-        if (button != null && button.interactable)
-            m_Hold = true;
-        else
-            m_Hold = false;
-    }
-
-    void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
-    {
-        m_Hold = false;
+        transform.position = rightPosition;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (button != null && button.interactable)
-        Click?.Invoke();
+            Click?.Invoke();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isHold = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isHold = false;
     }
 }

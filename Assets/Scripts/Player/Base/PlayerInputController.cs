@@ -24,6 +24,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     {
         m_VirtualGamepad.FirstAbility.Click += OnFirstAbilityClick;
         m_VirtualGamepad.SecondAbility.Click += OnSecondAbilityClick;
+        m_VirtualGamepad.Jump.Click += OnJumpClick;
         
         if (m_ControlMode == ControlMode.Keyboard)
         {
@@ -58,7 +59,6 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             }
 
             if (m_ControlMode == ControlMode.Keyboard)
-
             {
                 ControlKeyboard();
             }
@@ -73,6 +73,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     {
         m_VirtualGamepad.FirstAbility.Click -= OnFirstAbilityClick;
         m_VirtualGamepad.SecondAbility.Click -= OnSecondAbilityClick;
+        m_VirtualGamepad.Jump.Click -= OnJumpClick;
     }
     
     private void OnFirstAbilityClick()
@@ -85,36 +86,28 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         SecondAbilityEvent?.Invoke();
     }
 
+    private void OnJumpClick()
+    {
+        JumpEvent?.Invoke();
+    }
+    
     private void ControlMobile()
     {
-        if (m_VirtualGamepad.Jump.IsHold) JumpEvent?.Invoke();
-        if (m_VirtualGamepad.Slide.IsHold) SlideEvent?.Invoke();
+        if(m_VirtualGamepad.Slide.IsHold) SlideEvent?.Invoke();
         else RunEvent?.Invoke();
     }
     private void ControlKeyboard()
     {
         if (Input.GetKey(KeyCode.T)) FirstAbilityEvent?.Invoke();
         if (Input.GetKey(KeyCode.D)) SecondAbilityEvent?.Invoke();
-        if (Input.GetKey(KeyCode.Space)) JumpEvent?.Invoke();
-        if (Input.GetKey(KeyCode.S))
-        {
-            SlideEvent?.Invoke();
-        }
-        else
-        {
-            RunEvent?.Invoke();
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) JumpEvent?.Invoke();
+        if (Input.GetKey(KeyCode.S)) SlideEvent?.Invoke();
+        else RunEvent?.Invoke();
     }
     private void ControlMixed()
     {
-        if (Input.GetKey(KeyCode.Space)) JumpEvent?.Invoke();
-        if (Input.GetKey(KeyCode.S))
-        {
-            SlideEvent?.Invoke();
-        }
-        else
-        {
-            RunEvent?.Invoke();
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) JumpEvent?.Invoke();
+        if (Input.GetKey(KeyCode.S)) SlideEvent?.Invoke();
+        else RunEvent?.Invoke();
     }
 }

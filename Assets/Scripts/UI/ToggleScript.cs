@@ -38,16 +38,39 @@ public class ToggleScript : MonoBehaviour
     {
         if (key != "")
         {
-            if (targetButton.sprite == buttonSprites[0])
+            if (key == "Sound")
             {
-                targetButton.sprite = buttonSprites[1];
-                PlayerPrefs.SetInt(key, 1);
-                return;
+                if (targetButton.sprite == buttonSprites[0])
+                {
+                    targetButton.sprite = buttonSprites[1];
+                    PlayerPrefs.SetInt("Sound", 1);
+                }
+                else
+                {
+                    targetButton.sprite = buttonSprites[0];
+
+                    PlayerPrefs.SetInt("Sound", 0);
+                }
+
+                PlayerPrefs.Save();
             }
-            targetButton.sprite = buttonSprites[0];
-        
-            PlayerPrefs.SetInt(key, 0);
-            PlayerPrefs.Save();
+            
+            if (key == "Control")
+            {
+                if (targetButton.sprite == buttonSprites[0])
+                {
+                    targetButton.sprite = buttonSprites[1];
+                    PlayerPrefs.SetInt("Control", 1);
+                }
+                else
+                {
+                    targetButton.sprite = buttonSprites[0];
+
+                    PlayerPrefs.SetInt("Control", 0);
+                }
+
+                PlayerPrefs.Save();
+            }
         }
         else
         {
@@ -56,15 +79,11 @@ public class ToggleScript : MonoBehaviour
                 targetButton.sprite = buttonSprites[1];
                
             }
-           
-
         }
     }
-
     
     public void ChangeAllOtherSprites()
     {
-     
         for (var i = 0; i < otherButtons.Length; i++)
             if (otherButtons[i].sprite == otherbuttonChangedSprites[i])
                 otherButtons[i].sprite = otherbuttonBasicSprites[i];
