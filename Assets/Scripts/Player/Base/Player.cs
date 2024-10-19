@@ -127,7 +127,7 @@ public class Player : MonoSingleton<Player>
         if (IsGround()) return;
         if (abilitiesChanger.PreviousFirstIndex == 2)
         {
-            rb.AddForce(transform.forward * (dashForce * dashLevel), ForceMode.Impulse);
+            rb.AddForce(transform.forward * (dashForce * (dashLevel+1)), ForceMode.Impulse);
             if (DashSFX != null)
             {
                 GameObject sfx = Instantiate(DashSFX, transform.position, Quaternion.identity);
@@ -140,7 +140,7 @@ public class Player : MonoSingleton<Player>
         if (IsGround()) return;
         if (abilitiesChanger.PrevoiusSecondIndex == 2)
         {
-            rb.AddForce(transform.forward * (dashForce * dashLevel), ForceMode.Impulse);
+            rb.AddForce(transform.forward * (dashForce * (dashLevel+1)), ForceMode.Impulse);
             if (DashSFX != null)
             {
                 GameObject sfx = Instantiate(DashSFX, transform.position, Quaternion.identity);
@@ -150,17 +150,16 @@ public class Player : MonoSingleton<Player>
 
     private void Jump()
     {
-        Debug.Log("Jump");
-        //&&Input.GetKeyDown(KeyCode.Space)
         if (IsGround())
         {
             isJump = true;
 
             animator.SetTrigger("Jump");
-            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         else
             isJump = false;
+       
     }
 
     public void Parry(float parryForce)

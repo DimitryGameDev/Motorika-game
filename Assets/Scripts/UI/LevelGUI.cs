@@ -18,6 +18,15 @@ public class LevelGUI : MonoBehaviour
     [SerializeField] private Destructible playerDestructible;
     [SerializeField] private AudioMute audioMute;
 
+    [SerializeField] private Transform transformFirstL;
+    [SerializeField] private Transform transformFirstR;
+    [SerializeField] private Transform transformSecondL;
+    [SerializeField] private Transform transformSecondR;
+    [SerializeField] private Transform transformJumpL;
+    [SerializeField] private Transform transformJumpR;
+    [SerializeField] private Transform transformSlideL;
+    [SerializeField] private Transform transformSlideR;
+    
     private Bag bag;
 
     private int controlID;
@@ -26,13 +35,14 @@ public class LevelGUI : MonoBehaviour
 
     private void Start()
     {
-        controlID = PlayerPrefs.GetInt("Control");
+        //controlID = PlayerPrefs.GetInt("Control");
         coinID = PlayerPrefs.GetInt("Coin");
 
         bag = playerDestructible.GetComponent<Bag>();
 
         SetPauseButton();
-SetGamepadPosition();
+        SetGamepadPosition();
+        
         m_PausePanel.SetActive(false);
         m_ResultPanel.SetActive(false);
         m_SettingsPanel.SetActive(false);
@@ -131,17 +141,17 @@ SetGamepadPosition();
 
         if (controlID == 0)
         {
-            virtualGamepad.FirstAbility.SetButtonPositionLeft();
-            virtualGamepad.SecondAbility.SetButtonPositionLeft();
-            virtualGamepad.Jump.SetButtonPositionLeft();
-            virtualGamepad.Slide.SetButtonPositionLeft();
+            virtualGamepad.FirstAbility.SetButtonPosition(transformFirstL);
+            virtualGamepad.SecondAbility.SetButtonPosition(transformSecondL);
+            virtualGamepad.Jump.SetButtonPosition(transformJumpL);
+            virtualGamepad.Slide.SetButtonPosition(transformSlideL);
         }
         else
         {
-            virtualGamepad.FirstAbility.SetButtonPositionRight();
-            virtualGamepad.SecondAbility.SetButtonPositionRight();
-            virtualGamepad.Jump.SetButtonPositionRight();
-            virtualGamepad.Slide.SetButtonPositionRight();
+            virtualGamepad.FirstAbility.SetButtonPosition(transformFirstR);
+            virtualGamepad.SecondAbility.SetButtonPosition(transformSecondR);
+            virtualGamepad.Jump.SetButtonPosition(transformJumpR);
+            virtualGamepad.Slide.SetButtonPosition(transformSlideR);
         }
     }
 }
