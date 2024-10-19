@@ -2,42 +2,32 @@ using UnityEngine;
 
 public class Player : MonoSingleton<Player>
 {
-    [Header("Run/Slide")] [SerializeField] private float runSpeed = 5f; //run velocity
+    [Header("Run/Slide")] 
+    [SerializeField] private float runSpeed = 5f; //run velocity
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
-    [Header("Dash")] [SerializeField] private float dashForce = 10f;
-   
-    [SerializeField]private float gravityScale = 10f;
-   
-    private float currentGravityScale;
-    
+    [Header("Dash")] 
+    [SerializeField] private float dashForce = 10f;
     [Header("Jump")]
-   
-    
-    public bool isJump= false;
+    [SerializeField] private float gravityScale = 10f;
     [SerializeField] float jumpForce = 400f;
-    
-    [SerializeField] private float maxJumpForce; // additional max jump force
-    [SerializeField] private float chargeRate;
-    
-    [Header("Raycast")] [SerializeField]
-    private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
-    
+    [Header("Raycast")] 
+    [SerializeField] private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float rayPositionTop = 0.5f; // Start position Ray on Top 
     [SerializeField] private float rayPositionBottom = 0.5f; // Start position Ray on Bottom 
-    [Header("Collider")] [SerializeField] private Collider mainCollider;
+    [Header("Collider")] 
+    [SerializeField] private Collider mainCollider;
     [SerializeField] private Collider slideCollider;
-
+    
     [SerializeField] private AbilitiesChanger abilitiesChanger;
 
     [SerializeField] private GameObject DashSFX;
 
+    private float currentGravityScale;
     private Parry parry;
 
     private int dashLevel;
-
-    //private float currentJumpForce = 0f;
     private float slideTime = 0;
 
     private Rigidbody rb;
@@ -49,12 +39,10 @@ public class Player : MonoSingleton<Player>
     private Vector3 raycastBottomPosition;
 
     public bool isSlide;
-
+    public bool isJump= false;
    
     private void Start()
     {
-    
-        
         dashLevel = PlayerPrefs.GetInt("Ability2");
 
         parry = GetComponent<Parry>();
@@ -67,11 +55,7 @@ public class Player : MonoSingleton<Player>
         PlayerInputController.Instance.JumpEvent += Jump;
         PlayerInputController.Instance.SlideEvent += Slide;
     }
-
-    private void SetUpJumpVariables()
-    {
-        
-    }
+    
     private void OnDestroy()
     {
         PlayerInputController.Instance.FirstAbilityEvent -= DashFirst;
@@ -84,7 +68,6 @@ public class Player : MonoSingleton<Player>
     
     private void Update()
     {
-        Jump();
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
@@ -96,8 +79,11 @@ public class Player : MonoSingleton<Player>
         }
     }
 
-    private void FixedUpdate()=>rb.AddForce(Physics.gravity * (rb.mass * gravityScale));
-   
+    private void FixedUpdate()
+    {
+        rb.AddForce(Physics.gravity * (rb.mass * gravityScale));
+    }
+
     private void Run()
     {
         isSlide = false;
@@ -126,7 +112,7 @@ public class Player : MonoSingleton<Player>
 
             mainCollider.enabled = false;
             slideCollider.enabled = true;
-
+            
             slideTime += Time.deltaTime;
 
             if (slideTime < slideControlTime)
@@ -164,21 +150,14 @@ public class Player : MonoSingleton<Player>
 
     private void Jump()
     {
-        if (IsGround()&&Input.GetKeyDown(KeyCode.Space))
+        Debug.Log("Jump");
+        //&&Input.GetKeyDown(KeyCode.Space)
+        if (IsGround())
         {
             isJump = true;
 
             animator.SetTrigger("Jump");
-            //float jumpForce = Mathf.Sqrt(-3 * jumpHeight * Physics.gravity.y*gravityScale);
             rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
-            
-            /* currentJumpForce = 0f;
-
-             if (currentJumpForce < maxJumpForce)
-             {
-                 currentJumpForce += Time.deltaTime * chargeRate;
-                 rb.AddForce(Vector3.up * currentJumpForce, ForceMode.Impulse);
-             }*/
         }
         else
             isJump = false;

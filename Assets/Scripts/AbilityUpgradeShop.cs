@@ -80,7 +80,7 @@ public class AbilityUpgradeShop : MonoBehaviour
 
   private void DebugCoin()
   {
-    PlayerPrefs.SetInt("Coin", 1000);
+    PlayerPrefs.SetInt("Coin", 0);
     PlayerPrefs.SetInt("Ability1",0 );
     PlayerPrefs.SetInt("Ability2",0 );
     PlayerPrefs.SetInt("Ability3",0 );

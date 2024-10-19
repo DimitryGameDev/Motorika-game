@@ -5,7 +5,9 @@ using UnityEngine.Serialization;
 
 public class LevelGUI : MonoBehaviour
 {
-    [FormerlySerializedAs("m_Panel")][SerializeField] private GameObject m_PausePanel;
+    [FormerlySerializedAs("m_Panel")] [SerializeField]
+    private GameObject m_PausePanel;
+
     [SerializeField] private GameObject m_ResultPanel;
     [SerializeField] private GameObject m_SettingsPanel;
     [SerializeField] private GameObject pauseButtonLeft;
@@ -14,11 +16,13 @@ public class LevelGUI : MonoBehaviour
     [SerializeField] private GameObject m_AchievementPanel;
     [SerializeField] private VirtualGamepad virtualGamepad;
     [SerializeField] private Destructible playerDestructible;
+    [SerializeField] private AudioMute audioMute;
 
     private Bag bag;
 
     private int controlID;
     private int coinID;
+    private int soundID;
 
     private void Start()
     {
@@ -28,13 +32,13 @@ public class LevelGUI : MonoBehaviour
         bag = playerDestructible.GetComponent<Bag>();
 
         SetPauseButton();
-
+SetGamepadPosition();
         m_PausePanel.SetActive(false);
         m_ResultPanel.SetActive(false);
         m_SettingsPanel.SetActive(false);
         Time.timeScale = 1;
 
-        if(playerDestructible != null)
+        if (playerDestructible != null)
         {
             playerDestructible.EventOnDeath.AddListener(ShowResult);
         }
@@ -51,6 +55,7 @@ public class LevelGUI : MonoBehaviour
         m_PausePanel.SetActive(true);
         Time.timeScale = 0;
     }
+
     public void EX_ShowSettingsPanel()
     {
         m_SettingsPanel.SetActive(true);
@@ -62,11 +67,13 @@ public class LevelGUI : MonoBehaviour
         m_AchievementPanel.SetActive(false);
         Time.timeScale = 1;
     }
+
     public void EX_HideSettingsPanel()
     {
-        m_SettingsPanel.SetActive(false); 
+        m_SettingsPanel.SetActive(false);
         m_PausePanel.SetActive(true);
 
+        SetSound();
         SetPauseButton();
         SetGamepadPosition();
     }
@@ -76,6 +83,7 @@ public class LevelGUI : MonoBehaviour
         m_PausePanel.SetActive(false);
         Time.timeScale = 1;
     }
+
     public void LoadMainMenu()
     {
         m_PausePanel.SetActive(false);
@@ -96,6 +104,11 @@ public class LevelGUI : MonoBehaviour
         }
     }
 
+    private void SetSound()
+    {
+        audioMute.SetSoundVolume();
+    }
+
     private void SetPauseButton()
     {
         controlID = PlayerPrefs.GetInt("Control");
@@ -114,9 +127,21 @@ public class LevelGUI : MonoBehaviour
 
     private void SetGamepadPosition()
     {
-        virtualGamepad.FirstAbility.SetButtonPosition();
-        virtualGamepad.SecondAbility.SetButtonPosition();
-        virtualGamepad.Jump.SetButtonPosition();
-        virtualGamepad.Slide.SetButtonPosition();
+        controlID = PlayerPrefs.GetInt("Control");
+
+        if (controlID == 0)
+        {
+            virtualGamepad.FirstAbility.SetButtonPositionLeft();
+            virtualGamepad.SecondAbility.SetButtonPositionLeft();
+            virtualGamepad.Jump.SetButtonPositionLeft();
+            virtualGamepad.Slide.SetButtonPositionLeft();
+        }
+        else
+        {
+            virtualGamepad.FirstAbility.SetButtonPositionRight();
+            virtualGamepad.SecondAbility.SetButtonPositionRight();
+            virtualGamepad.Jump.SetButtonPositionRight();
+            virtualGamepad.Slide.SetButtonPositionRight();
+        }
     }
 }
