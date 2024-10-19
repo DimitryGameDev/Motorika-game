@@ -706,8 +706,8 @@ MonoBehaviour:
   m_BindingMode: 1
   m_FollowOffset: {x: 10, y: 0, z: 0}
   m_XDamping: 0
-  m_YDamping: 0
-  m_ZDamping: 1
+  m_YDamping: 10
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1309,6 +1309,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 154420251}
     - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1348,6 +1360,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1492040935694190889, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774701889368046849, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_Mass
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774701889368046849, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4835324158426160654, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: abilitiesChanger
       value: 
@@ -1372,6 +1396,26 @@ PrefabInstance:
       propertyPath: abilitiesChanger
       value: 
       objectReference: {fileID: 154420251}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: runSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: jumpForce
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: jumpSpeed
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: slideSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: gravityScale
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: abilitiesChanger
       value: 
@@ -1620,6 +1664,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1188118090}
+    - target: {fileID: 6706481842990547236, guid: 354c3bc18f91ae04884c6ddb58b23d9f, type: 3}
+      propertyPath: m_ControlMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6706481842990547236, guid: 354c3bc18f91ae04884c6ddb58b23d9f, type: 3}
       propertyPath: m_VirtualGamepad
       value: 

@@ -95,7 +95,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     {
         if (Input.GetKey(KeyCode.T)) FirstAbilityEvent?.Invoke();
         if (Input.GetKey(KeyCode.D)) SecondAbilityEvent?.Invoke();
-        if (Input.GetKey(KeyCode.Space)) JumpEvent?.Invoke();
+       // if (Input.GetKeyDown(KeyCode.Space)) JumpEvent?.Invoke();
         if (Input.GetKey(KeyCode.S))
         {
             SlideEvent?.Invoke();

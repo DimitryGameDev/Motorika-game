@@ -6,12 +6,23 @@ public class Player : MonoSingleton<Player>
     [SerializeField] private float slideSpeed = 10f; // slide speed
     [SerializeField] private float slideControlTime = 0.6f; // max slide time
     [Header("Dash")] [SerializeField] private float dashForce = 10f;
-    [Header("Jump")] [SerializeField] private float maxJumpForce; // additional max jump force
-    [SerializeField] private float chargeRate; // max jump time
-
+   
+    [SerializeField]private float gravityScale = 10f;
+   
+    private float currentGravityScale;
+    
+    [Header("Jump")]
+   
+    
+    public bool isJump= false;
+    [SerializeField] float jumpForce = 400f;
+    
+    [SerializeField] private float maxJumpForce; // additional max jump force
+    [SerializeField] private float chargeRate;
+    
     [Header("Raycast")] [SerializeField]
     private float raycastDistanceForward = 1.5f; // Raycast distance from player to value;
-
+    
     [SerializeField] private float raycastDistanceDown = 1.5f; // Raycast distance from player to value;
     [SerializeField] private float rayPositionTop = 0.5f; // Start position Ray on Top 
     [SerializeField] private float rayPositionBottom = 0.5f; // Start position Ray on Bottom 
@@ -38,10 +49,12 @@ public class Player : MonoSingleton<Player>
     private Vector3 raycastBottomPosition;
 
     public bool isSlide;
-    public bool isJump;
-    
+
+   
     private void Start()
     {
+    
+        
         dashLevel = PlayerPrefs.GetInt("Ability2");
 
         parry = GetComponent<Parry>();
@@ -55,6 +68,10 @@ public class Player : MonoSingleton<Player>
         PlayerInputController.Instance.SlideEvent += Slide;
     }
 
+    private void SetUpJumpVariables()
+    {
+        
+    }
     private void OnDestroy()
     {
         PlayerInputController.Instance.FirstAbilityEvent -= DashFirst;
@@ -64,12 +81,14 @@ public class Player : MonoSingleton<Player>
         PlayerInputController.Instance.SlideEvent -= Slide;
     }
 
+    
     private void Update()
     {
+        Jump();
         rb.freezeRotation = true;
         transform.up = Vector3.up;
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
-
+       
         if (!isSlide)
         {
             mainCollider.enabled = true;
@@ -77,6 +96,8 @@ public class Player : MonoSingleton<Player>
         }
     }
 
+    private void FixedUpdate()=>rb.AddForce(Physics.gravity * (rb.mass * gravityScale));
+   
     private void Run()
     {
         isSlide = false;
@@ -143,13 +164,13 @@ public class Player : MonoSingleton<Player>
 
     private void Jump()
     {
-        if (IsGround())
+        if (IsGround()&&Input.GetKeyDown(KeyCode.Space))
         {
             isJump = true;
 
             animator.SetTrigger("Jump");
-
-            rb.AddForce(Vector3.up * maxJumpForce * Time.deltaTime, ForceMode.Impulse);
+            //float jumpForce = Mathf.Sqrt(-3 * jumpHeight * Physics.gravity.y*gravityScale);
+            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
             
             /* currentJumpForce = 0f;
 

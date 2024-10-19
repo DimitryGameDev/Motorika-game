@@ -35,10 +35,9 @@ public class PointerClickHold : MonoBehaviour, IPointerUpHandler, IPointerDownHa
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (button != null && button.interactable)
+      
             m_Hold = true;
-        else
-            m_Hold = false;
+     
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
