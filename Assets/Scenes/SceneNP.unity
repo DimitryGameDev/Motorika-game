@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1983,6 +1983,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
+      propertyPath: dashForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186395601992508815, guid: d6f7acc0bf84243adbb02d34c6b75708, type: 3}
       propertyPath: jumpForce
       value: 800
       objectReference: {fileID: 0}
@@ -2248,7 +2252,7 @@ PrefabInstance:
       objectReference: {fileID: 1188118090}
     - target: {fileID: 6706481842990547236, guid: 354c3bc18f91ae04884c6ddb58b23d9f, type: 3}
       propertyPath: m_ControlMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6706481842990547236, guid: 354c3bc18f91ae04884c6ddb58b23d9f, type: 3}
       propertyPath: m_VirtualGamepad
