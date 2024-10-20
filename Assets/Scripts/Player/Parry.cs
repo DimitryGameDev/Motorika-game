@@ -70,7 +70,7 @@ public class Parry : MonoSingleton<Parry>
         if (enemy != null)
             enemy.ParrySphere(false);
         
-        if (!isParry)
+        //if (!isParry)
         ResetParry();
     }
 
@@ -82,9 +82,13 @@ public class Parry : MonoSingleton<Parry>
             enemy.ApplyDamage(playerDamage);
 
             if (enemy.HitPoints > 0)
+            {
                 player.Parry(parryForce);
-            
-            Invoke(nameof(ResetParry), 1f);
+                
+            }
+
+            ResetParry();
+            //Invoke(nameof(ResetParry), 1f);
         }
     }
 
@@ -119,7 +123,7 @@ public class Parry : MonoSingleton<Parry>
         {
             parryTimer -= Time.deltaTime;
 
-            if (parryTimer <= 0 && !isParry)
+            if (parryTimer <= 0 )//&& !isParry)
             {
                 ApplyEnemyDamage();
                 ResetParry();

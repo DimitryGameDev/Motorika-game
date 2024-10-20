@@ -11,24 +11,10 @@ public class PointerClickHold : MonoBehaviour, IPointerClickHandler, IPointerDow
     private bool isHold;
     public bool IsHold => isHold;
     public event UnityAction Click;
-    
-    private Vector2 leftPosition;
-    private Vector2 rightPosition;
 
-    private void Start()
+    public void SetButtonPosition(Transform transform)
     {
-        leftPosition = transform.position;
-        rightPosition= new Vector2(Screen.width - transform.position.x, transform.position.y);
-    }
-
-    public void SetButtonPositionLeft()
-    {
-        transform.position = leftPosition;
-    }
-
-    public void SetButtonPositionRight()
-    {
-        transform.position = rightPosition;
+        button.transform.position = transform.position;
     }
 
     public void OnPointerClick(PointerEventData eventData)
