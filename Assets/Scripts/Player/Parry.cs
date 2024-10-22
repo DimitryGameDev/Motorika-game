@@ -22,8 +22,8 @@ public class Parry : MonoSingleton<Parry>
 
     private float parryTimer;
 
-    private bool isParri = false;
-    public bool IsParry => isParri;
+    private bool isParry = false;
+    public bool IsParry => isParry;
     private bool enemyIsActive = false;
 
     private void Start()
