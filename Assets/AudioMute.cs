@@ -4,7 +4,7 @@ public class AudioMute : MonoBehaviour
 {
     [SerializeField] private AudioSource[] audioSource;
 
-    private int soundID;
+    private int soundID1;
 
     private void Start()
     {
@@ -13,11 +13,11 @@ public class AudioMute : MonoBehaviour
 
     public void SetSoundVolume()
     {
-        soundID = PlayerPrefs.GetInt("Sound");
+        soundID1 = PlayerPrefs.GetInt("Sound");
 
         for (int i = 0; i < audioSource.Length; i++)
         {
-            if (soundID == 0)
+            if (soundID1 == 0)
                 audioSource[i].mute= false;
             else
                 audioSource[i].mute= true;
